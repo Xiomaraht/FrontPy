@@ -1,0 +1,86 @@
+
+.custom-table-wrapper {
+    width: 100%;
+    border-radius: 12px;
+    overflow: hidden; /* Esto es crucial para que los border-radius se apliquen correctamente */
+    background-color: #ccc; 
+}
+
+.vet-header-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    color: #000;
+
+}
+
+.vet-header-table thead th {
+    padding: 15px;
+    background-color: #bbb;
+    border-bottom: 2px solid #000;
+    text-align: left; 
+
+}
+
+.vet-header-table thead th:first-child {
+    border-top-left-radius: 12px;
+}
+
+.vet-header-table thead th:last-child {
+    border-top-right-radius: 12px;
+}
+
+.vet-body-scroll-container {
+    overflow-y: auto; 
+    overflow-x: auto; 
+    width: 100%;
+
+}
+
+.vet-body-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0; 
+    color: #000;
+}
+
+.vet-body-table td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 2px solid #000;
+    color: #000;
+}
+
+.vet-body-table tbody tr:last-child td {
+    border-bottom: none;
+}
+.vet-body-table tbody tr:last-child td:first-child {
+    border-bottom-left-radius: 12px; 
+}
+.vet-body-table tbody tr:last-child td:last-child {
+    border-bottom-right-radius: 12px; 
+}
+
+
+.vet-body-table tbody tr:hover {
+    background: #aaa;
+}
+
+.vet-table-image {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.vet-placeholder-icon {
+    font-size: 40px;
+    color: #888;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    background-color: #eee;
+    border-radius: 50%;
+}

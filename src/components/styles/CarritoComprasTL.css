@@ -1,0 +1,275 @@
+/* ========================================================================= */
+/* 1. ESTILOS GLOBALES Y CONTENEDOR PRINCIPAL (CARRITOCOMPRAS.JSX) */
+/* ========================================================================= */
+
+html, body, #root { 
+    height: 100%;
+    margin: 0;
+}
+
+.page-layout { 
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.body {
+    background-color: #0b4f6c; 
+    padding: 30px;
+    padding-top: 100px;
+    flex-grow: 1; 
+    font-family: Arial, sans-serif; 
+    color: #333;
+}
+
+.body.carrito-view {
+    padding-top: 100px; 
+}
+
+.contenedor {
+    margin: 0 auto 30px auto; 
+    display: flex;
+    gap: 20px;
+}
+/* ========================================================================= */
+/* 2. TÍTULO (TITULO.JSX) */
+/* ========================================================================= */
+
+.titulo {
+    text-align: center;
+    margin-top: 0; 
+    margin-bottom: 30px;
+    color: white; 
+}
+
+.titulo h1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #e0f7fa; 
+}
+
+/* ========================================================================= */
+/* 3. LISTA DE PRODUCTOS (LISTAPRODUCTOS.JSX) */
+/* ========================================================================= */
+
+.carro {
+    flex: 2; /* Ocupa más espacio que el resumen */
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+/* Encabezado de la tabla de productos (Producto, Cantidad, Precio) */
+.info-productoCar {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 2px solid #ccc; /* Línea separadora */
+    margin-bottom: 10px;
+}
+
+.info-productoCar h3:nth-child(1) { flex: 3; } /* Producto */
+.info-productoCar h3:nth-child(2) { flex: 1; text-align: center; } /* Cantidad */
+.info-productoCar h3:nth-child(3) { flex: 1; text-align: right; } /* Precio */
+
+
+/* Fila individual de producto */
+.productoCar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
+    border-bottom: 1px solid #eee; /* Línea de producto */
+}
+
+.productoCar:last-child {
+    border-bottom: none; /* Eliminar la línea del último producto */
+}
+
+.detalles {
+    flex: 3;
+    display: flex;
+    flex-direction: column;
+}
+
+.detalles p {
+    margin: 2px 0;
+    font-size: 0.9rem;
+}
+
+.detalles b {
+    font-size: 1rem;
+}
+
+/* Controles de Cantidad */
+.cantidad {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cantidad button, .cantidad input {
+    width: 30px;
+    height: 30px;
+    border: 1px solid #ccc;
+    text-align: center;
+    background-color: white;
+    cursor: pointer;
+    font-size: 1rem;
+    padding: 0;
+    margin: 0;
+    line-height: 1; /* Para centrar el texto/símbolo */
+}
+
+.cantidad input {
+    pointer-events: none; /* No editable, ya que lo controlan los botones */
+    background-color: #f9f9f9;
+    width: 40px;
+}
+
+.cantidad .btn-eliminar {
+    border-right: none;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+}
+
+.cantidad .btn-mas {
+    border-left: none;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+}
+
+/* Precio Total del Producto */
+.precioCar {
+    flex: 1;
+    text-align: right;
+    font-weight: bold;
+    color: #333;
+    font-size: 1.1rem;
+}
+
+
+/* ========================================================================= */
+/* 4. RESUMEN DE COMPRA (RESUMENCOMPRA.JSX) */
+/* ========================================================================= */
+
+.resumen-compra {
+    flex: 1; /* Ocupa una porción fija del espacio */
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    height: fit-content; /* Se ajusta al contenido */
+}
+
+.resumen-compra h2 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 10px;
+}
+
+.resumen-compra p {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    font-size: 1rem;
+}
+
+.resumen-compra p span:first-child {
+    /* Etiqueta (Productos, Subtotal, etc.) */
+    font-weight: normal;
+    color: #666;
+}
+
+.resumen-compra p span:last-child {
+    /* Valor numérico */
+    font-weight: bold;
+    color: #333;
+}
+
+.resumen-compra .gratis {
+    color: green !important; /* Para el texto "Gratis" */
+    font-weight: bold !important;
+}
+
+.cont-cupon {
+    padding: 15px 0;
+    margin: 15px 0;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+}
+
+.cont-cupon input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+/* Total Final */
+.resumen-compra h3 {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.5rem;
+    margin: 20px 0;
+    padding-top: 10px;
+    border-top: 2px solid #333; /* Línea divisoria gruesa para el total */
+}
+
+/* Botón de Continuar Compra */
+.btn-continuar {
+    width: 100%;
+    padding: 15px;
+    background-color: black; /* Botón negro como en la imagen */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn-continuar:hover {
+    background-color: #333;
+}
+
+/* ========================================================================= */
+/* 5. VACIAR CARRITO (VACIARCARRITO.JSX) */
+/* ========================================================================= */
+
+.vaciar {
+    display: block;
+    width: 100%;
+    max-width: 1200px;
+    margin: 15px auto;
+    text-align: center;
+    color: #e0f7fa; /* Texto claro */
+    text-decoration: underline;
+    cursor: pointer;
+    font-size: 1rem;
+    padding: 10px 0;
+}
+
+.vaciar:hover {
+    color: white;
+}
+
+/* ========================================================================= */
+/* 6. RESPONSIVE DESIGN BÁSICO */
+/* ========================================================================= */
+
+@media (max-width: 900px) {
+    .contenedor {
+        flex-direction: column; /* Apilar en pantallas pequeñas */
+        margin: 20px;
+    }
+
+    .carro, .resumen-compra {
+        flex: auto;
+        width: 100%;
+    }
+}

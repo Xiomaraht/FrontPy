@@ -1,0 +1,108 @@
+@import './main.css';
+
+.footer {
+  background: var(--colorInterfazOscura);
+  color: var(--colorTituloOscura);
+  padding: 20px 20px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.footer-contenedor {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 20px;
+  text-align: center;
+}
+
+.footer-logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ✅ Estilo para el logo */
+.footer-logo-img {
+  width: 120px;
+  height: auto;
+}
+
+.footer-logo p {
+  font-size: 1em;
+  color: var(--colorTituloOscura);
+  max-width: 250px;
+}
+
+.footer-enlaces h3,
+.footer-contacto h3,
+.footer-redes h3 {
+  font-size: 1.3em;
+  margin-bottom: 10px;
+  color: var(--colorEnfasisOscura);
+}
+
+.footer-enlaces ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-enlaces ul li {
+  margin: 8px 0;
+  isolation: isolate;
+  align-items: center;
+}
+
+.footer-enlaces ul li a {
+  color: var(--colorTituloOscura);
+  text-decoration: none;
+  transition: color 0.3s ease-in-out;
+}
+
+.footer-enlaces ul li a:hover {
+  color: var(--colorEnfasisOscura);
+}
+
+.footer-enlaces ul li button {
+  margin-left: 0.6em;
+  border: none;
+  border-radius: 20px;
+  height: 38px;
+  width: 150px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--colorInterfazOscura);
+  color: var(--colorTituloOscura);
+  cursor: pointer;
+}
+
+.footer-enlaces ul li button::after {
+  content: '';
+  position: absolute;
+  height: 107%;
+  width: 102%;
+  border-radius: 20px;
+  background-image: linear-gradient(to bottom right, #008cff, #e100ff);
+  z-index: -1;
+}
+
+.footer-enlaces ul li button:hover {
+  z-index: 0;
+  box-shadow: 40px 0 100px #008cff91, -40px 0 100px #e100ff69;
+}
+
+.footer-contacto p {
+  font-size: 1em;
+  margin: 5px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.footer-contacto i {
+  font-size: 1.2em;
+  margin-right: 8px;
+  color: var(--colorEnfasisOscura);
+}
+

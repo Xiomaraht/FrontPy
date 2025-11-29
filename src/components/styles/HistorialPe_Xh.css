@@ -1,0 +1,109 @@
+.Historial {
+  padding: 20px;
+}
+
+.Historial h2 {
+  text-align: center;
+  color: #D9308D; 
+  margin-bottom: 20px;
+}
+
+.pedido-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  font-size: 0.95rem;
+  width: 60vw;
+  
+}
+
+.pedido-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  font-weight: bold;
+  color: #024059; /* azul petróleo */
+}
+
+.estado {
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: bold;
+}
+
+.estado.entregado {
+  background: #0388A6;
+  color: #fff;
+}
+
+.pedido-productos {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.producto {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.producto-img {
+  width: 50px;
+  height: 50px;
+  background: #F2055C; /* rosa neón */
+  border-radius: 8px;
+}
+
+.producto p {
+  margin: 0;
+  font-weight: 500;
+  color: #024059;
+}
+
+.producto span {
+  font-size: 0.9rem;
+  color: #BF0436; /* rojo oscuro */
+}
+
+.pedido-footer {
+  border-top: 1px solid #eee;
+  padding-top: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.pedido-footer p {
+  margin: 0;
+  color: #555;
+}
+
+.total {
+  font-weight: bold;
+  color: #024059;
+  margin-top: 6px;
+}
+
+.pedido-footer button {
+  margin-top: 10px;
+  align-self: flex-start;
+  background: #BF0436;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s;
+}
+
+.pedido-footer button:hover {
+  background: #F2055C;
+}
+
+   

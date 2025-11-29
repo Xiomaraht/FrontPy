@@ -1,0 +1,46 @@
+.infoXh_1 {
+  flex-direction: column;
+  background: #fff;
+  border: 1px solid #ddd;
+  padding: 24px;
+  border-radius: 6px;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+  width: 70vw;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.infoXh_1 h2 {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #111;
+}
+.FormXh_1{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  margin-bottom: 16px;
+}
+
+.FormXh_2 {
+  flex: 1;
+  min-width: 280px;
+  display: flex;
+  flex-direction: column;
+}
+
+.FormXh_2 span {
+  font-size: 14px;
+  margin-bottom: 6px;
+  color: #444
+}
+
+.FormXh_2 input {
+  padding: 10px 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+  background-color: #fff;
+  color: #333;
+}

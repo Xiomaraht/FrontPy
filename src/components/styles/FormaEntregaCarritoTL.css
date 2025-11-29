@@ -1,0 +1,158 @@
+/* ========================================================================= */
+/* 1. ESTRUCTURA PRINCIPAL DE LA VISTA DE ENTREGA */
+/* Asume que el contenedor padre sigue siendo .body y que Header/Footer están bien */
+/* ========================================================================= */
+
+.delivery-container {
+    display: flex;
+    max-width: 1000px;
+    margin: 100px auto 30px auto; 
+    gap: 40px;
+    padding: 0 20px;
+}
+
+/* Panel de Opciones de Entrega (el área blanca de la izquierda) */
+.delivery-main-content {
+    flex: 2.5; /* Ocupa más espacio */
+}
+
+.delivery-main-content h1 {
+    font-size: 2.2rem;
+    font-weight: bold;
+    color: white; 
+    margin-bottom: 30px;
+}
+
+/* Panel de Resumen de Compra (el área blanca de la derecha) */
+.delivery-summary-panel {
+    flex: 1; /* Ocupa menos espacio */
+    min-width: 300px; /* Asegurar que tenga un ancho mínimo */
+}
+
+/* ========================================================================= */
+/* 2. OPCIÓN DE ENTREGA INDIVIDUAL */
+/* ========================================================================= */
+
+.delivery-option-box {
+    background-color: white;
+    border: 1px solid #ccc; /* Borde sutil */
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 30px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.delivery-radio-label {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    cursor: pointer;
+}
+
+/* Ocultar el input de radio nativo */
+.delivery-radio-label input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+/* Estilo del círculo de radio personalizado */
+.delivery-radio-label .main-text::before {
+    content: '';
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    border: 2px solid #333; /* Borde oscuro */
+    margin-right: 10px;
+    vertical-align: middle;
+}
+
+/* Estilo para cuando el radio está seleccionado */
+.delivery-radio-label input[type="radio"]:checked + .info-text .main-text::before {
+    background-color: #0b4f6c; /* Color de relleno (tu color azul) */
+    border-color: #0b4f6c;
+    box-shadow: inset 0 0 0 4px white; /* Efecto de círculo interior blanco */
+}
+
+.info-text {
+    flex-grow: 1;
+    margin-left: 10px;
+}
+
+.main-text {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #333;
+    margin: 0;
+}
+
+.sub-text {
+    font-size: 0.9rem;
+    color: #666;
+    margin: 2px 0 0 30px; /* Alineado después del círculo */
+}
+
+.gratis-tag {
+    color: green;
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+/* Botón Continuar */
+.btn-continuar-delivery {
+    padding: 12px 30px;
+    background-color: black;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 1.1rem;
+    font-weight: 500;
+    cursor: pointer;
+    float: right; /* Alineación a la derecha como en la imagen */
+}
+
+/* ========================================================================= */
+/* 3. RESUMEN SIMPLIFICADO (AJUSTES PARA RESUMENCOMPRA.JSX) */
+/* ========================================================================= */
+
+/* Reutilizamos .resumen-compra y añadimos un modificador o ajustes */
+.resumen-compra {
+    /* (Mantiene los estilos base de background, padding, box-shadow) */
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    height: fit-content;
+}
+
+.resumen-compra h2 {
+    font-size: 1.3rem; /* Título más pequeño que en la vista del carrito */
+    font-weight: 500;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ccc;
+    color: #333;
+}
+
+.delivery-summary .summary-line {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    font-size: 1rem;
+}
+
+.delivery-summary .summary-line span:last-child {
+    font-weight: 600;
+}
+
+.delivery-summary hr.divider {
+    border: none;
+    border-top: 1px solid #ccc;
+    margin: 15px 0;
+}
+
+.delivery-summary .final-total {
+    font-weight: bold;
+    padding-top: 5px;
+}

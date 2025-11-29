@@ -1,0 +1,50 @@
+.services-page-container {
+    display: flex;
+    padding: 20px;
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    min-height: 50vh; /* Para asegurar que el footer no se suba */
+}
+
+.filters-sidebar {
+    flex: 0 0 250px; /* No crece, no se encoge, base de 250px */
+}
+
+.sidebar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.sidebar-header h2 {
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+.services-main-content {
+    flex-grow: 1; /* Ocupa el espacio restante */
+    padding-left: 20px;
+    border-left: 1px solid #eee;
+}
+
+/* Estilos responsivos */
+@media (max-width: 991.98px) {
+    .services-page-container {
+        flex-direction: column;
+    }
+
+    .services-main-content {
+        padding-left: 0;
+        border-left: none;
+    }
+}
+
+.active-filters-section2 h5{
+    /* border: #000000 solid 1px; */
+    position: relative;
+    left: 60px;
+    bottom: 30px;
+    font-size: 18px;
+}

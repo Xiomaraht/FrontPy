@@ -1,0 +1,44 @@
+@import './main.css';
+.banner {
+    background-image: url(../images/img.jpg);
+    padding: 15%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    margin: 0px auto;
+}
+
+
+.banner-content {
+    color: white;
+    text-align: center;
+    z-index: 1;
+    padding: 20px;
+}
+
+.banner-content h2 {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+}
+
+.banner-content p {
+    font-size: 1.2em;
+    margin-bottom: 20px;
+}
+
+.ver-mas {
+    background-color:var(--colorInterfazOscura);
+    border: none;
+    padding: 10px 20px;
+    font-size: 1em;
+    border-radius: 25px;
+    cursor: pointer;
+    color: var(--colorTituloOscura);
+    transition: background-color 0.3s ease;
+}
+
+.ver-mas:hover {
+    background-color: var(--colorEnfasisOscura);
+    color: var(--colorInterfazOscura);
+}

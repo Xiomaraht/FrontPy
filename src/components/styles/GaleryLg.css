@@ -1,0 +1,53 @@
+@import './main.css';
+.galeria-pets {
+    padding: 40px 20px;
+    display: flex;
+    justify-content: center;
+    background-color: var(--colorContenedorOscura);
+}
+
+.contenedor-pets {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 200px);
+    gap: 20px;
+    max-width: 1200px;
+    width: 100%;
+}
+
+.img-pet {
+    position: relative;
+    border-radius: 12px;
+    border: 2px solid var(--colorContenedorOscura); 
+}
+
+.img-pet img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border-radius: 10px;
+}
+
+.texto {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: var(--colorInterfazOscura);
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-weight: bold;
+    font-family: sans-serif;
+    font-size: 1em;
+    color: var(--colorTituloOscura);
+}
+
+.grande {
+    grid-column: 1 / 2;
+    grid-row: 1 / span 2;
+}
+
+.ancha {
+    grid-column: 2 / span 2;
+    grid-row: 2 / 3;
+}

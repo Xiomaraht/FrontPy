@@ -1,0 +1,66 @@
+.cardXh_1 {
+    background: #a9aaaa;
+    padding: 15px;
+    border-radius: 8px;
+    width: 170px;
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items:center ;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.Img_Xh1 {
+    width: 100%; /* O el tamaño deseado */
+    height: 100px; /* O el tamaño deseado */
+    object-fit: cover; /* Esto asegura que la imagen cubra el área sin distorsionarse */
+    border-radius: 8px;
+    margin-bottom: 1rem;
+
+}
+
+.nombre {
+    margin-bottom: 6px;
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+}
+.detalle {
+    font-size: 12px;
+    text-align: center;
+    margin: 1px 0;
+    color: #555;
+}
+
+
+.botones_Xh {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    width: 100%;
+}
+
+.bton_1, .bton_2 {
+    flex: 1;
+    background-color: #024059;
+    color: white;
+    padding: 5px 8px;
+    margin: 0 2px;
+    border: none;
+    font-size: 11px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.2;
+}
+
+
+
+.bton_1 hover {
+    background-color: #333;
+}
+
+
+.bton_2 hover {
+    background-color: #333;
+}
+

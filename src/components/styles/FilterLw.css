@@ -1,0 +1,74 @@
+@import './main.css';
+.category-selector-container {
+    border-radius: 8px;
+    overflow: hidden; 
+    font-family: Arial, sans-serif;
+    width: 250px; 
+    background-color: var(--colorInterfazOscura);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-top: 10px; 
+}
+
+.category-selector-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 15px;
+    background-color:var(--colorInterfazOscura);
+    cursor: pointer;
+}
+
+.category-selector-header .header-title {
+    font-weight: bold;
+    color: var(--colorTituloOscura);
+}
+
+.category-selector-header .arrow-icon {
+    transition: transform 0.3s ease-in-out;
+    font-size: 14px;
+    color:var(--colorTituloOscura);
+}
+
+.category-selector-header .arrow-icon.open {
+    transform: rotate(180deg);
+}
+
+.category-list {
+    background-color: var(--colorInterfazOscura);
+    padding: 5px 0;
+    width: 100%;
+}
+
+.category-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 15px;
+    cursor: pointer;
+    color: var(--colorInterfazOscura);
+    transition: background-color 0.2s ease;
+}
+
+.category-item span{
+    color: var(--colorTituloOscura);
+}
+
+.category-item:hover {
+    background-color: var(--colorContenedorOscura);
+}
+
+.category-item.selected {
+    background-color: var(--colorEnfasisOscura); 
+    color: var(--colorInterfazOscura); 
+    font-weight: 500;
+}
+
+.category-item.selected span{
+    color: var(--colorInterfazOscura); 
+}
+
+.category-item .check-icon {
+    color: var(--colorInterfazOscura);
+    font-size: 16px;
+    margin-left: 10px;
+}

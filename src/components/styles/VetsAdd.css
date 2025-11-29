@@ -1,0 +1,57 @@
+.containerAdd-Tl {
+  width: 90%;
+  max-width: 800px;
+  margin: auto;
+  background-color: white;
+  padding: 90px;
+  display: flex;
+  flex-direction: column;
+}
+
+.containerGeneralAdd-Tl {
+  width: 90%;
+  margin: auto;
+  padding: 90px;
+  display: flex;
+  flex-direction: column;
+}
+
+.containerTitleAdd-Tl {
+  margin-bottom: 5px;
+  font-weight: 500;
+  text-align: center;
+  padding-bottom : 40px;
+}
+
+.containerInputAdd-Tl {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.botonAdd-Tl{
+  padding: 12px;
+  font-weight: bold;
+  background-color: #222;
+  color: white;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  margin-top: 20px;
+  width: 100%;
+  text-align: center;
+}
+
+.botonPequeñoAdd-Tl{
+  padding: 12px;
+  font-weight: bold;
+  background-color: #222;
+  color: white;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  margin: 20px;
+  width: 40%;
+}
+
+

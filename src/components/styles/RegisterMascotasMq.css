@@ -1,0 +1,48 @@
+@import './main.css';
+
+.contentForm4{
+    display: flex;
+    flex-direction: row;
+    border-radius: 20px;
+    justify-content: center;
+    width: 45vw;
+    margin: 1vh auto;
+    padding: 30px;
+    background-color: var(--colorInterfazOscura);
+    box-shadow: 7px 8px 5px -3px rgba(0,0,0,0.4);
+    position: relative;
+}
+
+.returniconL-Mq{
+    color: var(--colorTituloOscura);
+}
+.checkMq{
+    color: var(--colorTituloOscura);
+}
+
+.contUploadFile-Mq{
+    color: var(--colorTituloOscura);
+}
+
+.check2Mq{
+    color: var(--colorTituloOscura);;
+}
+
+.returniconL-Mq{
+    position: absolute;
+    top: 2%;
+    left: 4%;
+    font-weight: bold;
+    cursor: pointer;
+    transition: ease-in 0.3s;
+
+}
+
+.returniconL-Mq i{
+    margin-right: 8px;
+    font-size: 1.3em;
+}
+
+.returniconL-Mq:hover{
+    color: var(--colorEnfasisOscura);
+}

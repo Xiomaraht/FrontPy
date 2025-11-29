@@ -1,0 +1,25 @@
+.close-button-container {
+  position: absolute;
+  top: 10px; /* Ajusta según sea necesario */
+  left: 10px; /* Ajusta según sea necesario */
+  z-index: 10;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+  color: #555;
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background-color 0.2s ease;
+}
+
+.close-btn:hover {
+  background-color: #f0f0f0;
+  color: #333;
+}

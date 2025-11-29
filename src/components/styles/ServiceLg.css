@@ -1,0 +1,66 @@
+@import './main.css';
+.servicios-favoritos {
+    text-align: center;
+    padding: 50px 20px;
+    background-color:var(--colorContenedorOscura);
+}
+
+.titulo-servicios {
+    font-size: 2.2em;
+    color: var(--colorEnfasisOscura);
+    font-weight: bold;
+}
+
+.descripcion-servicios {
+    font-size: 1.1em;
+    color: var(--colorTituloOscura);
+    margin-bottom: 55px;
+}
+
+.contenedor-servicios {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+
+.servicio {
+    background: var(--colorInterfazOscura);
+    color: var(--colorTituloOscura);
+    border-radius: 12px;
+    padding: 10px;
+    text-align: center;
+    width: 250px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s;
+    cursor: pointer;
+}
+
+.servicio:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.servicio i {
+    font-size: 30px;
+    color: var(--colorTituloOscura); /* Iconos en negro */
+    margin-bottom: 10px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.servicio:hover i {
+    transform: scale(1.1);
+    color: var(--colorEnfasisOscura); /* Cambia de color al pasar el mouse */
+}
+
+.servicio h3 {
+    font-size: 20px;
+    color: var(--colorTituloOscura);
+    margin-bottom: 8px;
+}
+
+.servicio p {
+    font-size: 1em;
+    color: var(--colorTituloOscura);
+    line-height: 1.4;
+}

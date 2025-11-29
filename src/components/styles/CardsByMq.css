@@ -1,0 +1,68 @@
+@import './main.css';
+
+.contentCardCd-Mq{
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    height: 320px;
+    align-items: center;
+    background: var(--colorInterfazOscura);
+    color: var(--colorTituloOscura);
+    border-radius: 13px;
+    box-shadow: 0 7px 5px 0 rgba(0, 0, 0, 0.295);
+    cursor: pointer;
+}
+
+.contentCardCd-Mq img{
+    width: 200px;
+    height: auto;
+    border-radius: 100px;
+    margin-top: 2vh;
+}
+
+.contentCardCd-Mq strong{
+    text-align: center;
+    margin:1.5vh 1.5vh 0;
+    width: 60%;
+}
+
+.contentCardCd-Mq:hover{
+    transition: ease 1s;
+    transform: scale(1.1);
+    background: var(--colorEnfasisOscura);
+    color: var(--colorInterfazOscura);
+}
+
+/*Estilos alternativos para historial*/
+
+.contentCardHistoryCd-Mq{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    width: 100%;
+    height: 320px;
+    align-items: center;
+    background: var(--colorInterfazOscura);
+    color: var(--colorTituloOscura);
+    border-radius: 13px;
+    box-shadow: 0 7px 5px 0 rgba(0, 0, 0, 0.233);
+    cursor: pointer;
+}
+
+.contentCardHistoryCd-Mq:hover{
+    transition: ease 1s;
+    transform: scale(1.05);
+}
+
+.containerImageMascotaCd-Mq img{
+    height: 250px;
+    width: 250px;
+    object-fit: cover;
+    border-radius: 300px;
+}
+
+.containerStrongsCd-Mq{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}

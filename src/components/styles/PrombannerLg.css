@@ -1,0 +1,42 @@
+@import'./main.css';
+
+.promo-banner {
+    background: var(--colorContenedorOscura);
+    color: var(--colorTituloOscura);
+    text-align: center;
+    padding: 10%;
+    animation: fadeIn 1s ease-in-out;
+}
+
+.promo-banner h2 {
+    font-size: 35px;
+    font-weight: bold;
+    margin: 0;
+}
+
+.promo-banner p {
+    font-size: 18px;
+    margin: 10px 0;
+}
+
+.promo-btn {
+    display: inline-block;
+    background:var(--colorInterfazOscura);
+    color: var(--colorTituloOscura);
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 25px;
+    text-decoration: none;
+    transition: 0.3s ease-in-out;
+}
+
+.promo-btn:hover {
+    background: var(--colorEnfasisOscura);
+    color:var(--colorInterfazOscura);
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}

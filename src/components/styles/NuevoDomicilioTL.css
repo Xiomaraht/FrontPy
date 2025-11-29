@@ -1,0 +1,173 @@
+/* ========================================================================= */
+/* ESTILOS GLOBALES DEL CONTENEDOR DE DOMICILIO */
+/* ========================================================================= */
+
+.titulo {
+    text-align: center;
+    margin-top: 0; 
+    margin-bottom: 30px;
+    color: white; 
+}
+
+.domicilio-contenedor {
+    width: 100%;
+    max-width: 600px;
+    padding: 40px 20px;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+    margin-top:100px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.domicilio-contenedor h2 {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* ========================================================================= */
+/* ESTILOS DE CABECERA Y FORMULARIO */
+/* ========================================================================= */
+
+.location-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.location-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: #007bff;
+    margin-right: 8px;
+}
+
+.location-link {
+    color: #007bff;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 8px;
+}
+
+.form-group input[type="text"],
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box; 
+    font-size: 1rem;
+}
+
+.form-group select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="#333"><polygon points="0,0 10,0 5,10"/></svg>') no-repeat right 12px center;
+    background-size: 8px;
+    padding-right: 30px;
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+.form-row {
+    display: flex;
+    gap: 20px;
+}
+
+.form-row .half {
+    flex: 1;
+}
+
+
+/* ========================================================================= */
+/* TIPO DE DOMICILIO (Radio Buttons) */
+/* ========================================================================= */
+
+.type-group {
+    padding-top: 10px;
+}
+
+.type-group label {
+    font-weight: normal;
+}
+
+.radio-options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.radio-option {
+    font-weight: 400;
+    color: #333;
+    display: block;
+    cursor: pointer;
+}
+
+.radio-option input[type="radio"] {
+    margin-right: 10px;}
+
+/* ========================================================================= */
+/* DATOS DE CONTACTO */
+/* ========================================================================= */
+
+.contact-info {
+    margin-top: 30px;
+}
+
+.contact-info label {
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.contact-text {
+    font-size: 0.9rem;
+    color: #666;
+    margin-top: 5px;
+    margin-bottom: 20px;
+}
+
+/* ========================================================================= */
+/* BOTÓN CONTINUAR */
+/* ========================================================================= */
+
+.btn-continuar-final {
+    width: 150px;
+    padding: 12px;
+    background-color: black;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    float: right;
+    margin-top: 20px;
+}
+
+/* Limpiar el float del botón para que el contenedor se ajuste */
+.domicilio-contenedor::after {
+    content: "";
+    display: table;
+    clear: both;
+}

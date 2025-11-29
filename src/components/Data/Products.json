@@ -1,0 +1,277 @@
+[
+  {
+    "id": 1,
+    "nombre": "Chunkly Delicat Trozos De Pavo",
+    "marca": "Chunkly",
+    "precio": 3278,
+    "descripcion": "Delicioso alimento húmedo con tiernos trozos de pavo, ideal para perros y gatos. Nutrición completa y balanceada para el día a día.",
+    "imagenPrincipal": "https://via.placeholder.com/450x450?text=Pavo+Principal",
+    "imagenesMiniaturas": [
+      "https://via.placeholder.com/100x100?text=Pavo+Mini+1",
+      "https://via.placeholder.com/100x100?text=Pavo+Mini+2",
+      "https://via.placeholder.com/100x100?text=Pavo+Mini+3"
+    ],
+    "categoria": "Alimentos",
+    "tipoAlimento": "Húmedo",
+    "disponibilidad": "En Stock"
+  },
+  {
+    "id": 2,
+    "nombre": "Croquetas Super Premium Pollo y Arroz",
+    "marca": "NutriPet",
+    "precio": 85000,
+    "descripcion": "Alimento seco de alta calidad para perros adultos, formulado con pollo real y arroz para una digestión óptima y energía duradera.",
+    "imagenPrincipal": "https://via.placeholder.com/450x450?text=Croquetas+Pollo",
+    "imagenesMiniaturas": [
+      "https://via.placeholder.com/100x100?text=Croquetas+Mini+1",
+      "https://via.placeholder.com/100x100?text=Croquetas+Mini+2"
+    ],
+    "categoria": "Alimentos",
+    "tipoAlimento": "Concentrado",
+    "disponibilidad": "En Stock"
+  },
+  {
+    "id": 3,
+    "nombre": "Arena Sanitaria Aglomerante Lavanda",
+    "marca": "CatFresh",
+    "precio": 45000,
+    "descripcion": "Arena para gatos de alto rendimiento, forma grumos firmes y controla olores con una agradable fragancia a lavanda.",
+    "imagenPrincipal": "https://via.placeholder.com/450x450?text=Arena+Lavanda",
+    "imagenesMiniaturas": [
+      "https://via.placeholder.com/100x100?text=Arena+Mini+1",
+      "https://via.placeholder.com/100x100?text=Arena+Mini+2"
+    ],
+    "categoria": "Belleza & Higiene",
+    "disponibilidad": "En Stock"
+  },
+  {
+    "id": 4,
+    "nombre": "Juguete Interactivo Dispensador Golosinas",
+    "marca": "SmartPlay",
+    "precio": 38000,
+    "descripcion": "Estimula la mente de tu mascota con este juguete que dispensa pequeñas golosinas a medida que juega.",
+    "imagenPrincipal": "https://via.placeholder.com/450x450?text=Juguete+Dispensador",
+    "imagenesMiniaturas": [
+      "https://via.placeholder.com/100x100?text=Juguete+Disp+Mini+1"
+    ],
+    "categoria": "Juguetes",
+    "disponibilidad": "En Stock"
+  },
+  {
+    "id": 5,
+    "nombre": "Champú Acondicionador Pelo Brillante",
+    "marca": "GlossyCoat",
+    "precio": 29900,
+    "descripcion": "Champú 2 en 1 que limpia, hidrata y deja el pelaje de tu mascota suave y brillante, con un aroma fresco.",
+    "imagenPrincipal": "https://via.placeholder.com/450x450?text=Champu+Brillo",
+    "imagenesMiniaturas": [
+      "https://via.placeholder.com/100x100?text=Champu+Mini+1"
+    ],
+    "categoria": "Belleza & Higiene",
+    "disponibilidad": "En Stock"
+  },
+  {
+    "id": 6,
+    "nombre": "Cama Redonda Suave para Perros y Gatos",
+    "marca": "CloudPaws",
+    "precio": 65000,
+    "descripcion": "Cama mullida y acogedora, ideal para que tu mascota descanse plácidamente. Materiales de alta calidad y fácil de lavar.",
+    "imagenPrincipal": "https://via.placeholder.com/450x450?text=Cama+Redonda",
+    "imagenesMiniaturas": [
+      "https://via.placeholder.com/100x100?text=Cama+Red+Mini+1",
+      "https://via.placeholder.com/100x100?text=Cama+Red+Mini+2"
+    ],
+    "categoria": "Accesorios",
+    "disponibilidad": "En Stock"
+  },
+  {
+    "id": 7,
+    "nombre": "Collar Antipulgas y Garrapatas",
+    "marca": "ProtectPet",
+    "precio": 52000,
+    "descripcion": "Collar de larga duración que protege a tu perro o gato de pulgas y garrapatas de forma efectiva y segura.",
+    "imagenPrincipal": "https://via.placeholder.com/450x450?text=Collar+Antipulgas",
+    "imagenesMiniaturas": [
+      "https://via.placeholder.com/100x100?text=Collar+Anti+Mini+1"
+    ],
+    "categoria": "Medicamentos",
+    "disponibilidad": "En Stock"
+  },
+  {
+    "id": 8,
+    "nombre": "Rascador Torre con Juguetes Colgantes",
+    "marca": "KittyScratch",
+    "precio": 95000,
+    "descripcion": "Gran rascador para gatos con múltiples niveles, postes de sisal y juguetes para horas de diversión y ejercicio.",
+    "imagenPrincipal": "https://via.placeholder.com/450x450?text=Rascador+Torre",
+    "imagenesMiniaturas": [
+      "https://via.placeholder.com/100x100?text=Rascador+Torre+Mini+1",
+      "https://via.placeholder.com/100x100?text=Rascador+Torre+Mini+2"
+    ],
+    "categoria": "Juguetes",
+    "disponibilidad": "En Stock"
+  },
+  {
+    "id": 9,
+    "nombre": "Snacks Entrena Perro Sabor Carne",
+    "marca": "HappyTreats",
+    "precio": 12500,
+    "descripcion": "Premios pequeños y suaves, perfectos para el entrenamiento de perros, con un irresistible sabor a carne.",
+    "imagenPrincipal": "https://via.placeholder.com/450x450?text=Snacks+Entrena",
+    "imagenesMiniaturas": [
+      "https://via.placeholder.com/100x100?text=Snacks+Entrena+Mini+1"
+    ],
+    "categoria": "Alimentos",
+    "tipoAlimento": "Concentrado",
+    "disponibilidad": "En Stock"
+  },
+  {
+    "id": 10,
+    "nombre": "Fuente de Agua Automática Mascotas",
+    "marca": "AquaFlow",
+    "precio": 78000,
+    "descripcion": "Promueve la hidratación de tu mascota con agua fresca y filtrada constantemente. Ideal para gatos y perros pequeños.",
+    "imagenPrincipal": "https://via.placeholder.com/450x450?text=Fuente+Agua",
+    "imagenesMiniaturas": [
+      "https://via.placeholder.com/100x100?text=Fuente+Agua+Mini+1",
+      "https://via.placeholder.com/100x100?text=Fuente+Agua+Mini+2"
+    ],
+    "categoria": "Accesorios",
+    "disponibilidad": "En Stock"
+  },
+  {
+    "id": 11,
+    "nombre": "Set de Peine y Cepillo Deslanador",
+    "marca": "GroomPro",
+    "precio": 42000,
+    "descripcion": "Herramientas esenciales para el cuidado del pelaje de tu mascota, reduce la caída y previene enredos.",
+    "imagenPrincipal": "https://via.placeholder.com/450x450?text=Set+Peine+Cepillo",
+    "imagenesMiniaturas": [
+      "https://via.placeholder.com/100x100?text=Set+Peine+Mini+1"
+    ],
+    "categoria": "Belleza & Higiene",
+    "disponibilidad": "En Stock"
+  },
+  {
+    "id": 12,
+    "nombre": "Transportín Rígido para Gatos y Perros Pequeños",
+    "marca": "TravelPet",
+    "precio": 110000,
+    "descripcion": "Transportín seguro y cómodo, ideal para visitas al veterinario o viajes cortos. Con buena ventilación.",
+    "imagenPrincipal": "https://via.placeholder.com/450x450?text=Transportin",
+    "imagenesMiniaturas": [
+      "https://via.placeholder.com/100x100?text=Transportin+Mini+1",
+      "https://via.placeholder.com/100x100?text=Transportin+Mini+2"
+    ],
+    "categoria": "Accesorios",
+    "disponibilidad": "En Stock"
+  },
+  {
+    "id": 13,
+    "nombre": "Alimento Húmedo Pescado Blanco y Vegetales",
+    "marca": "OceanHarvest",
+    "precio": 4500,
+    "descripcion": "Receta gourmet con pescado blanco y una mezcla de vegetales, sin granos. Perfecto para una dieta sana.",
+    "imagenPrincipal": "https://via.placeholder.com/450x450?text=Pescado+Veg",
+    "imagenesMiniaturas": [
+      "https://via.placeholder.com/100x100?text=Pescado+Veg+Mini+1"
+    ],
+    "categoria": "Alimentos",
+    "tipoAlimento": "Húmedo",
+    "disponibilidad": "En Stock"
+  },
+  {
+    "id": 14,
+    "nombre": "Pelota de Goma Resistente para Masticar",
+    "marca": "TuffChew",
+    "precio": 18000,
+    "descripcion": "Pelota indestructible, diseñada para satisfacer el instinto de masticación de los perros grandes y fuertes.",
+    "imagenPrincipal": "https://via.placeholder.com/450x450?text=Pelota+Goma",
+    "imagenesMiniaturas": [
+      "https://via.placeholder.com/100x100?text=Pelota+Goma+Mini+1"
+    ],
+    "categoria": "Juguetes",
+    "disponibilidad": "En Stock"
+  },
+  {
+    "id": 15,
+    "nombre": "Comedero Doble de Acero Inoxidable",
+    "marca": "CleanBowl",
+    "precio": 33000,
+    "descripcion": "Dos cuencos de acero inoxidable en una base antideslizante, higiénicos y fáciles de limpiar.",
+    "imagenPrincipal": "https://via.placeholder.com/450x450?text=Comedero+Doble",
+    "imagenesMiniaturas": [
+      "https://via.placeholder.com/100x100?text=Comedero+Doble+Mini+1"
+    ],
+    "categoria": "Accesorios",
+    "disponibilidad": "En Stock"
+  },
+  {
+    "id": 16,
+    "nombre": "Suplemento Vitamínico para Articulaciones",
+    "marca": "JointCare",
+    "precio": 70000,
+    "descripcion": "Ayuda a mantener la salud articular en perros y gatos mayores, con glucosamina y condroitina.",
+    "imagenPrincipal": "https://via.placeholder.com/450x450?text=Suplemento+Artic",
+    "imagenesMiniaturas": [
+      "https://via.placeholder.com/100x100?text=Suple+Artic+Mini+1"
+    ],
+    "categoria": "Medicamentos",
+    "disponibilidad": "En Stock"
+  },
+  {
+    "id": 17,
+    "nombre": "Correa de Entrenamiento Ajustable",
+    "marca": "TrainPro",
+    "precio": 26000,
+    "descripcion": "Correa resistente y ajustable, ideal para el entrenamiento de obediencia y paseos controlados.",
+    "imagenPrincipal": "https://via.placeholder.com/450x450?text=Correa+Entrenamiento",
+    "imagenesMiniaturas": [
+      "https://via.placeholder.com/100x100?text=Correa+Entrena+Mini+1"
+    ],
+    "categoria": "Accesorios",
+    "disponibilidad": "En Stock"
+  },
+  {
+    "id": 18,
+    "nombre": "Arnés Antitirones Confortable",
+    "marca": "NoPull",
+    "precio": 49000,
+    "descripcion": "Arnés ergonómico diseñado para reducir los tirones durante el paseo, distribuyendo la presión de manera uniforme.",
+    "imagenPrincipal": "https://via.placeholder.com/450x450?text=Arnes+Antitirones",
+    "imagenesMiniaturas": [
+      "https://via.placeholder.com/100x100?text=Arnes+Anti+Mini+1",
+      "https://via.placeholder.com/100x100?text=Arnes+Anti+Mini+2"
+    ],
+    "categoria": "Accesorios",
+    "disponibilidad": "En Stock"
+  },
+  {
+    "id": 19,
+    "nombre": "Botas Protectoras para Perros (4 Unidades)",
+    "marca": "PawGuard",
+    "precio": 55000,
+    "descripcion": "Protege las patas de tu perro del calor, frío, superficies ásperas o heridas. Ajuste seguro y cómodo.",
+    "imagenPrincipal": "https://via.placeholder.com/450x450?text=Botas+Protectoras",
+    "imagenesMiniaturas": [
+      "https://via.placeholder.com/100x100?text=Botas+Mini+1",
+      "https://via.placeholder.com/100x100?text=Botas+Mini+2"
+    ],
+    "categoria": "Accesorios",
+    "disponibilidad": "En Stock"
+  },
+  {
+    "id": 20,
+    "nombre": "Juego de Platos Elevados para Mascotas",
+    "marca": "DineUp",
+    "precio": 68000,
+    "descripcion": "Reduce la tensión en el cuello y articulaciones de tu mascota al comer. Ajustable en altura, con cuencos removibles.",
+    "imagenPrincipal": "https://via.placeholder.com/450x450?text=Platos+Elevados",
+    "imagenesMiniaturas": [
+      "https://via.placeholder.com/100x100?text=Platos+Elev+Mini+1",
+      "https://via.placeholder.com/100x100?text=Platos+Elev+Mini+2"
+    ],
+    "categoria": "Accesorios",
+    "disponibilidad": "En Stock"
+  }
+]

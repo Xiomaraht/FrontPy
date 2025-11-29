@@ -1,0 +1,120 @@
+/* src/styles/ProfileCreated.css */
+
+.profile-created-container {
+  background-color: white;
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: 0 0 0 10px #ccc;
+  max-width: 600px; /* Ajusta el ancho según la imagen del mockup */
+  margin: 20px auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centrar el contenido horizontalmente */
+  color: #000;
+  text-align: center; /* Centrar texto general */
+}
+
+.profile-created-container h2 {
+  font-size: 2.2em;
+  margin-bottom: 30px;
+  color: #000;
+}
+
+.profile-image-placeholder {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background-color: #eee; /* Color de fondo para el placeholder circular */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+  overflow: hidden; /* Asegura que la imagen se ajuste al círculo */
+}
+
+.profile-image-placeholder img.circle-image-large {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Asegura que la imagen cubra el área sin distorsionarse */
+  border-radius: 50%; /* Por si la imagen no es cuadrada */
+}
+
+
+.vet-name-display {
+  font-size: 1.8em;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+.vet-nit-display {
+  font-size: 1.1em;
+  color: #666;
+  margin-bottom: 30px;
+}
+
+.add-admin-btn {
+  background-color: #000000;
+  color: white;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 1.1em;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 40px;
+  transition: background 0.3s ease;
+}
+
+.add-admin-btn:hover {
+  background-color: #555;
+}
+
+.add-admin-btn .material-symbols-outlined {
+  font-size: 1.4em; /* Tamaño del icono */
+  margin-right: 0; /* Eliminar margen derecho si el botón ya tiene gap */
+}
+
+.send-email-section p {
+  margin-bottom: 15px;
+  font-size: 1.1em;
+  color: #333;
+}
+
+.email-input-group {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 40px;
+  width: 100%;
+  max-width: 400px; /* Ancho para el input de email */
+}
+
+.activation-email-input {
+  flex-grow: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1em;
+}
+
+.send-email-btn {
+  background-color: #000000;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1em;
+  transition: background 0.3s ease;
+}
+
+.send-email-btn:hover {
+  background-color: #555;
+}
+
+/* El botón regresar ya tiene estilos globales en AdmiClinico.css,
+   pero si necesitas ajustar el margen, puedes hacerlo aquí */
+.profile-created-container .regresar-btn-container {
+    margin-top: 20px; /* Ajusta según el espaciado deseado */
+}

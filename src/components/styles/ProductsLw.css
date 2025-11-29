@@ -1,0 +1,169 @@
+@import './main.css';
+.hrP-Lw{
+    border: 0;
+    height: 3px;
+    width: 250px;
+    background-color: #000000;
+    margin: 5px 1px; /* Espacio superior e inferior */
+}
+
+.products-page-container {
+    display: flex;
+    gap: 2rem; 
+    padding: 1rem 2rem; 
+    align-items: flex-start; 
+    background-color: var(--colorContenedorOscura);
+    color: var(--colorTituloOscura);
+}
+
+/* Estilos para la barra lateral de filtros */
+.filters-sidebar {
+    display: flex;
+    flex-direction: column;
+    width: 250px;
+}
+
+.filters-sidebar h2{
+    margin-left: 5px;
+}
+
+/* Estilos para el área de contenido principal */
+.products-main-content {
+    flex: 1; 
+}
+
+/* Contenedor para el texto de resultados y el filtro de orden */
+.results-and-sort-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 20px;
+}
+
+.results-and-sort-header h6{
+    position: relative;
+    left: 15px;
+    font-size: 18px;
+}
+
+.sort-filter-desktop {
+    position: relative;
+}
+
+.sort-filter-desktop .Orden {
+    bottom: 20px;
+    border-radius: 8px; 
+}
+
+.sort-filter-desktop .Orden {
+    overflow: visible;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.sort-filter-desktop .Orden .category-list {
+    position: absolute; 
+    top: 100%;
+    right: 0;
+    z-index: 10; 
+    width: 100%; 
+    border-radius: 0 0 8px 8px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2); 
+    border: none; 
+}
+
+.active-filters-section h5{
+    position: relative;
+    left: 30px;
+    bottom: 10px;
+    font-size: 18px;
+}
+
+/* --- Estilos para la cuadrícula de productos --- */
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); 
+    gap: 1.5rem; 
+    
+}
+.product-grid a{
+    text-decoration: none;
+}
+
+@media (max-width: 992px) {
+.product-grid {
+    grid-template-columns: repeat(2, 1fr);
+}
+}
+
+@media (max-width: 576px) {
+.product-grid {
+grid-template-columns: 1fr; 
+}
+}
+
+/* --- Estilos para la sección de Filtros Activos --- */
+.active-filters-section {
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.active-filters-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 0.75rem;
+}
+
+.filter-pill {
+    display: inline-flex;
+    align-items: center;
+    background-color: #e9ecef;
+    border: 1px solid #f0f0f0;
+    border-radius: 16px;
+    padding: 4px 8px 4px 12px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #495057;
+    margin-left: 30px;
+}
+
+.remove-filter-btn {
+    background: none;
+    border: none;
+    font-size: 1.4rem;
+    line-height: 1;
+    margin-left: 8px;
+    cursor: pointer;
+    padding: 0;
+    color: #6c757d;
+    transition: color 0.15s ease-in-out;
+}
+
+.remove-filter-btn:hover {
+    color: #212529;
+}
+
+/* --- Estilos para la cabecera de la barra lateral --- */
+
+.sidebar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.clear-filters-btn {
+    background: none;
+    border: none;
+    color: #0d6efd; 
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 500;
+    padding: 0;
+    transition: text-decoration 0.15s ease-in-out;
+}
+
+.clear-filters-btn:hover {
+    text-decoration: underline;
+}

@@ -1,0 +1,92 @@
+[
+  {
+    "id": 1,
+    "nombre": "Consulta General",
+    "descripcion": "Examen físico completo y evaluación de la salud general de tu mascota para prevenir y detectar enfermedades a tiempo.",
+    "categoria": "JoyVet Services"
+  },
+  {
+    "id": 2,
+    "nombre": "Vacunación y Desparasitación",
+    "descripcion": "Programa completo de vacunación y desparasitación para proteger a tu mascota contra enfermedades comunes y parásitos.",
+    "categoria": "JoyVet Services"
+  },
+  {
+    "id": 3,
+    "nombre": "Cirugías Menores",
+    "descripcion": "Procedimientos quirúrgicos ambulatorios como esterilizaciones, castraciones y extracción de cuerpos extraños.",
+    "categoria": "JoyVet Services"
+  },
+  {
+    "id": 4,
+    "nombre": "Consultas a Domicilio",
+    "descripcion": "Atención veterinaria en la comodidad de tu hogar para mascotas que no pueden trasladarse o para tu conveniencia.",
+    "categoria": "HarmonyVet Care"
+  },
+  {
+    "id": 5,
+    "nombre": "Odontología Veterinaria",
+    "descripcion": "Limpieza dental, extracciones y tratamientos para mantener la salud bucal de tu mascota.",
+    "categoria": "HarmonyVet Care"
+  },
+  {
+    "id": 6,
+    "nombre": "Análisis Clínicos",
+    "descripcion": "Pruebas de laboratorio como hemogramas, perfiles bioquímicos y análisis de orina para un diagnóstico preciso.",
+    "categoria": "HarmonyVet Care"
+  },
+  {
+    "id": 7,
+    "nombre": "Peluquería Canina y Felina",
+    "descripcion": "Servicios de baño, corte de pelo, cepillado y cuidado de uñas para mantener a tu mascota limpia y presentable.",
+    "categoria": "PetAmistad"
+  },
+  {
+    "id": 8,
+    "nombre": "Guardería Diurna",
+    "descripcion": "Espacio seguro y divertido para que tu mascota socialice y se ejercite mientras tú trabajas o realizas tus actividades.",
+    "categoria": "PetAmistad"
+  },
+  {
+    "id": 9,
+    "nombre": "Entrenamiento Canino Básico",
+    "descripcion": "Clases de obediencia básica para cachorros y perros adultos, ayudando a mejorar su comportamiento y convivencia.",
+    "categoria": "PetAmistad"
+  },
+  {
+    "id": 10,
+    "nombre": "Hospitalización",
+    "descripcion": "Monitoreo y cuidado intensivo para mascotas que requieren observación constante o recuperación post-quirúrgica.",
+    "categoria": "Clínica BestFriend Vet"
+  },
+  {
+    "id": 11,
+    "nombre": "Ecografía y Radiografía",
+    "descripcion": "Diagnóstico por imagen para detectar problemas internos, fracturas y gestaciones.",
+    "categoria": "Clínica BestFriend Vet"
+  },
+  {
+    "id": 12,
+    "nombre": "Emergencias 24/7",
+    "descripcion": "Atención veterinaria inmediata para situaciones críticas y accidentes en cualquier momento del día.",
+    "categoria": "Clínica BestFriend Vet"
+  },
+  {
+    "id": 13,
+    "nombre": "Fisioterapia y Rehabilitación",
+    "descripcion": "Terapias para ayudar a la recuperación de lesiones, cirugías o para mejorar la movilidad en mascotas mayores.",
+    "categoria": "Evergreen Vet"
+  },
+  {
+    "id": 14,
+    "nombre": "Nutrición y Dietética",
+    "descripcion": "Asesoramiento personalizado sobre la alimentación adecuada para tu mascota, según su edad, raza y condición de salud.",
+    "categoria": "Evergreen Vet"
+  },
+  {
+    "id": 15,
+    "nombre": "Venta de Alimentos y Accesorios",
+    "descripcion": "Variedad de alimentos premium, juguetes y accesorios esenciales para el bienestar de tu compañero peludo.",
+    "categoria": "Evergreen Vet"
+  }
+]

@@ -1,0 +1,73 @@
+.contendorPrincipalAdGen-Mq{
+    background: white;
+    padding: 100px 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 13px;
+}
+
+.contendorPrincipalAdGen-Mq h1{
+    letter-spacing: -2px;
+    font-weight: bold;
+    margin-bottom: 50px;
+}
+
+.contenedorBotonesAdGen-Mq{
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+    margin-bottom: 3vh;
+}
+
+.iconButtonAdGen-Mq{
+    position: relative;
+}
+
+.iconButtonAdGen-Mq i{
+    position: absolute;
+    top: 0.5px;
+    left: 13px;
+    font-size: 1.5em;
+}
+
+.iconButtonAdGen-Mq button{
+    padding: 5px 10px 5px 30px ;
+    width: 150px;
+    border: 1px solid black;
+    border-radius: 20px;
+    font-weight: bold;
+    background: transparent;
+}
+
+.iconButtonAdGen-Mq:hover button{
+    background: black;
+    color: white;
+}
+
+.iconButtonAdGen-Mq:hover i{
+    color: white;
+}
+
+.contHistorialReportesAdGen-Mq{
+    position: relative;
+    cursor: pointer;
+    transition: ease-in 0.3s;
+}
+
+.contHistorialReportesAdGen-Mq i{
+    position: absolute;
+    font-size: 1.3em;
+    top: 0;
+    left: 0;
+}
+
+.contHistorialReportesAdGen-Mq strong{
+    padding:0 0 0 35px;
+    font-size: 1.2em;
+
+}
+.contHistorialReportesAdGen-Mq:hover{
+    color: gray;
+}

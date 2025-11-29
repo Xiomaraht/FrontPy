@@ -1,0 +1,223 @@
+[
+    {
+        "id": 1,
+        "nombre": "Max",
+        "raza": "Golden Retriever",
+        "edad": 5,
+        "genero": "Macho",
+        "fechaNac": "12/08/2020",
+        "microchip": {"serial": "AX2300123", "registrado": true},
+        "color": "Dorado",
+        "peso": {"kilos": 28, "ultactualizacion": "21/08/2024"},
+        "alergias": null,
+        "condicion": "Displasia de cadera",
+        "vacunas": [
+        {"nombre": "Rabia", "fechaUlti": "15/07/2024", "fechaProx": "15/07/2025"},
+        {"nombre": "Parvovirus", "fechaUlti": "15/07/2024", "fechaProx": "15/07/2025"}
+        ],
+        "ultconsultas": [
+        {"tipo": "Chequeo general", "fecha": "12/04/2025", "descripcion": "Sin hallazgos relevantes"},
+        {"tipo": "Vacunación Anual", "fecha": "15/07/2024", "descripcion": "Vacuna aplicada"}
+        ],
+        "imagen": "https://images.pexels.com/photos/2253275/pexels-photo-2253275.jpeg",
+        "recetasActivas": {"medicamento": "Condroprotector", "fechavalidez": "15/07/2026"}
+    },
+    {
+        "id": 2,
+        "nombre": "Luna",
+        "raza": "Siamés",
+        "edad": 3,
+        "genero": "Hembra",
+        "fechaNac": "05/04/2022",
+        "microchip": {"serial": "CZ4588761", "registrado": true},
+        "color": "Crema con puntos oscuros",
+        "peso": {"kilos": 4, "ultactualizacion": "10/01/2025"},
+        "alergias": "Polen",
+        "condicion": "Asma felina leve",
+        "vacunas": [
+        {"nombre": "Triple Felina", "fechaUlti": "20/05/2025", "fechaProx": "20/05/2026"},
+        {"nombre": "Leucemia Felina", "fechaUlti": "20/05/2025", "fechaProx": "20/05/2026"}
+        ],
+        "ultconsultas": [
+        {"tipo": "Consulta por alergia", "fecha": "02/06/2025", "descripcion": "Estornudos frecuentes"}
+        ],
+        "imagen": "https://images.pexels.com/photos/2558605/pexels-photo-2558605.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+        "recetasActivas": {"medicamento": "Loratadina pediátrica", "fechavalidez": "02/09/2025"}
+    },
+    {
+        "id": 3,
+        "nombre": "Rocky",
+        "raza": "Bulldog Francés",
+        "edad": 2,
+        "genero": "Macho",
+        "fechaNac": "11/11/2022",
+        "microchip": {"serial": "FG7899123", "registrado": true},
+        "color": "Negro",
+        "peso": {"kilos": 12, "ultactualizacion": "15/05/2025"},
+        "alergias": "Pollo",
+        "condicion": null,
+        "vacunas": [
+        {"nombre": "Rabia", "fechaUlti": "01/12/2024", "fechaProx": "01/12/2025"},
+        {"nombre": "Distemper", "fechaUlti": "01/12/2024", "fechaProx": "01/12/2025"}
+        ],
+        "ultconsultas": [
+        {"tipo": "Control dermatológico", "fecha": "20/04/2025", "descripcion": "Irritación en la piel"}
+        ],
+        "imagen": "https://images.pexels.com/photos/825947/pexels-photo-825947.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+        "recetasActivas": null
+    },
+    {
+        "id": 4,
+        "nombre": "Kira",
+        "raza": "Mestizo",
+        "edad": 8,
+        "genero": "Hembra",
+        "fechaNac": "01/02/2017",
+        "microchip": {"serial": "MN0122457", "registrado": false},
+        "color": "Marrón y blanco",
+        "peso": {"kilos": 15, "ultactualizacion": "03/03/2025"},
+        "alergias": null,
+        "condicion": "Artritis",
+        "vacunas": [
+        {"nombre": "Rabia", "fechaUlti": "10/01/2025", "fechaProx": "10/01/2026"},
+        {"nombre": "Leptospirosis", "fechaUlti": "10/01/2025", "fechaProx": "10/01/2026"}
+        ],
+        "ultconsultas": [
+        {"tipo": "Chequeo geriátrico", "fecha": "18/02/2025", "descripcion": "Movilidad reducida"}
+        ],
+        "imagen": "https://images.pexels.com/photos/2664417/pexels-photo-2664417.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+        "recetasActivas": {"medicamento": "Analgésico (Carprofeno)", "fechavalidez": "18/08/2025"}
+    },
+    {
+        "id": 5,
+        "nombre": "Simba",
+        "raza": "Maine Coon",
+        "edad": 4,
+        "genero": "Macho",
+        "fechaNac": "20/07/2021",
+        "microchip": {"serial": "PL4455889", "registrado": true},
+        "color": "Atigrado",
+        "peso": {"kilos": 8, "ultactualizacion": "12/06/2025"},
+        "alergias": null,
+        "condicion": null,
+        "vacunas": [
+        {"nombre": "Triple Felina", "fechaUlti": "30/06/2025", "fechaProx": "30/06/2026"},
+        {"nombre": "Rabia", "fechaUlti": "30/06/2025", "fechaProx": "30/06/2026"}
+        ],
+        "ultconsultas": [
+        {"tipo": "Limpieza dental", "fecha": "05/05/2025", "descripcion": "Eliminación de sarro"}
+        ],
+        "imagen": "https://images.pexels.com/photos/208967/pexels-photo-208967.jpeg",
+        "recetasActivas": null
+    },
+    {
+        "id": 6,
+        "nombre": "Bella",
+        "raza": "Caniche",
+        "edad": 6,
+        "genero": "Hembra",
+        "fechaNac": "30/09/2018",
+        "microchip": {"serial": "TR8871120", "registrado": true},
+        "color": "Blanco",
+        "peso": {"kilos": 6, "ultactualizacion": "25/04/2025"},
+        "alergias": "Lácteos",
+        "condicion": "Otitis recurrente",
+        "vacunas": [
+        {"nombre": "Rabia", "fechaUlti": "05/02/2025", "fechaProx": "05/02/2026"},
+        {"nombre": "Bordetella", "fechaUlti": "05/02/2025", "fechaProx": "05/02/2026"}
+        ],
+        "ultconsultas": [
+        {"tipo": "Consulta oído", "fecha": "10/05/2025", "descripcion": "Inflamación canal auditivo"}
+        ],
+        "imagen": "https://images.pexels.com/photos/3068920/pexels-photo-3068920.jpeg",
+        "recetasActivas": {"medicamento": "Gotas óticas", "fechavalidez": "24/05/2025"}
+    },
+    {
+        "id": 7,
+        "nombre": "Toby",
+        "raza": "Beagle",
+        "edad": 7,
+        "genero": "Macho",
+        "fechaNac": "14/06/2018",
+        "microchip": {"serial": "QW5566332", "registrado": true},
+        "color": "Tricolor",
+        "peso": {"kilos": 11, "ultactualizacion": "11/02/2025"},
+        "alergias": null,
+        "condicion": null,
+        "vacunas": [
+        {"nombre": "Rabia", "fechaUlti": "10/01/2025", "fechaProx": "10/01/2026"},
+        {"nombre": "Parvovirus", "fechaUlti": "10/01/2025", "fechaProx": "10/01/2026"}
+        ],
+        "ultconsultas": [
+        {"tipo": "Vacunación", "fecha": "10/01/2025", "descripcion": "Refuerzo anual"}
+        ],
+        "imagen": "https://images.pexels.com/photos/3361739/pexels-photo-3361739.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+        "recetasActivas": null
+    },
+    {
+        "id": 8,
+        "nombre": "Misha",
+        "raza": "Ragdoll",
+        "edad": 2,
+        "genero": "Hembra",
+        "fechaNac": "15/07/2023",
+        "microchip": {"serial": "YU9988771", "registrado": true},
+        "color": "Seal point",
+        "peso": {"kilos": 3, "ultactualizacion": "20/06/2025"},
+        "alergias": null,
+        "condicion": null,
+        "vacunas": [
+        {"nombre": "Triple Felina", "fechaUlti": "01/08/2024", "fechaProx": "01/08/2025"},
+        {"nombre": "Rabia", "fechaUlti": "01/08/2024", "fechaProx": "01/08/2025"}
+        ],
+        "ultconsultas": [
+        {"tipo": "Control de crecimiento", "fecha": "15/06/2025", "descripcion": "Desarrollo normal"}
+        ],
+        "imagen": "https://images.pexels.com/photos/1084425/pexels-photo-1084425.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+        "recetasActivas": null
+    },
+    {
+        "id": 9,
+        "nombre": "Coco",
+        "raza": "Shih Tzu",
+        "edad": 9,
+        "genero": "Macho",
+        "fechaNac": "22/05/2016",
+        "microchip": {"serial": "LP1122334", "registrado": true},
+        "color": "Dorado y blanco",
+        "peso": {"kilos": 7, "ultactualizacion": "30/03/2025"},
+        "alergias": "Picadura de pulga",
+        "condicion": "Ojo seco (Queratoconjuntivitis seca)",
+        "vacunas": [
+        {"nombre": "Rabia", "fechaUlti": "03/03/2025", "fechaProx": "03/03/2026"},
+        {"nombre": "Parainfluenza", "fechaUlti": "03/03/2025", "fechaProx": "03/03/2026"}
+        ],
+        "ultconsultas": [
+        {"tipo": "Control oftalmológico", "fecha": "02/04/2025", "descripcion": "Revisión de tratamiento"}
+        ],
+        "imagen": "https://images.pexels.com/photos/130771/pexels-photo-130771.jpeg",
+        "recetasActivas": {"medicamento": "Lágrimas artificiales", "fechavalidez": "02/10/2025"}
+    },
+    {
+        "id": 10,
+        "nombre": "Nala",
+        "raza": "Pastor Alemán",
+        "edad": 4,
+        "genero": "Hembra",
+        "fechaNac": "19/10/2020",
+        "microchip": {"serial": "VC7890001", "registrado": false},
+        "color": "Negro y fuego",
+        "peso": {"kilos": 30, "ultactualizacion": "14/05/2025"},
+        "alergias": null,
+        "condicion": null,
+        "vacunas": [
+        {"nombre": "Rabia", "fechaUlti": "20/02/2025", "fechaProx": "20/02/2026"},
+        {"nombre": "Hepatitis Infecciosa", "fechaUlti": "20/02/2025", "fechaProx": "20/02/2026"}
+        ],
+        "ultconsultas": [
+        {"tipo": "Chequeo general", "fecha": "05/04/2025", "descripcion": "Todo en orden"}
+        ],
+        "imagen": "https://images.pexels.com/photos/1629781/pexels-photo-1629781.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+        "recetasActivas": {"medicamento": "Antiparasitario", "fechavalidez": "05/07/2025"}
+    }
+]

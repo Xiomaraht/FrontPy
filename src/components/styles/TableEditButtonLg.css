@@ -1,0 +1,23 @@
+.table-edit-button {
+  background-color: #333333;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.9em;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.table-edit-button:hover {
+  background-color: #555;
+}
+
+.table-edit-button-icon {
+  font-size: 1.2em; /* Tamaño del icono */
+  color: white; /* Asegura el color del icono */
+  margin: 0;
+}

@@ -1,0 +1,120 @@
+/* Estilos generales del formulario de adición de veterinaria */
+.add-vet-form-container {
+  background-color: #fff; /* Fondo blanco */
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Sombra suave */
+  width: 100%;
+  max-width: 700px; /* Ancho máximo para que no se extienda demasiado */
+  margin: 20px auto; /* Centrar el formulario y darle espacio */
+  box-sizing: border-box; /* Incluir padding en el ancho */
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* Espacio entre secciones del formulario */
+}
+
+.add-vet-form-container h2 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 25px;
+  font-size: 2em;
+  font-weight: 600;
+}
+
+/* Sección de grupo de entrada (etiqueta + input) */
+.form-group {
+  margin-bottom: 15px; /* Espacio entre grupos de formulario */
+}
+
+.form-group label {
+  display: block; /* Etiqueta en su propia línea */
+  margin-bottom: 8px;
+  color: #555;
+  font-weight: bold;
+  font-size: 0.95em;
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="tel"],
+.form-group textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 1em;
+  color: #333;
+  box-sizing: border-box; /* Incluir padding en el ancho */
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-group input[type="text"]:focus,
+.form-group input[type="email"]:focus,
+.form-group input[type="tel"]:focus,
+.form-group textarea:focus {
+  border-color: #888; /* Borde más oscuro al enfocar */
+  box-shadow: 0 0 0 3px rgba(102, 102, 102, 0.2); /* Sombra suave al enfocar */
+  outline: none; /* Quitar el contorno predeterminado del navegador */
+}
+
+.form-group textarea {
+  resize: vertical; /* Permitir redimensionar verticalmente */
+  min-height: 80px; /* Altura mínima para el área de texto */
+}
+
+/* Estilos para el contenedor de botones */
+.form-actions {
+  display: flex;
+  justify-content: flex-end; /* Alinear botones a la derecha */
+  gap: 15px; /* Espacio entre botones */
+  margin-top: 25px;
+}
+
+.form-actions button {
+  padding: 12px 25px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.05em;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+  font-weight: bold;
+}
+
+.form-actions .btn-cancel {
+  background-color: #e0e0e0; /* Gris claro para cancelar */
+  color: #555;
+}
+
+.form-actions .btn-cancel:hover {
+  background-color: #d0d0d0;
+  transform: translateY(-1px);
+}
+
+.form-actions .btn-submit {
+  background-color: #000; /* Negro para el botón principal */
+  color: #fff;
+}
+
+.form-actions .btn-submit:hover {
+  background-color: #333;
+  transform: translateY(-1px);
+}
+
+/* Responsive adjustments (opcional, pero recomendado) */
+@media (max-width: 768px) {
+  .add-vet-form-container {
+    padding: 20px;
+    margin: 15px;
+    max-width: 95%;
+  }
+
+  .form-actions {
+    flex-direction: column; /* Apilar botones en pantallas pequeñas */
+    align-items: stretch; /* Estirar los botones a todo el ancho */
+  }
+
+  .form-actions button {
+    width: 100%; /* Botones ocupan todo el ancho */
+    margin-bottom: 10px; /* Espacio entre botones apilados */
+  }
+}

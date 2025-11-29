@@ -1,0 +1,16 @@
+
+.search-box-Lg {
+  margin-top: 10px;
+  padding: 5px 15px;
+  border: 1px solid var(--border-color);
+  border-radius: 20px;
+  font-size: 1rem;
+  width: 200px;
+  outline: none;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.search-box-Lg::placeholder {
+  color: var(--secondary-color);
+}
+

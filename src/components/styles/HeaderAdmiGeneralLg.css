@@ -1,0 +1,64 @@
+/* src/styles/RouteAdminGenMq.css */
+
+/* Contenedor principal de la aplicación */
+.contRa-Mq {
+    display: flex;
+    width: 100vw;
+    min-height: 100vh; /* Asegura que la aplicación ocupe al menos toda la altura de la ventana */
+    box-sizing: border-box;
+}
+
+/* Área principal de contenido */
+.main-content {
+    flex-grow: 1; /* Ocupa el espacio restante horizontalmente */
+    padding: 20px;
+    background-color: #000000;
+    box-shadow: 0 0 0 10px #ccc;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    display: flex;
+    flex-direction: column; /* Apila el contenido verticalmente */
+    overflow-y: auto; /* El scroll general de esta área */
+    overflow-x: hidden; /* Evita scroll horizontal indeseado */
+    box-sizing: border-box;
+}
+
+/* Estilos para el Header */
+.header { /* Este es el HeaderAdmiGeneralLg o el contenedor que lo envuelve */
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 15px 0;
+    border-bottom: 1px solid var(--border-color); /* Asegúrate de definir --border-color */
+    margin-bottom: 10px;
+    flex-shrink: 0; /* No se encoge */
+}
+
+.headerHa-Lg { /* Si este es otro header, asegúrate de que no haya conflicto de clases */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-shrink: 0; /* No se encoge */
+}
+
+/* Contenedor que agrupa la tabla y la paginación */
+.boxtable-container {
+    flex-grow: 1; /* Permite que este contenedor ocupe todo el espacio vertical disponible */
+    display: flex;
+    flex-direction: column; /* Apila TableVetsLg y PaginacionLg verticalmente */
+    margin-top: 20px;
+    overflow: hidden; /* Oculta cualquier overflow de la tabla para que solo su contenedor de scroll lo maneje */
+    box-sizing: border-box;
+}
+
+
+
+
+
+
+
+
+

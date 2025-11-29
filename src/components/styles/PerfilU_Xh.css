@@ -1,0 +1,74 @@
+.Perf_1Xh {
+  background: #fff;
+  padding: 1.5rem;
+  height: 550px;
+  width: 20vw;
+  border-radius: 14px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+  margin-left: 20px;
+}
+
+.NomXh_1 {
+  text-align: center;
+}
+
+.CorreoXh_1 {
+  text-align: center;
+}
+
+
+
+/* Ejemplo para asegurar que el div tiene un tamaño fijo para la imagen */
+.ImgXh_1 {
+  width: 100px; /* Tamaño del círculo o cuadrado del avatar */
+  height: 100px;
+  border-radius: 50%; /* Si quieres que sea circular */
+  margin: 10px auto;
+  background-color: #ccc; /* Color de fondo por defecto */
+  /* El estilo en línea de React manejará background-image, background-size, y background-position */
+}
+
+.Menu_1 {
+  list-style: none;
+  padding: 0;
+}
+
+.Menu_1 li {
+  padding: 12px;
+  cursor: pointer;
+  font-size: 14px;
+  border-radius: 6px;
+  margin-bottom: 8px;
+  transition: background 0.2s;
+  transition:  font-weight 0.3s ease-in-out;
+  transition: background-color 0.3s ease-in-out;
+  transition: transform 0.3s ease-in-out;
+}
+
+.Menu_1 li:hover {
+  background: #0388A6;
+  color: #FFF;
+  font-weight: bold;
+  transform: scale(1.1);
+}
+
+.Menu_1 .active {
+  background-color: #0388A6;
+  color: white;
+}
+
+#cerrar-sesion {
+  color: #BF0436;
+  margin-top: 1rem;
+  transition:  font-weight  0.3s ease-in-out;
+  transition: background-color 0.3s ease-in-out;
+  transition: transform 0.3s ease-in-out;
+}
+
+#cerrar-sesion:hover{
+  color: black;
+  background-color: #BF0436;
+  font-weight: bold;
+  transform: scale(1.1);
+}
+

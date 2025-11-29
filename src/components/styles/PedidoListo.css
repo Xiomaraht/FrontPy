@@ -1,0 +1,148 @@
+/* ========================================================================= */
+/* ESTRUCTURA GENERAL */
+/* ========================================================================= */
+
+
+.pedido-listo-container {
+    width: 100%;
+    max-width: 700px;
+    background-color: white;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    border-radius: 8px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 100px;
+}
+
+/* ========================================================================= */
+/* CABECERA (ICONO Y TÍTULO) */
+/* ========================================================================= */
+
+.header-confirmacion {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.check-icon {
+    font-size: 5rem;
+    color: black; /* O el color de tu check */
+    margin-bottom: 15px;
+}
+
+.header-confirmacion h1 {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #333;
+}
+
+/* ========================================================================= */
+/* RESUMEN SUPERIOR (Números de Orden/Pago) */
+/* ========================================================================= */
+
+.resumen-superior-box {
+    display: flex;
+    justify-content: space-between;
+    background-color: black;
+    color: white;
+    padding: 15px 20px;
+    border-radius: 4px;
+    margin-bottom: 30px;
+}
+
+.resumen-superior-item {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    font-size: 0.85rem;
+}
+
+.resumen-superior-item span {
+    font-weight: 300;
+    margin-bottom: 5px;
+}
+
+.resumen-superior-item b {
+    font-weight: bold;
+}
+
+.btn-descargar {
+    background-color: white;
+    color: black;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    align-self: center;
+}
+
+/* ========================================================================= */
+/* DETALLES DEL PEDIDO (Productos) */
+/* ========================================================================= */
+
+.pedido-listo-container h2 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+}
+
+.detalle-producto {
+    display: flex;
+    align-items: center;
+    padding: 15px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.imagen-placeholder {
+    width: 60px;
+    height: 60px;
+    background-color: #f0f0f0;
+    border-radius: 4px;
+    margin-right: 15px;
+}
+
+.detalle-producto .info {
+    flex-grow: 1;
+}
+
+.detalle-producto .info b {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 2px;
+}
+
+.detalle-producto .info p {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.detalle-producto .precio {
+    font-weight: bold;
+    color: #333;
+}
+
+/* ========================================================================= */
+/* RESUMEN DE COSTOS FINAL */
+/* ========================================================================= */
+
+.resumen-costos {
+    margin-top: 20px;
+    padding-top: 15px;
+}
+
+.resumen-costos p {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+
+.resumen-costos .total-final {
+    font-weight: bold;
+    font-size: 1.1rem;
+    border-top: 2px solid #333;
+    padding-top: 10px;
+    margin-top: 15px;
+}

@@ -1,0 +1,192 @@
+.detail-card h2#vet-name { /* Target the class of the parent div */
+  text-align: center;
+  margin-bottom: 5px;
+}
+.detail-card p.nit#vet-nit { /* Target the class of the parent div */
+  text-align: center;
+  color: #666;
+  font-size: 1em;
+  margin-bottom: 20px;
+}
+
+
+.circle-image-large {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  display: block;
+  margin: 10px auto 30px auto ;
+}
+
+
+/* src/styles/DetailCardLg.css */
+
+
+
+.detail-card {
+  border-radius: 20px;
+  width: 350px;
+  background-color: #fff;
+  padding: 20px;
+  /* display: none; */ /* El display se maneja con el estado de React */
+  box-shadow: 0 0 0 10px #000000;
+  flex-shrink: 0; /* Evita que la tarjeta se encoja si no hay espacio */
+  position: relative; /* Para posicionar el icono de edición y el botón de cerrar */
+
+}
+
+
+
+.detail-card-header {
+  position: relative; /* Para el icono de edición */
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px; /* Espacio entre el header y el cuerpo */
+}
+
+.circle-image-large {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 0 auto 15px auto; /* Centrar y añadir margen inferior */
+  border: 3px solid #eee; /* Borde sutil */
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Sombra */
+}
+
+.detail-card .main-title {
+  text-align: center;
+  margin: 0 0 5px 0; /* Ajusta márgenes */
+  font-size: 1.8em;
+  color: #333;
+}
+
+.detail-card .subtitle {
+  text-align: center;
+  color: #666;
+  font-size: 1em;
+  margin: 0 0 20px 0; /* Ajusta márgenes */
+}
+
+.detail-card-body {
+  width: 100%;
+  padding: 0 10px; /* Un poco de padding a los lados para el contenido */
+  line-height: 1.6; /* Espaciado de línea */
+}
+
+.detail-card-body p {
+  margin-bottom: 8px; /* Espacio entre párrafos */
+  font-size: 0.95em;
+  color: #444;
+}
+
+.detail-card-body p strong {
+  color: #222;
+  margin-right: 5px;
+}
+
+.detail-card-divider {
+  width: 100%;
+  border: 0;
+  border-top: 1px solid #eee;
+  margin: 20px 0;
+}
+
+.detail-card-actions {
+  display: flex;
+  justify-content: space-around; /* Espacio equitativo entre botones */
+  width: 100%;
+  margin-bottom: 20px; /* Espacio debajo de los botones */
+}
+
+.action-btn {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.9em;
+  font-weight: bold;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+  flex: 1; /* Para que ocupen el mismo ancho */
+  margin: 0 5px; /* Espacio entre botones */
+}
+
+.action-btn.activate {
+  background-color: #4CAF50; /* Verde */
+  color: white;
+}
+.action-btn.activate:hover {
+  background-color: #45a049;
+  transform: translateY(-1px);
+}
+
+.action-btn.deactivate {
+  background-color: #FFC107; /* Amarillo/Naranja */
+  color: #333;
+}
+.action-btn.deactivate:hover {
+  background-color: #e0b400;
+  transform: translateY(-1px);
+}
+
+.action-btn.delete {
+  background-color: #f44336; /* Rojo */
+  color: white;
+}
+.action-btn.delete:hover {
+  background-color: #da190b;
+  transform: translateY(-1px);
+}
+
+/* Posicionamiento del icono de edición */
+.edit-icon-container {
+  position: absolute;
+  top: 0px; /* Ajusta según sea necesario para que quede en la esquina superior derecha del .detail-card */
+  right: 0px; /* Ajusta según sea necesario */
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.05); /* Fondo sutil */
+  transition: background-color 0.2s ease;
+  z-index: 10; /* Asegura que esté por encima de otros elementos */
+}
+.edit-icon-container:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+/* Estilo del ícono en sí (asumiendo que IconEditLg renderiza un span con material-symbols-outlined) */
+.edit-icon-container .material-symbols-outlined {
+  font-size: 24px;
+  color: #555;
+}
+
+/* Botón de cerrar (si decides agregarlo al DetailCardLg) */
+
+
+
+.close-button-container {
+  position: absolute;
+  top: 10px; /* Ajusta según sea necesario */
+  left: 10px; /* Ajusta según sea necesario */
+  z-index: 10;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+  color: #555;
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background-color 0.2s ease;
+}
+
+.close-btn:hover {
+  background-color: #f0f0f0;
+  color: #333;
+}

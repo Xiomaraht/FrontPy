@@ -1,0 +1,8 @@
+/* ModalMq.css */
+
+.ContentFormModal-Mq {
+  /* Añadimos un scroll vertical si el contenido es muy alto */
+  max-height: 60vh;
+  overflow-y: auto;
+  padding: 10px; /* Un poco de espacio interno */
+}

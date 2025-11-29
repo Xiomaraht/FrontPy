@@ -1,0 +1,66 @@
+@import './main.css';
+
+.contenFormSl-Mq{
+    display: flex;
+    flex-direction: column;
+    border-radius: 20px;
+    justify-content: center;
+    width: 47vw;
+    margin: 3vh auto;
+    padding: 30px 90px;
+    background-color: var(--colorInterfazOscura);
+    color: var(--colorTituloOscura);
+    box-shadow: 7px 8px 5px -3px rgba(0,0,0,0.4);
+}
+/*Estilos del header*/
+.topFormSl-Mq{
+    text-align: center;
+}
+
+.topFormSl-Mq i{
+    font-size: 3.5rem;
+}
+
+.topFormSl-Mq h1{
+    color: var(--colorEnfasisOscura);
+    letter-spacing: -2px;
+}
+/*Estilos del main*/
+.contentInfoSl-Mq strong{
+    color: var(--colorEnfasisOscura);
+}
+
+.parrafoSl-Mq{
+    margin: 3rem 0 3rem;
+    text-align: center;
+    word-spacing: -1px;
+}
+
+.hrL-Mq{
+    border: 0;
+    height: 3px;
+    background-color: var(--colorTituloOscura);
+    margin: 1.5rem 0 3rem;
+}
+
+/*Estilos del footer*/
+
+.endFormSl-Mq{
+    display: flex;
+    align-items: center;
+}
+
+.endFormSl-Mq button{
+    border: none;
+    border-radius: 10px;
+    width: 70%;
+    height: 35px;
+    font-weight: bold;
+    font-size: 1em;
+    margin: 1em auto; 
+}
+
+.endFormSl-Mq button:hover{
+    background-color:var(--colorEnfasisOscura);
+    color: var(--colorInterfazOscura);
+}

@@ -1,0 +1,26 @@
+@import './main.css';
+
+.pagination-container {
+    display: flex;
+    justify-content: center;
+}
+
+.page-link{
+    color: var(--colorTituloOscura);
+}
+
+.page-link:hover{
+    color: var(--colorInterfazOscura);
+}
+
+.page-link:focus{
+    color: var(--colorEnfasisOscura);
+    box-shadow: none;
+}
+
+.active>.page-link, .page-link.active {
+    z-index: 3;
+    color: white;
+    background-color: var(--colorEnfasisOscura);
+    border-color: var(--colorEnfasisOscura);
+}

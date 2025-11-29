@@ -1,0 +1,84 @@
+/* src/styles/SidebarLg.css */
+
+.sidebar {
+  background-color: #ccc; /* Fondo gris claro */
+  color: rgb(255, 255, 255); /* Color de texto inicial */
+  padding: 20px;
+  /* min-height: 100vh;  Comentado para que el flex-grow del padre maneje la altura */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 0; /* Evita que el sidebar se encoja */
+}
+
+.sidebar img.circle-image {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover; /* Asegura que la imagen cubra el área sin distorsionarse */
+  margin-top: 10px;
+  margin-bottom: 60px; /* Espacio debajo de la imagen */
+  border: 4px solid #f0f0f0; /* Borde sutil alrededor de la imagen */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra para profundidad */
+}
+
+.sidebar nav {
+  flex-grow: 1; /* Permite que la navegación ocupe el espacio restante */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* Alinea los ítems al inicio de la nav */
+  width: 100%;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+
+.sidebar li {
+  padding: 14px;
+  margin-bottom: 10px; /* Espacio entre los ítems del menú */
+  cursor: pointer;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  border-radius: 20px;
+  transition: background 0.3s ease, color 0.3s ease; /* Transiciones más suaves */
+  padding-left: 20px;
+  color: #333; /* Color de texto por defecto para los ítems */
+}
+
+.sidebar li a{
+    color: #333;
+    text-decoration: none;
+}
+
+.sidebar li span.material-symbols-outlined {
+  margin-right: 15px; /* Espacio entre el icono y el texto */
+  font-size: 24px; /* Tamaño del icono */
+  color: #555; /* Color del icono por defecto */
+  transition: color 0.3s ease;
+}
+
+.sidebar li:hover {
+  background-color: #999; /* Gris más oscuro al pasar el ratón */
+  color: #fff; /* Texto blanco al pasar el ratón */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra sutil al pasar el ratón */
+}
+
+.sidebar li:hover span.material-symbols-outlined {
+  color: #fff; /* Icono blanco al pasar el ratón */
+}
+
+.sidebar li.active {
+  background-color: #000; /* Fondo negro para el ítem activo */
+  color: #fff; /* Texto blanco para el ítem activo */
+  font-weight: bold; /* Texto en negrita para el activo */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada para el activo */
+}
+
+.sidebar li.active span.material-symbols-outlined {
+  color: #fff; /* Icono blanco para el ítem activo */
+}

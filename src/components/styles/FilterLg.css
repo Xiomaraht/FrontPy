@@ -1,0 +1,41 @@
+.filter-section {
+  position: relative; /* Contenedor para posicionar el dropdown absolutamente */
+  display: inline-block; /* Para que el botón no ocupe todo el ancho disponible */
+}
+
+.filter-btn {
+
+  width: 10vw;
+  padding: 10px 15px;
+  background-color: #333;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.dropdown {
+  display: none;
+  position: absolute;
+  top: 38px;
+  left: 0;
+  background-color: #fff;
+  color: #000;
+  min-width: 160px;
+  border: 1px solid #aaa;
+  border-radius: 8px;
+  z-index: 10;
+  list-style: none;
+  padding: 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.dropdown li {
+  padding: 10px 15px;
+  cursor: pointer;
+}
+
+.dropdown li:hover {
+  background-color: #eee;
+}

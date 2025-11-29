@@ -1,0 +1,85 @@
+/* Contenedor principal */
+.service-detail-container {
+    max-width: 1000px;
+    margin: 120px auto 20px auto; 
+    padding: 30px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Layout de dos columnas */
+.service-layout {
+    display: flex;
+    gap: 30px;
+    align-items: flex-start;
+}
+
+/* Imagen */
+.service-image-section {
+    flex: 1;
+    max-width: 50%;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.main-service-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+}
+
+/* Info */
+.service-info-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.description-title {
+    font-size: 1.8em;
+    color: #333;
+    margin-top: 0;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 5px;
+}
+
+.service-description-full {
+    line-height: 1.6;
+    color: #555;
+    margin-bottom: 30px;
+    font-size: 1.1em;
+}
+
+/* Botón */
+.schedule-service-btn {
+    width: 100%;
+    padding: 15px;
+    font-size: 1.2em;
+    font-weight: bold;
+    color: white;
+    background-color: #f2055c;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.schedule-service-btn:hover {
+    background-color: #024059;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .service-layout {
+        flex-direction: column;
+    }
+
+    .service-image-section {
+        max-width: 100%;
+    }
+}

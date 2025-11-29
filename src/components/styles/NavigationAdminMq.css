@@ -1,0 +1,46 @@
+
+/* NavigationAdminMq.css */
+
+.app-container-NA-Mq {
+  display: flex;
+  height: 100vh;
+  background-color: #f0f2f5; /* Un fondo más suave */
+}
+
+/* Los estilos del Sidebar no necesitan cambios */
+.sidebarNA-Mq {
+  width: 220px;
+  background-color: #ffffff;
+  padding: 20px;
+  border-right: 1px solid #e8e8e8;
+  box-shadow: 2px 0 6px rgba(0, 21, 41, 0.08);
+}
+
+.sidebarNA-Mq h2 {
+  margin-top: 0;
+}
+
+.sidebarNA-Mq ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebarNA-Mq li {
+  padding: 10px 15px;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-bottom: 5px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.sidebarNA-Mq li:hover {
+  background-color: #e6f7ff;
+  color: #1890ff;
+}
+
+/* Contenedor principal del contenido. Se movieron los estilos específicos a ContentMq.css */
+.main-content-wrapper-NA-Mq {
+  flex-grow: 1;
+  padding: 24px;
+  overflow: auto; /* Para permitir scroll si el contenido es muy grande */
+}
