@@ -7,6 +7,7 @@ const API_BASE_URL = 'http://localhost:8080/auth'; // Asegúrate que esta sea tu
  * @returns {Promise<{accessToken: string, refreshToken: string}>} - Los tokens recibidos.
  * @throws {Error} - Lanza un error si la autenticación falla (ej: 401).
  */
+
 export const loginApi = async (login, password) => {
   const loginURL = `${API_BASE_URL}/login`;
 
@@ -30,9 +31,7 @@ export const loginApi = async (login, password) => {
   return tokenResponse;
 };
 
-/* =========================
-   REGISTRO DE USUARIO
-========================= */
+
 
 export const registerUserApi = async (userData) => {
   const registerURL = `${API_BASE_URL}/register`;
