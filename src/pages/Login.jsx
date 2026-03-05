@@ -1,6 +1,6 @@
 import { useState,useRef } from 'react'
 import { useNavigate, useSearchParams } from 'react-router-dom'
-import {loginApi} from '../api/LoginApi.js'
+import {loginApi} from '../api/LoginApi'
 import { jwtDecode } from 'jwt-decode'
 import '../components/styles/Login.css'
 import RegisterMq from '../components/Manuel/RegisterMq'
@@ -30,41 +30,46 @@ const [mensaje, setMensaje] = useState('')
 //Funcion del control del envio, ahora asincrona para el manejo de la API
 const manejoLogin = async (e) => {
     e.preventDefault() 
-    setMensaje('Iniciando sesion...')
+    setMensaje('Iniciando sesión...')
 
-    try{
-        //por medio de la funcion importada se envian los datos a la API
+    try {
+        // Enviamos datos a la API
         const tokenData = await loginApi(login, password);
-        const {access_token, refresh_token, user_id} = tokenData;
+        
+        // Aquí corregimos: el token viene como "token" desde tu backend
+        const { token } = tokenData;
 
-        //Ahora voy a decodificar el token
-        const decodificarToken = jwtDecode(access_token);
+        if (!token || typeof token !== 'string') {
+            throw new Error("Token inválido recibido del backend");
+        }
 
-        //Creamos un pequeño Json con los claims obtenidos
+        // Decodificamos el token
+        const decodificarToken = jwtDecode(token);
+
+        // Creamos el objeto con la info del usuario
         const userInfo = {
             login: decodificarToken.sub,
-            names: decodificarToken.names,
-            rol: decodificarToken.rol,
-            userId: user_id
-        }
+            names: decodificarToken.names || '',
+            rol: decodificarToken.rol || 'ROLE_USER'
+        };
 
-        //Guardamos la informacion en el localStorage
-        localStorage.setItem('accessToken', access_token);
-        localStorage.setItem('refreshToken', refresh_token);
+        // Guardamos token y datos del usuario
+        localStorage.setItem('token', token);
         localStorage.setItem('userInfo', JSON.stringify(userInfo));
 
-        setMensaje('Inicio de sesion exitoso. Redirigiendo...');
+        setMensaje('Inicio de sesión exitoso. Redirigiendo...');
 
-        //Redireccion segun el rol
+        // Redirección según el rol
         if(userInfo.rol === 'ROLE_ADMIN'){ 
             redireccion('/adminClient'); 
-        }else if(userInfo.rol === 'ROLE_CUSTOMER'){
+        } else if(userInfo.rol === 'ROLE_CUSTOMER'){
             redireccion('/'); 
-        }else{
+        } else {
             redireccion('/dashboard'); 
         }
-    }catch(error){
-        console.error('Error durante la autenticacion:', error.message);
+
+    } catch(error) {
+        console.error('Error durante la autenticación:', error.message);
         setMensaje("Usuario o contraseña incorrectos");
     }
 }

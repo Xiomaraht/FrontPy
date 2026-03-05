@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { registerUserApi } from '../../api/LoginApi.js'
+import { registerUserApi } from '../../api/authApi'
 
 
 export default function RegisterUserMq({setChange, datosUsuario}) {

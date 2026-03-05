@@ -1,52 +1,37 @@
-export async function obtenerMetodosPago(metodo) {
+import api from "../api/axios";
+
+export const crearMetodoPago = async (metodo) => {
   try {
-    const result = await fetch('http://localhost:8080/PaymentMethod',  {
-      method: "POST",
-      headers: {"Content-Type": "application/json" },
-      body: JSON.stringify(metodo),
-
-      });
-
-      if(result.ok) {
-        throw new Error("Error al guardar el metodo de pago");
-      }
-      return await result.json();
-    } catch(error) {
-      throw error;
-    }
-};
-
-
-export const actualizarMetodoPago = async ( metodo) => {
-  try {
-    const result = await fetch('http://localhost:8080/PaymentMethod', {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(metodo),
-    });
-
-    if (!result.ok) {
-      throw new Error("Error al actualizar el método de pago");
-    }
-
-    return await response.json();
+    const response = await api.post("/PaymentMethod", metodo);
+    return response.data;
   } catch (error) {
-    throw error;
+    throw (
+      error.response?.data?.message ||
+      "Error al guardar el método de pago"
+    );
   }
 };
 
-export const eliminarMetodoPago = async () => {
+export const actualizarMetodoPago = async (metodo) => {
   try {
-    const response = await fetch('http://localhost:8080/PaymentMethod', {
-      method: "DELETE",
-    });
+    const response = await api.put("/PaymentMethod", metodo);
+    return response.data;
+  } catch (error) {
+    throw (
+      error.response?.data?.message ||
+      "Error al actualizar el método de pago"
+    );
+  }
+};
 
-    if (!response.ok) {
-      throw new Error("Error al eliminar el método de pago");
-    }
-
+export const eliminarMetodoPago = async (id) => {
+  try {
+    await api.delete(`/PaymentMethod/${id}`);
     return true;
   } catch (error) {
-    throw error;
+    throw (
+      error.response?.data?.message ||
+      "Error al eliminar el método de pago"
+    );
   }
 };

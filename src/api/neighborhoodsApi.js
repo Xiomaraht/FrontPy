@@ -1,19 +1,20 @@
-import { fetchWithAuth } from './fetchWithAuth';
+// neighborhoodsApi.js
+import api from "../api/axios";
 
 export const obtenerBarrios = async () => {
-    try {
-        const respuesta = await fetchWithAuth('/neighborhoods');
-        if(!respuesta.ok){
-            throw new Error("Hubo un error al obtener los productos")
-        }
-        return await respuesta.json();
-    } catch (error) {
-        if(
-            error.mensaje.include("Failed to fetch") || 
-            error.message.include("NetworkError"))
-            {
-            throw new Error("No se pudo conectar con el servidor");
-        }
-        throw error;
+  try {
+    const response = await api.get("/neighborhoods");
+    return response.data;
+  } catch (error) {
+    if (
+      error.message?.includes("Network Error")
+    ) {
+      throw new Error("No se pudo conectar con el servidor");
     }
+
+    throw (
+      error.response?.data?.message ||
+      "Error al obtener barrios"
+    );
+  }
 };

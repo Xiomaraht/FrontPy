@@ -1,40 +1,27 @@
-import { fetchWithAuth } from './fetchWithAuth';
+import api from "../api/axios";
 
+// Crear cliente
 export const registerCustomerApi = async (customerData) => {
-    try {
-        const respuesta = await fetchWithAuth('/customers',{
-            method: 'POST',
-            body: JSON.stringify(customerData)
-        });
-        if (!respuesta.ok) {
-            throw new Error("Hubo un error al obtener las categorías");
-        }
-        return await respuesta.json();
-    } catch(error){
-        if(
-            error.message.includes("Failed to fetch") ||
-            error.message.includes("NetworkError")
-        ){
-            throw new Error("No se pudo conectar con el servidor");
-        }
-        throw error;
-    }    
+  try {
+    const { data } = await api.post("/customers", customerData);
+    return data;
+  } catch (error) {
+    if (!error.response) {
+      throw new Error("No se pudo conectar con el servidor");
+    }
+    throw error;
+  }
 };
 
-export const getCustomerApi = async (userId) => { 
-    try{
-        const respuesta = await fetchWithAuth(`/customers/user/${userId}`);
-        if(!respuesta.ok){
-            throw new Error("Hubo un error al obtener el cliente");
-        }
-        return await respuesta.json();
-    }catch(error){
-        if(
-            error.message.includes("Failed to fetch") ||
-            error.message.includes("NetworkError")
-        ){
-            throw new Error("No se pudo conectar con el servidor");
-        }
-        throw error;
+// Obtener cliente por userId
+export const getCustomerApi = async (userId) => {
+  try {
+    const { data } = await api.get(`/customers/user/${userId}`);
+    return data;
+  } catch (error) {
+    if (!error.response) {
+      throw new Error("No se pudo conectar con el servidor");
     }
-}  
+    throw error;
+  }
+};

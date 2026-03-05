@@ -105,24 +105,21 @@ const handleConfirmarEliminar = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {data.map((producto) => (
-                            // 6. Al hacer clic, guardamos el objeto 'producto' completo.
-                            <tr 
-                                key={producto.id} 
-                                // La clase 'selected' se aplica si el ID del producto en el map coincide con el del estado.
-                                className={productoSeleccionado?.id === producto.id ? 'selected-row' : ''}
+                        {(data || []).map((producto) => (
+                        <tr 
+                        key={producto.id} 
+                            className={productoSeleccionado?.id === producto.id ? 'selected-row' : ''}
                                 onClick={() => setProductoSeleccionado(producto)}
                             >
                                 <td>{producto.id}</td>
-                                <td>
-                                    {/* Mostrar la imagen pequeña usando la URL */}
-                                    {producto.picture && <img src={producto.picture} alt="prod" style={{ width: '50px', height: '50px', objectFit: 'cover' }} />}
-                                </td>
-                                <td>{producto.name}</td>
-                                <td>{producto.brand}</td>
-                                <td>${producto.price.toFixed(2)}</td>
-                                <td>{producto.stock} Und</td>
-                            </tr>
+                        <td>
+                        {producto.picture && <img src={producto.picture} alt="prod" style={{ width: '50px', height: '50px', objectFit: 'cover' }} />}
+                        </td>
+                            <td>{producto.name}</td>
+                            <td>{producto.brand}</td>
+                            <td>${producto.price.toFixed(2)}</td>
+                            <td>{producto.stock} Und</td>
+                        </tr>
                         ))}
                     </tbody>
                 </table>

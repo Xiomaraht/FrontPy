@@ -14,7 +14,7 @@ export default function PerfilU({ seccionActiva, setSeccionActiva, datos }) {
 
   const closeSession = async () => {
     await logout();
-    redireccion('/auth/login');
+    redireccion('/auth/login/logout');
   }
   
   const imageUrl = datos?.user?.imageUrl; 
