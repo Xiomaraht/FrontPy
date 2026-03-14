@@ -4,6 +4,7 @@ import { message } from 'antd';
 import Sidebar from '@/components/vetAdmin/SidebarMq';
 import ContentMq from '@/components/vetAdmin/ContentMq';
 import ContentServicesLg from '@/components/vetAdmin/ContentServicesLg'; // 1. IMPORTAR COMPONENTE DE SERVICIOS
+import ContentAppointmentsLg from '@/components/vetAdmin/ContentAppointmentsLg';
 import '@/components/styles/NavigationAdminMq.css';
 import { 
     obtenerProductos, 
@@ -21,11 +22,17 @@ import {
     obtenerServicioPorId
 } from '@/api/servicesApi'; 
 
+import { 
+    obtenerCitasPorClinica, 
+    actualizarEstadoCita 
+} from '@/api/appointmentsApi';
+
 import { logout } from '@/api/authApi';
 
 function NavigationAdminMq() {
     const [productos, setProductos] = useState([]);
     const [servicios, setServicios] = useState([]); // 3. ESTADO PARA SERVICIOS
+    const [citas, setCitas] = useState([]);
     const [error, setError] = useState(null); 
     const [activeContent, setActiveContent] = useState('productos');
     const closeSession = async () =>{await logout()};
@@ -51,12 +58,26 @@ function NavigationAdminMq() {
             });
     };
     
+    // 7. Función para recargar citas
+    const refrescarCitas = () => {
+        const userInfo = JSON.parse(localStorage.getItem('userInfo') || '{}');
+        // Asumiendo que clinicId está en userInfo o podemos obtenerlo
+        const clinicId = userInfo.clinicId || userInfo.id; 
+        obtenerCitasPorClinica(clinicId)
+            .then(setCitas)
+            .catch((fallo) => {
+                message.error(`Error al obtener citas: ${fallo.message}`);
+            });
+    };
+    
     // Carga inicial y refresco al cambiar de vista
     useEffect(() => {
         if (activeContent === 'productos') {
             refrescarProductos();
         } else if (activeContent === 'servicios') {
             refrescarServicios();
+        } else if (activeContent === 'citas') {
+            refrescarCitas();
         }
     }, [activeContent]);
 
@@ -159,6 +180,16 @@ function NavigationAdminMq() {
     };
     // 7. FIN DE LÓGICA CRUD PARA SERVICIOS
 
+    const handleActualizarEstadoCita = async (id, status) => {
+        try {
+            await actualizarEstadoCita(id, status);
+            message.success('Estado de la cita actualizado. ✅');
+            refrescarCitas();
+        } catch (err) {
+            message.error("Error al actualizar la cita. ❌");
+        }
+    };
+
     const handleSidebarClick = (content) => {
         if (content === 'cerrar sesion') {
             console.log('Cerrando sesión...');
@@ -215,10 +246,11 @@ return (
                 </div>
             )}
             {activeContent === 'citas' && (
-                <div className="placeholder-section">
-                    <h2>Citas Agendadas</h2>
-                    <p>Calendario y gestión de citas para servicios veterinarios.</p>
-                </div>
+                <ContentAppointmentsLg 
+                    title={activeContent}
+                    data={citas}
+                    onActualizarEstado={handleActualizarEstadoCita}
+                />
             )}
         </div>
     </div>

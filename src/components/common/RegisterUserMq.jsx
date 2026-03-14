@@ -77,10 +77,10 @@ const [isLoading, setIsLoading] = useState(false);
         let userData = {}; 
         setIsLoading(true); // Iniciar estado de carga
 
-        try{
+        try {
             const imageUrl = await uploadImageToCloudinary(imageProfile);
 
-            //conversion de datos a objeto JSON de User
+            // conversion de datos a objeto JSON de User
             const roleString = parseInt(rolId) === 2 ? "ROLE_VETERINARIAN" : "ROLE_CUSTOMER";
             const userData = {
                 username: login,
@@ -88,23 +88,19 @@ const [isLoading, setIsLoading] = useState(false);
                 firstName: nombres,
                 lastName: apellidos,
                 email: correo,
-                role: roleString
+                role: roleString,
+                picture: imageUrl
             };
 
-            //Procedemo a enviar los datos a la API
+            // Procedemo a enviar los datos a la API
             const registerResponse = await registerUserApi(userData);
 
-            // De la respuesta obtengo el id (Axios lo envuelve en 'data')
-            // El backend devuelve ResponseEntity.ok(Map.of("data", userDTO))
+            // El backend devuelve ResponseEntity.ok(Map.of("data", userDTO)) o badRequest si falla
             const createdUserId = registerResponse?.data?.data?.id;
 
             if (createdUserId) {
-                // Guarda el ID para usarlo en el siguiente paso (Customer)
+                // Guarda el ID para usarlo en el siguiente paso (Customer o Veterinary)
                 datosUsuario.current = { ...userData, userId: createdUserId };
-
-                const userDataJson = JSON.stringify(userData, null, 2);
-                console.log("Datos del usuario en formato JSON:");
-                console.log(userDataJson);
                 
                 if (parseInt(rolId) === 3) {
                     setChange("registerCustomer");
@@ -114,12 +110,20 @@ const [isLoading, setIsLoading] = useState(false);
                     setChange("exito"); 
                 }
             } else {
-                throw new Error(`El registro fue exitoso, pero la API no devolvió el ID del usuario en 'data.data.id'. Respuesta real: ${JSON.stringify(registerResponse.data)}`);
+                throw new Error("El registro falló: No se recibió el ID del usuario.");
             }
         } catch (error) {
             console.error("Error en el proceso de registro:", error);
-            const detail = error.response?.data?.detalle || error.response?.data?.message || error.message;
-            setMessage(`Fallo en el registro: ${detail}`);
+            const detail = error.response?.data?.detalle || error.response?.data?.error || error.message;
+            
+            // Mapeo de errores específicos del backend
+            if (detail.includes("ERROR_USERNAME_EXISTS")) {
+                setMessage("El nombre de usuario ya está en uso. Por favor elige otro.");
+            } else if (detail.includes("ERROR_EMAIL_EXISTS")) {
+                setMessage("El correo electrónico ya está registrado. Intenta iniciar sesión.");
+            } else {
+                setMessage(`Fallo en el registro: ${detail}`);
+            }
         } finally {
             setIsLoading(false); // Finalizar estado de carga
         }

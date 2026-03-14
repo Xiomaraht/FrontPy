@@ -141,7 +141,7 @@ export default function MiPerfilXh() {
             {seccionActiva === "mascotas" && <MascotasXh perfil={perfil} />}
             {seccionActiva === "historialPe" && <HistorialPe_Xh />}
             {seccionActiva === "metodos" && <PaymentMethod_Xh />}
-            {seccionActiva === "config" && <Configuracion_Xh />}
+            {seccionActiva === "config" && <Configuracion_Xh perfil={perfil} />}
             {seccionActiva === "cerrar" && <LogOut_Xh/>}
           </div>
         </div>

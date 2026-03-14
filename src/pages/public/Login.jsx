@@ -55,6 +55,7 @@ const manejoLogin = async (e) => {
 
         // Creamos el objeto con la info del usuario
         const userInfo = {
+            id: decodificarToken.id, // ID for general use
             userId: decodificarToken.id, // ID numérico de la BD
             login: decodificarToken.sub, // Username
             names: decodificarToken.nombreCompleto || '', 

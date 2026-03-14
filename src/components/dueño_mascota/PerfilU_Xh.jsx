@@ -23,7 +23,7 @@ export default function PerfilU({ seccionActiva, setSeccionActiva, datos }) {
     }
   }
   
-  const imageUrl = datos?.imageUrl; // Simplified
+  const imageUrl = datos?.picture; // Using picture field from DTO
   const imageStyle = imageUrl 
     ? { backgroundImage: `url(${imageUrl})`, backgroundSize: 'cover', backgroundPosition: 'center' } 
     : {};

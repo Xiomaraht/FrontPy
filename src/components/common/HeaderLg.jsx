@@ -90,7 +90,11 @@ export default function HeaderLg() {
                     onClick={() => setIsAuthMenuOpen(!isAuthMenuOpen)}
                     style={{background: 'none', border:'none', cursor:'pointer', display: 'flex', alignItems: 'center', color: 'var(--colorTextoOscura)'}}
                 >
-                    <i className="bi bi-person" style={{fontSize: '1.5rem', marginRight: '5px'}}></i>
+                    {isLoggedIn && userInfo?.picture ? (
+                        <img src={userInfo.picture} alt="Perfil" style={{width: '32px', height: '32px', borderRadius: '50%', marginRight: '8px', objectFit: 'cover'}} />
+                    ) : (
+                        <i className="bi bi-person" style={{fontSize: '1.5rem', marginRight: '5px'}}></i>
+                    )}
                     <span className="login-text" style={{fontSize: '1rem', fontWeight: 'bold'}}>
                         {isLoggedIn ? 'Mi Cuenta' : 'Ingresar'}
                     </span>

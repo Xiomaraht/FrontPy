@@ -1,15 +1,72 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ChangePassword_Xh from './ChangePassword_Xh';
 import '@/components/styles/Configuracion_Xh.css';
+import { updateUserApi } from '@/api/userApi';
+import { uploadImageToCloudinary } from '@/utilities/useImageUploader';
+import { message } from 'antd';
 
-export default function Configuracion_Xh() {
+export default function Configuracion_Xh({ perfil }) {
   const [mostrarCambio, setMostrarCambio] = useState(false);
-  const [foto, setFoto] = useState(null);
+  const [foto, setFoto] = useState(perfil?.picture || null);
+  const [fotoFile, setFotoFile] = useState(null);
+  const [isSaving, setIsSaving] = useState(false);
 
+  const [formData, setFormData] = useState({
+    firstName: perfil?.name?.split(' ')[0] || '',
+    lastName: perfil?.name?.split(' ').slice(1).join(' ') || '',
+    email: perfil?.email || '',
+    phone: perfil?.phone || '',
+    address: perfil?.address || '',
+  });
+
+  useEffect(() => {
+    if (perfil) {
+      setFormData({
+        firstName: perfil.name?.split(' ')[0] || '',
+        lastName: perfil.name?.split(' ').slice(1).join(' ') || '',
+        email: perfil.email || '',
+        phone: perfil.phone || '',
+        address: perfil.address || '',
+      });
+      setFoto(perfil.picture || null);
+    }
+  }, [perfil]);
   const handleImagen = (e) => {
     const file = e.target.files[0];
     if (file) {
       setFoto(URL.createObjectURL(file));
+      setFotoFile(file);
+    }
+  };
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.id]: e.target.value });
+  };
+
+  const handleSave = async () => {
+    setIsSaving(true);
+    try {
+      let pictureUrl = foto;
+      if (fotoFile) {
+        pictureUrl = await uploadImageToCloudinary(fotoFile);
+      }
+
+      const updateData = {
+        id: perfil.userId, // Assuming perfil has userId
+        firstName: formData.firstName,
+        lastName: formData.lastName,
+        email: formData.email,
+        picture: pictureUrl,
+      };
+
+      await updateUserApi(updateData);
+      message.success('Perfil actualizado correctamente. Refresca para ver los cambios.');
+      // Opcionalmente recargar o actualizar el estado global.
+    } catch (error) {
+      console.error("Error updating profile:", error);
+      message.error('Error al actualizar el perfil.');
+    } finally {
+      setIsSaving(false);
     }
   };
 
@@ -38,34 +95,30 @@ export default function Configuracion_Xh() {
 
           <div className="form-row">
             <div className="form-group">
-              <label htmlFor="nombre">Nombre</label>
-              <input id="nombre" type="text" placeholder="Nombre" />
+              <label htmlFor="firstName">Nombre</label>
+              <input id="firstName" type="text" value={formData.firstName} onChange={handleChange} placeholder="Nombre" />
             </div>
             <div className="form-group">
-              <label htmlFor="apellido">Apellido</label>
-              <input id="apellido" type="text" placeholder="Apellido" />
+              <label htmlFor="lastName">Apellido</label>
+              <input id="lastName" type="text" value={formData.lastName} onChange={handleChange} placeholder="Apellido" />
             </div>
           </div>
 
           <div className="form-row">
             <div className="form-group">
-              <label htmlFor="correo">Correo Electrónico</label>
-              <input id="correo" type="email" placeholder="correo@ejemplo.com" />
+              <label htmlFor="email">Correo Electrónico</label>
+              <input id="email" type="email" value={formData.email} onChange={handleChange} placeholder="correo@ejemplo.com" />
             </div>
             <div className="form-group">
-              <label htmlFor="telefono">Teléfono</label>
-              <input id="telefono" type="text" placeholder="Número de teléfono" />
+              <label htmlFor="phone">Teléfono</label>
+              <input id="phone" type="text" value={formData.phone} onChange={handleChange} placeholder="Número de teléfono" />
             </div>
           </div>
 
           <div className="form-row">
-            <div className="form-group">
-              <label htmlFor="fecha">Fecha de Nacimiento</label>
-              <input id="fecha" type="date" />
-            </div>
             <div className="form-group">
               <label htmlFor="direccion">Dirección</label>
-              <input id="direccion" type="text" placeholder="Dirección" />
+              <input id="address" type="text" value={formData.address} onChange={handleChange} placeholder="Dirección" />
             </div>
           </div>
 
@@ -76,8 +129,8 @@ export default function Configuracion_Xh() {
             >
               Cambiar Contraseña
             </button>
-            <button className="btn-guardar">
-              Guardar Cambios
+            <button className="btn-guardar" onClick={handleSave} disabled={isSaving}>
+              {isSaving ? 'Guardando...' : 'Guardar Cambios'}
             </button>
           </div>
         </div>

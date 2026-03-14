@@ -1,10 +1,11 @@
 // ServicesItemsMq.jsx
 
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { obtenerServicioPorId } from "@/api/servicesApi"; 
 import HeaderLg from '@/components/common/HeaderLg';
 import FooterLg from '@/components/common/FooterLg';
+import AppointmentModal from '@/components/common/AppointmentModal';
 import '@/components/styles/ServicesItemsMq.css'; 
 
 export default function ServicesItemsMq() {
@@ -14,6 +15,9 @@ export default function ServicesItemsMq() {
     const [service, setService] = useState(null);
     const [isLoading, setIsLoading] = useState(true); 
     const [error, setError] = useState(null);
+    const [isScheduling, setIsScheduling] = useState(false);
+    const [selectedClinic, setSelectedClinic] = useState(null);
+    const navigate = useNavigate();
     
     useEffect(() => {
         const fetchService = async () => {
@@ -42,15 +46,27 @@ export default function ServicesItemsMq() {
     }, [serviceId]); 
 
     const handleSchedule = () => {
-        const token = localStorage.getItem('token');
-        if (!token) {
+        const userInfo = JSON.parse(localStorage.getItem('userInfo') || '{}');
+        if (!userInfo.id) {
             alert("Debes iniciar sesión para agendar un servicio.");
-            redireccion('/auth/login?action=login');
+            navigate('/auth/login?action=login');
             return;
         }
 
         if (service) {
-            alert(`Iniciando agendamiento para: ${service.nombre || service.name}.`);
+            if (service.veterinaryClinics && service.veterinaryClinics.length > 0) {
+                if (service.veterinaryClinics.length === 1) {
+                    setSelectedClinic(service.veterinaryClinics[0]);
+                    setIsScheduling(true);
+                } else {
+                    // Si hay varias, necesitamos que el usuario elija una
+                    // Por ahora abrimos el modal si ya eligió o si solo hay una.
+                    // Agrego lógica de selección básica abajo.
+                    setIsScheduling(true);
+                }
+            } else {
+                alert("Este servicio no está disponible en ninguna clínica actualmente.");
+            }
         }
     };
 
@@ -110,9 +126,24 @@ export default function ServicesItemsMq() {
                         <hr className='hrP-Lw'/>
 
                         <div className="service-actions">
+                            {service.veterinaryClinics && service.veterinaryClinics.length > 1 && (
+                                <div className="clinic-selection">
+                                    <label>Selecciona una veterinaria:</label>
+                                    <select 
+                                        onChange={(e) => setSelectedClinic(service.veterinaryClinics.find(c => c.id === parseInt(e.target.value)))}
+                                        value={selectedClinic?.id || ""}
+                                    >
+                                        <option value="" disabled>--- Seleccionar ---</option>
+                                        {service.veterinaryClinics.map(clinic => (
+                                            <option key={clinic.id} value={clinic.id}>{clinic.name}</option>
+                                        ))}
+                                    </select>
+                                </div>
+                            )}
                             <button 
                                 className="schedule-service-btn" 
                                 onClick={handleSchedule}
+                                disabled={service.veterinaryClinics?.length > 1 && !selectedClinic}
                             >
                                 Agendar Servicio
                             </button>
@@ -120,6 +151,14 @@ export default function ServicesItemsMq() {
                     </div>
                 </div>
             </main>
+
+            {isScheduling && (
+                <AppointmentModal 
+                    service={service} 
+                    clinic={selectedClinic || service.veterinaryClinics[0]} 
+                    onClose={() => setIsScheduling(false)} 
+                />
+            )}
 
             <FooterLg />
         </div>

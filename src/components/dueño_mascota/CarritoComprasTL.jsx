@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useCart } from "@/context/CartContext";
+import { Link } from "react-router-dom";
 import "@/components/styles/CarritoComprasTL.css";
 import HeaderLg from "@/components/common/HeaderLg";
 import FooterLg from "@/components/common/FooterLg";
@@ -60,7 +61,10 @@ export default function CarritoComprasTL() {
                 <Titulo />
                 <div className="contenedor">
                     <ListaProductos productos={productos} aumentar={aumentar} disminuir={disminuir}/>
-                    <ResumenCompra productos={productos} subtotal={subtotal} goToNextStep={goToDelivery} isDeliveryView={false}/>
+                    <div className="cart-actions-column">
+                        <ResumenCompra productos={productos} subtotal={subtotal} goToNextStep={goToDelivery} isDeliveryView={false}/>
+                        <Link to="/productos" className="btn-view-more">Ver más productos</Link>
+                    </div>
                 </div>
                 {productos.length > 0 && <VaciarCarrito vaciar={vaciar} />}
             </>
