@@ -30,10 +30,10 @@ export default function RegisterVeterinariaMq({setChange, datosUsuario}) {
             email: email,
             documentNumber: documentNumber,
             userId: userId,
-            idDocumentType: 6 // NIT por defecto según DataInitializer
+            idDocumentType: 6 // NIT por defecto
         };
         
-        console.log("Datos de la Veterinaria a enviar:", vetData);    
+        console.log("Payload a enviar a /api/veterinary-clinics:", JSON.stringify(vetData));
         setIsLoading(true);
 
         try{
