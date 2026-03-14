@@ -59,7 +59,8 @@ const manejoLogin = async (e) => {
             userId: decodificarToken.id, // ID numérico de la BD
             login: decodificarToken.sub, // Username
             names: decodificarToken.nombreCompleto || '', 
-            rol: decodificarToken.rol || 'ROLE_USER'
+            rol: decodificarToken.rol || 'ROLE_USER',
+            clinicId: decodificarToken.clinicId || null
         };
 
         // Guardamos token y datos del usuario

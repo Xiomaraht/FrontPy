@@ -8,3 +8,12 @@ export const registerVeterinaryApi = async (data) => {
         throw new Error(error.response?.data?.message || "Error al registrar la veterinaria");
     }
 };
+
+export const obtenerFacturasPorClinica = async (clinicId) => {
+    try {
+        const response = await api.get(`/api/bills/clinic/${clinicId}`);
+        return response.data;
+    } catch (error) {
+        throw new Error(error.response?.data?.message || "Error al obtener las facturas");
+    }
+};

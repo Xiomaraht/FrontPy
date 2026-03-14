@@ -10,6 +10,7 @@ function SidebarMq({ onItemClick }) {
         <li onClick={() => onItemClick('mascotas')}>Mascotas</li>
         <li onClick={() => onItemClick('pedidos')}>Pedidos</li>
         <li onClick={() => onItemClick('citas')}>Citas</li>
+        <li onClick={() => onItemClick('suscripcion')}>Suscripción</li>
         <li onClick={() => onItemClick('cerrar sesion')}>Cerrar Sesión</li>
       </ul>
     </div>

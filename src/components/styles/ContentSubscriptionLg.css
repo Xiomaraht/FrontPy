@@ -1,0 +1,59 @@
+.subscription-container-Lg {
+    padding: 24px;
+    background-color: #f0f2f5;
+    min-height: 100%;
+}
+
+.subscription-header {
+    margin-bottom: 32px;
+}
+
+.current-sub-card {
+    border-left: 5px solid #1890ff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.no-sub-card {
+    border-left: 5px solid #faad14;
+    border-radius: 8px;
+    background-color: #fffbe6;
+}
+
+.plans-section {
+    margin-top: 40px;
+}
+
+.plan-card {
+    border-radius: 12px;
+    transition: all 0.3s;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.plan-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.active-plan {
+    border: 2px solid #1890ff;
+    background-color: #e6f7ff;
+}
+
+.plan-actions {
+    margin-top: auto;
+    padding-top: 16px;
+}
+
+.loading-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 300px;
+}
+
+.text-right {
+    text-align: right;
+}

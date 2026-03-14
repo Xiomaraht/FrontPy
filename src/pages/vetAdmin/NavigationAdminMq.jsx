@@ -28,11 +28,23 @@ import {
 } from '@/api/appointmentsApi';
 
 import { logout } from '@/api/authApi';
+import ContentSubscriptionLg from '@/components/vetAdmin/ContentSubscriptionLg';
+import ContentClientsLg from '@/components/vetAdmin/ContentClientsLg';
+import ContentPetsLg from '@/components/vetAdmin/ContentPetsLg';
+import ContentOrdersLg from '@/components/vetAdmin/ContentOrdersLg';
+
+// APIs para Clientes, Mascotas y Pedidos
+import { obtenerClientesPorClinica } from '@/api/customerApi'; // Necesitará ser creada
+import { obtenerMascotasPorClinica } from '@/api/petsApi'; // Necesitará ser creada
+import { obtenerFacturasPorClinica } from '@/api/veterinaryClinicApi'; // Necesitará ser creada
 
 function NavigationAdminMq() {
     const [productos, setProductos] = useState([]);
     const [servicios, setServicios] = useState([]); // 3. ESTADO PARA SERVICIOS
     const [citas, setCitas] = useState([]);
+    const [clientes, setClientes] = useState([]);
+    const [mascotas, setMascotas] = useState([]);
+    const [pedidos, setPedidos] = useState([]);
     const [error, setError] = useState(null); 
     const [activeContent, setActiveContent] = useState('productos');
     const closeSession = async () =>{await logout()};
@@ -61,13 +73,36 @@ function NavigationAdminMq() {
     // 7. Función para recargar citas
     const refrescarCitas = () => {
         const userInfo = JSON.parse(localStorage.getItem('userInfo') || '{}');
-        // Asumiendo que clinicId está en userInfo o podemos obtenerlo
         const clinicId = userInfo.clinicId || userInfo.id; 
         obtenerCitasPorClinica(clinicId)
             .then(setCitas)
             .catch((fallo) => {
                 message.error(`Error al obtener citas: ${fallo.message}`);
             });
+    };
+
+    const refrescarClientes = () => {
+        const userInfo = JSON.parse(localStorage.getItem('userInfo') || '{}');
+        const clinicId = userInfo.clinicId;
+        obtenerClientesPorClinica(clinicId)
+            .then(setClientes)
+            .catch(err => message.error("Error al obtener clientes"));
+    };
+
+    const refrescarMascotas = () => {
+        const userInfo = JSON.parse(localStorage.getItem('userInfo') || '{}');
+        const clinicId = userInfo.clinicId;
+        obtenerMascotasPorClinica(clinicId)
+            .then(setMascotas)
+            .catch(err => message.error("Error al obtener mascotas"));
+    };
+
+    const refrescarPedidos = () => {
+        const userInfo = JSON.parse(localStorage.getItem('userInfo') || '{}');
+        const clinicId = userInfo.clinicId;
+        obtenerFacturasPorClinica(clinicId)
+            .then(setPedidos)
+            .catch(err => message.error("Error al obtener pedidos"));
     };
     
     // Carga inicial y refresco al cambiar de vista
@@ -78,6 +113,12 @@ function NavigationAdminMq() {
             refrescarServicios();
         } else if (activeContent === 'citas') {
             refrescarCitas();
+        } else if (activeContent === 'clientes') {
+            refrescarClientes();
+        } else if (activeContent === 'mascotas') {
+            refrescarMascotas();
+        } else if (activeContent === 'pedidos') {
+            refrescarPedidos();
         }
     }, [activeContent]);
 
@@ -228,28 +269,24 @@ return (
                 />
             )}
             {activeContent === 'clientes' && (
-                <div className="placeholder-section">
-                    <h2>Gestión de Clientes</h2>
-                    <p>Aquí podrás ver y gestionar la lista de clientes registrados en la clínica.</p>
-                </div>
+                <ContentClientsLg data={clientes} />
             )}
             {activeContent === 'mascotas' && (
-                <div className="placeholder-section">
-                    <h2>Gestión de Mascotas</h2>
-                    <p>Accede al historial y datos de las mascotas de tus clientes.</p>
-                </div>
+                <ContentPetsLg data={mascotas} />
             )}
             {activeContent === 'pedidos' && (
-                <div className="placeholder-section">
-                    <h2>Gestión de Pedidos</h2>
-                    <p>Revisa los pedidos de productos realizados por tus clientes.</p>
-                </div>
+                <ContentOrdersLg data={pedidos} />
             )}
             {activeContent === 'citas' && (
                 <ContentAppointmentsLg 
                     title={activeContent}
                     data={citas}
                     onActualizarEstado={handleActualizarEstadoCita}
+                />
+            )}
+            {activeContent === 'suscripcion' && (
+                <ContentSubscriptionLg 
+                    clinicId={JSON.parse(localStorage.getItem('userInfo') || '{}').clinicId} 
                 />
             )}
         </div>

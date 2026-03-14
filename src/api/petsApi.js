@@ -36,3 +36,12 @@ export const registerPetForCustomer = async (customerId, petData) => {
     throw error.response?.data?.message || "Error al registrar mascota";
   }
 };
+
+export const obtenerMascotasPorClinica = async (clinicId) => {
+  try {
+    const response = await api.get(`/pets/clinic/${clinicId}`);
+    return response.data;
+  } catch (error) {
+    throw error.response?.data?.message || "Error al obtener mascotas por clínica";
+  }
+};
