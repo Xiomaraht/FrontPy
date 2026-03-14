@@ -1,9 +1,9 @@
-import api from "../api/axios";
+import api from "@/api/axios";
 
 // Crear cliente
 export const registerCustomerApi = async (customerData) => {
   try {
-    const { data } = await api.post("/customers", customerData);
+    const { data } = await api.post("/api/customers", customerData);
     return data;
   } catch (error) {
     if (!error.response) {
@@ -16,7 +16,7 @@ export const registerCustomerApi = async (customerData) => {
 // Obtener cliente por userId
 export const getCustomerApi = async (userId) => {
   try {
-    const { data } = await api.get(`/customers/user/${userId}`);
+    const { data } = await api.get(`/api/customers/user/${userId}`);
     return data;
   } catch (error) {
     if (!error.response) {

@@ -1,9 +1,9 @@
 // productsApi.js
-import api from "../api/axios";
+import api from "@/api/axios";
 
 export const obtenerProductos = async () => {
   try {
-    const response = await api.get("/products");
+    const response = await api.get("/api/products");
     return response.data;
   } catch (error) {
     if ([401, 403].includes(error.response?.status)) {
@@ -15,7 +15,7 @@ export const obtenerProductos = async () => {
 
 export const obtenerProductoPorId = async (id) => {
   try {
-    const response = await api.get(`/products/${id}`);
+    const response = await api.get(`/api/products/${id}`);
     return response.data;
   } catch {
     throw new Error("Producto no encontrado");
@@ -24,7 +24,7 @@ export const obtenerProductoPorId = async (id) => {
 
 export const crearProducto = async (data) => {
   try {
-    const response = await api.post("/products", data);
+    const response = await api.post("/api/products", data);
     return response.data;
   } catch (error) {
     if (error.response?.status === 403) {
@@ -36,7 +36,7 @@ export const crearProducto = async (data) => {
 
 export const actualizarProducto = async (id, data) => {
   try {
-    const response = await api.put(`/products/${id}`, data);
+    const response = await api.put(`/api/products/${id}`, data);
     return response.data;
   } catch {
     throw new Error("Error al actualizar producto");
@@ -45,7 +45,7 @@ export const actualizarProducto = async (id, data) => {
 
 export const eliminarProducto = async (id) => {
   try {
-    await api.delete(`/products/${id}`);
+    await api.delete(`/api/products/${id}`);
     return { success: true };
   } catch (error) {
     throw (

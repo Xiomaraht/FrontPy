@@ -1,74 +1,27 @@
 [
     {
-        "id": 1,
-        "title": "Clínica Veterinaria Amigos Peludos",
-        "description": "Atención integral para tus mascotas",
-        "image": "https://unavatar.io/youtube/RaySnakeyes"
+        "title": "Hospital Veterinario San Francisco",
+        "description": "Atención 24/7, urgencias, cirugías complejas y hospitalización. Contamos con los mejores especialistas del país.",
+        "image": "https://images.unsplash.com/photo-1583337130417-3346a1be7dee?w=500"
     },
     {
-        "id": 2,
-        "title": "Hospital Veterinario El Buen Pastor",
-        "description": "Especialistas en salud animal",
-        "image": "https://unavatar.io/youtube/tseries"
+        "title": "Clínica Veterinaria PetCare Especialidades",
+        "description": "Especialistas en dermatología, cardiología y oftalmología veterinaria. Equipos de última tecnología.",
+        "image": "https://images.unsplash.com/photo-1599443015574-be5fe8a05783?w=500"
     },
     {
-        "id": 3,        
-        "title": "Consultorio Patitas Felices",
-        "description": "Cuidado con amor para tus compañeros",
-        "image": "https://unavatar.io/youtube/FaridDieckOficial"
+        "title": "Centro Veterinario La Mascota Feliz",
+        "description": "Consultas generales, vacunación, desparasitación y peluquería canina y felina integral.",
+        "image": "https://images.unsplash.com/photo-1628009368231-7bb7cbcb8127?w=500"
     },
     {
-        "id": 4,
-        "title": "Centro Veterinario Colitas Contentas",
-        "description": "Servicios de peluquería y vacunas",
-        "image": "https://unavatar.io/youtube/markiplier"
+        "title": "Veterinaria SOS Animal",
+        "description": "Atención rápida y económica para emergencias menores, profilaxis dental y planes de nutrición especializada.",
+        "image": "https://images.unsplash.com/photo-1584820927498-cafe2c1bf015?w=500"
     },
     {
-        "id": 5,        
-        "title": "UrgencyVet 24/7",
-        "description": "Emergencias veterinarias a toda hora",
-        "image": "https://unavatar.io/youtube/kimmigneault"
-    },
-    {
-        "id": 6,        
-        "title": "PetCare La Esquina",
-        "description": "Tu veterinario de confianza en el barrio",
-        "image": "https://unavatar.io/youtube/smosh"
-    },
-    {
-        "id": 7,        
-        "title": "Animalia Health Center",
-        "description": "Medicina preventiva y cirugías",
-        "image": "https://unavatar.io/youtube/midulive"
-    },
-    {
-        "id": 8,        
-        "title": "Huellas y Salud",
-        "description": "Bienestar para cada huella que dejen",
-        "image": "https://unavatar.io/youtube/vanossgaming"
-    },
-    {
-        "id": 9,        
-        "title": "El Refugio Animal",
-        "description": "Adopciones y atención veterinaria",
-        "image": "https://unavatar.io/youtube/dudeperfect"
-    },
-    {
-        "id": 10,        
-        "title": "Mascotas Sanas y Felices",
-        "description": "Nutrición y consejos para una vida plena",
-        "image": "https://unavatar.io/youtube/logang"
-    },
-    {
-        "id": 11,        
-        "title": "Vida Animal Veterinaria",
-        "description": "Pasión por los animales, vocación de servicio",
-        "image": "https://unavatar.io/youtube/mouredevtv"
-    },
-    {
-        "id": 12,        
-        "title": "Caninos y Felinos Vet",
-        "description": "Especializados en perros y gatos",
-        "image": "https://unavatar.io/youtube/new3sc"
+        "title": "Clínica Felina The Cat Doctor",
+        "description": "Exclusivo para gatos. Ambientes libres de estrés, medicina preventiva y tratamientos específicos felinos.",
+        "image": "https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=500"
     }
 ]

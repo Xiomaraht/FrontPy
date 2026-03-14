@@ -1,20 +1,24 @@
 @import './main.css';
+
 .servicios-favoritos {
     text-align: center;
-    padding: 50px 20px;
-    background-color:var(--colorContenedorOscura);
+    padding: 80px 20px;
+    background: linear-gradient(135deg, #ffffff 0%, #f0f7fa 100%);
 }
 
 .titulo-servicios {
-    font-size: 2.2em;
-    color: var(--colorEnfasisOscura);
-    font-weight: bold;
+    font-size: 2.8em;
+    color: #024059;
+    font-weight: 800;
+    margin-bottom: 15px;
+    letter-spacing: -1px;
 }
 
 .descripcion-servicios {
-    font-size: 1.1em;
-    color: var(--colorTituloOscura);
-    margin-bottom: 55px;
+    font-size: 1.2em;
+    color: #555;
+    margin-bottom: 60px;
+    font-weight: 300;
 }
 
 .contenedor-servicios {
@@ -25,42 +29,63 @@
 }
 
 .servicio {
-    background: var(--colorInterfazOscura);
-    color: var(--colorTituloOscura);
-    border-radius: 12px;
-    padding: 10px;
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 20px;
+    padding: 40px 20px;
     text-align: center;
-    width: 250px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease-in-out, box-shadow 0.3s;
+    width: 280px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.servicio::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 100%; height: 4px;
+    background: linear-gradient(90deg, #024059, #089bd6);
+    transform: scaleX(0);
+    transition: transform 0.4s ease;
 }
 
 .servicio:hover {
-    transform: scale(1.05);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    transform: translateY(-15px);
+    box-shadow: 0 20px 40px rgba(2, 64, 89, 0.15);
+}
+
+.servicio:hover::after {
+    transform: scaleX(1);
 }
 
 .servicio i {
-    font-size: 30px;
-    color: var(--colorTituloOscura); /* Iconos en negro */
-    margin-bottom: 10px;
-    transition: transform 0.3s ease-in-out;
+    font-size: 45px;
+    color: #a2d2ff; 
+    margin-bottom: 20px;
+    display: inline-block;
+    transition: all 0.4s ease;
+    background: -webkit-linear-gradient(45deg, #024059, #089bd6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .servicio:hover i {
-    transform: scale(1.1);
-    color: var(--colorEnfasisOscura); /* Cambia de color al pasar el mouse */
+    transform: scale(1.2) rotate(10deg);
 }
 
 .servicio h3 {
-    font-size: 20px;
-    color: var(--colorTituloOscura);
-    margin-bottom: 8px;
+    font-size: 1.4em;
+    color: #222;
+    margin-bottom: 15px;
+    font-weight: 700;
 }
 
 .servicio p {
-    font-size: 1em;
-    color: var(--colorTituloOscura);
-    line-height: 1.4;
+    font-size: 1.05em;
+    color: #666;
+    line-height: 1.6;
 }

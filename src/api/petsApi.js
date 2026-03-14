@@ -1,5 +1,5 @@
 // petsApi.js
-import api from "../api/axios";
+import api from "@/api/axios";
 
 export const registerPet = async (petData) => {
   try {

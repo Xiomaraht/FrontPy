@@ -1,4 +1,16 @@
-import api from "../api/axios";
+import api from "@/api/axios";
+
+export const obtenerMetodosPago = async () => {
+  try {
+    const response = await api.get("/PaymentMethod");
+    return response.data;
+  } catch (error) {
+    throw (
+      error.response?.data?.message ||
+      "Error al obtener los métodos de pago"
+    );
+  }
+};
 
 export const crearMetodoPago = async (metodo) => {
   try {

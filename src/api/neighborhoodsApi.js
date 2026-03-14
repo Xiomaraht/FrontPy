@@ -1,9 +1,9 @@
 // neighborhoodsApi.js
-import api from "../api/axios";
+import api from "@/api/axios";
 
 export const obtenerBarrios = async () => {
   try {
-    const response = await api.get("/neighborhoods");
+    const response = await api.get("/api/neighborhoods");
     return response.data;
   } catch (error) {
     if (

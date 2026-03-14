@@ -8,11 +8,13 @@
     position: fixed;
     top: 0; 
     left: 0;
-    z-index: 100;
-    background-color: var(--colorInterfazOscura);
-    padding: 10px 20px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    z-index: 2000;
+    background-color: rgba(6, 20, 41, 0.95); /* var(--colorInterfazOscura) with transparency */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    padding: 10px 5%;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* ⬅️ NUEVA SECCIÓN: Contenedor para la imagen y el texto */
@@ -26,8 +28,9 @@
 
 /* Ajustes a la imagen del logo */
 .logo-img {
-    height: 80px;
+    height: 50px;
     width: auto;
+    object-fit: contain;
     display: block;
 }
 
@@ -40,11 +43,14 @@
 
 /* ⬅️ NUEVA SECCIÓN: Estilos para el texto al lado del logo */
 .site-title {
-    font-size: 2.5em; /* Usamos el tamaño grande que tenías */
-    font-weight: bolder;
-    color: var(--colorTituloOscura);
-    /* Puedes añadir hover si quieres */
-    cursor: default; /* El texto en sí no es un link, solo el logo */
+    font-size: 2.2rem;
+    font-weight: 800;
+    background: linear-gradient(90deg, #3abdbd, #089bd6);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: #3abdbd; /* Fallback */
+    margin: 0;
 }
 
 /* Eliminamos los estilos obsoletos que chocaban con la imagen: */
@@ -114,29 +120,34 @@
     text-decoration: none !important;
 }
 
-.search-bar {
-    position: relative;
+.header-login-link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background-color: var(--colorEnfasisOscura);
+    color: var(--colorInterfazOscura) !important;
+    padding: 8px 18px;
+    border-radius: 25px;
+    font-size: 0.95rem !important;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(58, 189, 189, 0.3);
 }
 
-.search-bar i {
-    position: absolute;
-    top: 50%;
-    left: 12px;
-    transform: translateY(-50%);
-    color: var(--colorEnfasisOscura);
-    font-size: 1.2em;
-    pointer-events: none;
+.header-login-link:hover {
+    background-color: #ffffff;
+    color: var(--colorInterfazOscura) !important;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(255, 255, 255, 0.4);
 }
 
-.search-bar input[type="text"] {
-    padding: 7px 10px 7px 35px; 
-    border: 1px solid #ccc;
-    border-radius: 20px;
-    outline: none;
-    font-size: 1em;
-    width: 220px; 
+.auth-dropdown-menu {
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
 }
 
-.search-bar input[type="text"]:focus {
-    border-color: var(--colorEnfasisOscura);
+.login-text {
+    font-size: 0.95rem;
+    white-space: nowrap;
 }

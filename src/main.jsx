@@ -2,27 +2,27 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
-import ProtectedRoute from './components/Manuel/ProtectedRoute';
+import ProtectedRoute from '@/components/common/ProtectedRoute';
 
-import './components/styles/main.css'
+import '@/components/styles/main.css'
 
 //importaciones de componentes principales
-import LandingPageMq from './pages/LandingPageMq'
-import Login from './pages/Login'
-import ProductsLw from './pages/ProductsLw'
-import HomePageLg from './pages/HomePageLg'
-import ServicesLw from './pages/ServicesLw'
-import RouteAdminGenMq from './pages/RouteAdminGenMq';
-import MiPerfilXh from './pages/MiPerfilXh'
-import VeterinariasMq from './pages/VeterinariasMq';
-import HistorialMascotaMq from './pages/HistorialMascotaMq';
-import NotFoundMq from './pages/NotFoundMq';
-import ProductsItemsMq from './components/Manuel/ProductsItemsMq';
-import ServicesItemsMq from './components/Manuel/ServicesItemsMq';
-import MiWishListLg from './pages/MiWishListLg';
-import CarritoComprasTL from './components/Tomas/CarritoComprasTL';
-import NavigationAdminMq from './pages/NavigationAdminMq';
-import RegisterMascotasMq from './components/Manuel/RegisterMascotasMq';
+import LandingPageMq from '@/pages/public/LandingPageMq'
+import Login from '@/pages/public/Login'
+import ProductsLw from '@/pages/public/ProductsLw'
+import HomePageLg from '@/pages/public/HomePageLg'
+import ServicesLw from '@/pages/public/ServicesLw'
+import RouteAdminGenMq from '@/pages/adminGeneral/RouteAdminGenMq';
+import MiPerfilXh from '@/pages/dueño_mascota/MiPerfilXh'
+import VeterinariasMq from '@/pages/public/VeterinariasMq';
+import HistorialMascotaMq from '@/pages/dueño_mascota/HistorialMascotaMq';
+import NotFoundMq from '@/pages/public/NotFoundMq';
+import ProductsItemsMq from '@/components/vetAdmin/ProductsItemsMq';
+import ServicesItemsMq from '@/components/vetAdmin/ServicesItemsMq';
+import MiWishListLg from '@/pages/dueño_mascota/MiWishListLg';
+import CarritoComprasTL from '@/components/dueño_mascota/CarritoComprasTL';
+import NavigationAdminMq from '@/pages/vetAdmin/NavigationAdminMq';
+import RegisterMascotasMq from '@/components/common/RegisterMascotasMq';
 
 const rutas = createBrowserRouter([
       { path:'/', element:<LandingPageMq/>},
@@ -65,15 +65,22 @@ const rutas = createBrowserRouter([
         </ProtectedRoute>  
       },
       { path: '/adminClient', element:
-        <ProtectedRoute allowedRoles={['ROLE_ADMIN']}>
+        <ProtectedRoute allowedRoles={['ROLE_ADMIN', 'ROLE_VETERINARIAN']}>
           <NavigationAdminMq/> // Ruta Manuel
         </ProtectedRoute>
       },  
       { path: '*', element: <NotFoundMq/>}
 ]);
 
+import { CartProvider } from '@/context/CartContext';
+import { WishlistProvider } from '@/context/WishlistContext';
+
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <RouterProvider router={rutas}/>
+    <CartProvider>
+      <WishlistProvider>
+        <RouterProvider router={rutas}/>
+      </WishlistProvider>
+    </CartProvider>
   </StrictMode>,
 )

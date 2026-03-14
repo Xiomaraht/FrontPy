@@ -1,7 +1,7 @@
 // servicesApi.js
-import api from "../api/axios";
+import api from "@/api/axios";
 
-const BASE_URL = "/services";
+const BASE_URL = "/api/services";
 
 export const obtenerServicios = async () => {
   try {
