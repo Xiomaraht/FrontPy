@@ -12,6 +12,8 @@ const ProfileVetLg = ({ clinicId }) => {
     const [loading, setLoading] = useState(true);
     const [saving, setSaving] = useState(false);
     const [clinicData, setClinicData] = useState(null);
+    const [fotoFile, setFotoFile] = useState(null);
+    const [fotoPreview, setFotoPreview] = useState(null);
 
     useEffect(() => {
         const fetchClinic = async () => {
@@ -19,6 +21,7 @@ const ProfileVetLg = ({ clinicId }) => {
                 setLoading(true);
                 const data = await obtenerClinicaPorId(clinicId);
                 setClinicData(data);
+                setFotoPreview(data.picture);
                 form.setFieldsValue(data);
             } catch (error) {
                 message.error("Error al cargar los datos de la clínica");
@@ -30,10 +33,38 @@ const ProfileVetLg = ({ clinicId }) => {
         if (clinicId) fetchClinic();
     }, [clinicId, form]);
 
+    const handleImagen = (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            setFotoPreview(URL.createObjectURL(file));
+            setFotoFile(file);
+        }
+    };
+
+    const CLOUDINARY_URL = 'https://api.cloudinary.com/v1_1/dnzom8pgh/image/upload';
+    const UPLOAD_PRESET = 'ml_default';
+
+    const uploadImageToCloudinary = async (imageFile) => {
+        if (!imageFile) return clinicData.picture;
+        const formData = new FormData();
+        formData.append('file', imageFile);
+        formData.append('upload_preset', UPLOAD_PRESET);
+        const response = await fetch(CLOUDINARY_URL, { method: 'POST', body: formData });
+        const data = await response.json();
+        return data.secure_url;
+    };
+
     const onFinish = async (values) => {
         try {
             setSaving(true);
-            await actualizarClinica(clinicId, values);
+            let pictureUrl = clinicData.picture;
+            if (fotoFile) {
+                pictureUrl = await uploadImageToCloudinary(fotoFile);
+            }
+            
+            const payload = { ...values, picture: pictureUrl };
+            await actualizarClinica(clinicId, payload);
+            setClinicData(prev => ({ ...prev, ...payload }));
             message.success("Perfil de la clínica actualizado correctamente");
         } catch (error) {
             message.error("Error al actualizar el perfil");
@@ -49,14 +80,40 @@ const ProfileVetLg = ({ clinicId }) => {
             <Row gutter={[24, 24]}>
                 <Col xs={24} lg={8}>
                     <Card className="profile-info-card" cover={
-                        <div className="profile-cover">
-                            {clinicData?.picture ? (
-                                <img src={clinicData.picture} alt="Clinic" className="profile-img" />
+                        <div className="profile-cover" style={{ position: 'relative', cursor: 'pointer' }}>
+                            {fotoPreview ? (
+                                <img src={fotoPreview} alt="Clinic" className="profile-img" />
                             ) : (
                                 <div className="profile-placeholder">
                                     <ShoppingOutlined style={{ fontSize: 64, color: '#fff' }} />
                                 </div>
                             )}
+                            <input
+                                type="file"
+                                accept="image/*"
+                                onChange={handleImagen}
+                                style={{
+                                    position: 'absolute',
+                                    top: 0,
+                                    left: 0,
+                                    width: '100%',
+                                    height: '100%',
+                                    opacity: 0,
+                                    cursor: 'pointer'
+                                }}
+                            />
+                            <div className="edit-overlay" style={{
+                                position: 'absolute',
+                                bottom: 10,
+                                right: 10,
+                                background: 'rgba(0,0,0,0.5)',
+                                color: 'white',
+                                padding: '5px 10px',
+                                borderRadius: '20px',
+                                fontSize: '12px'
+                            }}>
+                                <IdcardOutlined /> Cambiar foto
+                            </div>
                         </div>
                     }>
                         <div className="profile-card-content">

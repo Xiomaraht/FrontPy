@@ -12,7 +12,8 @@
         "direccion": "Calle Falsa 123",
         "detalle_direccion": "Apto 101",
         "barrio": "Santa Bárbara",
-        "rol": "cliente"
+        "rol": "cliente",
+        "clinicId": 1
     },
     {
         "numero_identidad": "1000786283",

@@ -53,7 +53,8 @@ export default function RegisterCustomerMq({setChange, datosUsuario}) {
                 phone: telefono,
                 userId: userId,
                 documentTypeId: parseInt(tipoDocumento),
-                neighborhoodId: parseInt(barrio)
+                neighborhoodId: parseInt(barrio),
+                clinicId: 1 // Conexión forzada con Petitos (ID 1) según requerimiento
             };
         
         console.log("Datos del Customer a enviar:", customerData);    

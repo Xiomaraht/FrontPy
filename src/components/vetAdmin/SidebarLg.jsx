@@ -27,6 +27,9 @@ const SidebarLg = ({parametroDeCambio}) => {
           <li className={estiloAct === 'reportes' ? 'active' : ''} onClick={()=> clickDeCambio('reportes')}>
             <span className="material-symbols-outlined">request_page</span>Reportes
           </li>
+          <li onClick={()=> clickDeCambio('salir')} style={{ marginTop: 'auto', color: '#ff4d4f' }}>
+            <span className="material-symbols-outlined">logout</span>Salir
+          </li>
         </ul>
       </nav>
     </aside>
