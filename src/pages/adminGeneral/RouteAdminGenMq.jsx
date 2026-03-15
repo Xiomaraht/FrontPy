@@ -16,9 +16,9 @@ import InitialVetsData from '@/components/Data/VetsDataLg.json';
 import ContenidoAdminGeneralMq from '@/components/adminGeneral/ContenidoAdminGeneralMq';
 import VetsAddTl from '@/components/common/VetsAddTl'; //Esto se esta usando? @Manuel
 
-// Componentes específicos de Administradores (antes Usuarios)
 import UsersRegisterTL from '@/components/common/UsersRegisterTL'; // Formulario de registro de administradores
 import InitialAdminsData from '@/components/Data/AdmiDataLg.json'; // Data de administradores
+import ContentSubscriptionsGenLg from '@/components/adminGeneral/ContentSubscriptionsGenLg';
 
 // Componentes de otras secciones (mantenidos para estructura)
 // import VetRegisterTL from '@/components/common/VetRegisterTL'; // Parece no usarse, lo dejo comentado si no lo necesitas
@@ -518,6 +518,8 @@ export default function RouteAdminGenMq() {
             return (
                 <ContenidoAdminGeneralMq tituloReporte={'Suscripcion'} buttonOne={'Exportar'} buttonTwo={'Visualizar'} alterButton={'Historial de reportes'}/>
             );
+        } else if (pagina === 'suscripciones') {
+            return <ContentSubscriptionsGenLg />;
         } else {
             return null;
         }
@@ -566,6 +568,7 @@ export default function RouteAdminGenMq() {
                     menuItems={[
                         { id: 'veterinarias', icon: 'pets', text: 'Veterinarias' },
                         { id: 'users', icon: 'group', text: 'Administradores' },
+                        { id: 'suscripciones', icon: 'subscriptions', text: 'Suscripciones' },
                         { id: 'reportes', icon: 'request_page', text: 'Reportes' },
                         { id: 'configuracion', icon: 'settings', text: 'Configuración' },
                         { id: 'ayuda', icon: 'help', text: 'Ayuda' },
