@@ -32,6 +32,7 @@ import ContentSubscriptionLg from '@/components/vetAdmin/ContentSubscriptionLg';
 import ContentClientsLg from '@/components/vetAdmin/ContentClientsLg';
 import ContentPetsLg from '@/components/vetAdmin/ContentPetsLg';
 import ContentOrdersLg from '@/components/vetAdmin/ContentOrdersLg';
+import ProfileVetLg from '@/components/vetAdmin/ProfileVetLg';
 
 // APIs para Clientes, Mascotas y Pedidos
 import { obtenerClientesPorClinica } from '@/api/customerApi'; // Necesitará ser creada
@@ -286,6 +287,11 @@ return (
             )}
             {activeContent === 'suscripcion' && (
                 <ContentSubscriptionLg 
+                    clinicId={JSON.parse(localStorage.getItem('userInfo') || '{}').clinicId} 
+                />
+            )}
+            {activeContent === 'perfil' && (
+                <ProfileVetLg 
                     clinicId={JSON.parse(localStorage.getItem('userInfo') || '{}').clinicId} 
                 />
             )}
