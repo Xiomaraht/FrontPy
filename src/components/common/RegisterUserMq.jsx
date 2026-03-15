@@ -138,12 +138,12 @@ const [isLoading, setIsLoading] = useState(false);
         <div className="contentForm3">
             <form className='formRU-Mq' onSubmit={handleNext}>
                 <div className="contTitle">
-                    <h1>Logo</h1>
+                    <h1>PetCare</h1>
                 </div>
                 <div className="contSubtitle">
-                            <h3>{defaultRole === 'vet' ? "Registro de Veterinaria" : "Registro de Dueño de Mascota"}</h3>
-                            <p>Completa la información para registrarte como {defaultRole === 'vet' ? "Veterinario" : "Dueño de Mascota"}</p>
-                        </div>
+                    <h3>{defaultRole === 'vet' ? "Registro de Veterinaria" : "Registro de Dueño de Mascota"}</h3>
+                    <p>Completa la información para registrarte como {defaultRole === 'vet' ? "Veterinario" : "Dueño de Mascota"}</p>
+                </div>
                 <article>
                     <div className="infoPersonalOneL-Mq">
                         {/* Primero registramos al user */}

@@ -51,8 +51,12 @@ export default function Configuracion_Xh({ perfil }) {
         pictureUrl = await uploadImageToCloudinary(fotoFile);
       }
 
+      // El 'id' para actualizar el usuario suele estar en userInfo o ser perfil.userId
+      const userInfo = JSON.parse(localStorage.getItem('userInfo') || '{}');
+      const userId = userInfo.userId || perfil.userId || perfil.id;
+
       const updateData = {
-        id: perfil.userId, // Assuming perfil has userId
+        id: userId,
         firstName: formData.firstName,
         lastName: formData.lastName,
         email: formData.email,
@@ -61,7 +65,11 @@ export default function Configuracion_Xh({ perfil }) {
 
       await updateUserApi(updateData);
       message.success('Perfil actualizado correctamente. Refresca para ver los cambios.');
-      // Opcionalmente recargar o actualizar el estado global.
+      
+      // Actualizar userInfo en localStorage si el correo o foto cambiaron
+      const updatedUserInfo = { ...userInfo, email: formData.email, picture: pictureUrl };
+      localStorage.setItem('userInfo', JSON.stringify(updatedUserInfo));
+      
     } catch (error) {
       console.error("Error updating profile:", error);
       message.error('Error al actualizar el perfil.');

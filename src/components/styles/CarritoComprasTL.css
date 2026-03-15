@@ -258,6 +258,36 @@ html, body, #root {
     color: white;
 }
 
+.cart-actions-column {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.btn-view-more {
+    display: block;
+    width: 100%;
+    padding: 15px;
+    background: linear-gradient(135deg, #0b4f6c 0%, #1e88e5 100%);
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: bold;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    border: none;
+}
+
+.btn-view-more:hover {
+    background: linear-gradient(135deg, #1e88e5 0%, #0b4f6c 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+    color: white;
+}
+
 /* ========================================================================= */
 /* 6. RESPONSIVE DESIGN BÁSICO */
 /* ========================================================================= */

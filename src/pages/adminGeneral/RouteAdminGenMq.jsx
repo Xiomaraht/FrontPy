@@ -1,5 +1,6 @@
 // src/RouteAdminGenMq.jsx
-import React, { useState, useMemo, useCallback } from 'react';
+import React, { useState, useMemo, useCallback, useEffect } from 'react';
+import { message } from 'antd';
 
 // Componentes generales
 import SidebarLg from '@/components/vetAdmin/SidebarLg';
@@ -78,17 +79,19 @@ export default function RouteAdminGenMq() {
     const fetchAdmins = async () => {
         try {
             const data = await obtenerUsuarios();
-            // Map real users to the format expected by the table if necessary
-            const mappedAdmins = data.map(u => ({
-                id: u.id,
-                name: `${u.firstName || ''} ${u.lastName || ''}`.trim() || u.username,
-                identification: u.username,
-                email: u.email,
-                phone: u.phone || 'N/A',
-                status: 'Activo', // Default for now
-                role: u.role,
-                imageUrl: u.picture
-            }));
+            // Map real users and filter out veterinarians
+            const mappedAdmins = data
+                .filter(u => u.role !== 'ROLE_VETERINARIAN')
+                .map(u => ({
+                    id: u.id,
+                    name: `${u.firstName || ''} ${u.lastName || ''}`.trim() || u.username,
+                    identification: u.username,
+                    email: u.email,
+                    phone: u.phone || 'N/A',
+                    status: 'Activo',
+                    role: u.role,
+                    imageUrl: u.picture
+                }));
             setAdminsData(mappedAdmins);
         } catch (error) {
             message.error("Error al cargar administradores reales");
@@ -194,7 +197,14 @@ export default function RouteAdminGenMq() {
 
 
     // --- MANEJADORES GENERALES DE NAVEGACIÓN Y RESETEO ---
+    const redireccion = useNavigate();
+
     const cambioDePagina = useCallback((nuevaPagina) => {
+        if (nuevaPagina === 'salir') {
+            localStorage.clear();
+            redireccion('/auth/login');
+            return;
+        }
         setPagina(nuevaPagina);
         // Resetear TODOS los estados relevantes al cambiar de sección principal
         // Estados de Veterianrias
@@ -406,7 +416,7 @@ export default function RouteAdminGenMq() {
         );
         setAdminsData(updatedAdminsData);
         setSelectedAdmin(prevSelectedAdmin =>
-            prevSelectedVet && prevSelectedAdmin.id === adminToDeactivate.id
+            prevSelectedAdmin && prevSelectedAdmin.id === adminToDeactivate.id
                 ? { ...prevSelectedAdmin, status: 'Inactivo' }
                 : prevSelectedAdmin
         );

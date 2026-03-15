@@ -63,7 +63,7 @@ export default function CarritoComprasTL() {
                     <ListaProductos productos={productos} aumentar={aumentar} disminuir={disminuir}/>
                     <div className="cart-actions-column">
                         <ResumenCompra productos={productos} subtotal={subtotal} goToNextStep={goToDelivery} isDeliveryView={false}/>
-                        <Link to="/productos" className="btn-view-more">Ver más productos</Link>
+                        <Link to="/products" className="btn-view-more">Ver más productos</Link>
                     </div>
                 </div>
                 {productos.length > 0 && <VaciarCarrito vaciar={vaciar} />}

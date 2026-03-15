@@ -9,16 +9,17 @@ import { useState } from 'react'
 
 
 function HistorialMascotaMq() {
-    const locacion = useLocation()
-    const mascota = locacion.state?.mascota
+    const locacion = useLocation();
+    const [mascota, setMascota] = useState(locacion.state?.mascota);
     
     // Obtener info del usuario para manejo de roles
     const userInfoString = localStorage.getItem('userInfo');
-    let isVetAdmin = false;
+    let canEdit = false;
     if (userInfoString) {
         try {
             const userInfo = JSON.parse(userInfoString);
-            isVetAdmin = userInfo.rol === 'ROLE_ADMIN';
+            // Permitir edición a ADMIN y VETERINARIAN
+            canEdit = userInfo.rol === 'ROLE_ADMIN' || userInfo.rol === 'ROLE_VETERINARIAN' || userInfo.role === 'ROLE_ADMIN' || userInfo.role === 'ROLE_VETERINARIAN';
         } catch (error) {
             console.error(error);
         }
@@ -27,46 +28,22 @@ function HistorialMascotaMq() {
     if(!mascota){
         return <h1>NO SE HA SELECCIONADO UNA MASCOTA</h1>
     }
-    //funcion para la calculacion de la edad
+
+    // Calcular edad
     const calcularEdad = (birthdate) => {
         if (!birthdate) return 'N/A';
-        
-        // Convertir la fecha de nacimiento a objeto Date
         const today = new Date();
         const birthDate = new Date(birthdate);
-
-        // 1. Calcular la diferencia total en meses
         let years = today.getFullYear() - birthDate.getFullYear();
         let months = today.getMonth() - birthDate.getMonth();
-        
-        // Si la fecha actual es anterior al día de nacimiento, restamos 1 mes
-        if (today.getDate() < birthDate.getDate()) {
-            months--;
-        }
-
-        // Ajustar los meses: si es negativo, significa que aún no ha cumplido el mes de su cumpleaños.
-        // Ej: Hoy es mayo y nació en agosto. months = 4 - 7 = -3. Se ajusta sumando 12.
+        if (today.getDate() < birthDate.getDate()) months--;
         if (months < 0) {
             years--;
             months += 12;
         }
-        
-        // 2. Formatear el resultado
-        
-        // Caso 1: Solo años (ej. 5 años)
-        if (years > 0 && months === 0) {
-            return `${years} años`;
-        }
-        // Caso 2: Años y meses (ej. 5 años y 3 meses)
-        if (years > 0) {
-            return `${years} años y ${months} meses`;
-        }
-        // Caso 3: Solo meses (ej. 8 meses)
-        if (months > 0) {
-            return `${months} meses`;
-        }
-        
-        // Caso 4: Menos de un mes (ej. Recién nacido o '0 años y 0 meses' si es el mismo día)
+        if (years > 0 && months === 0) return `${years} años`;
+        if (years > 0) return `${years} años y ${months} meses`;
+        if (months > 0) return `${months} meses`;
         return 'Menos de 1 mes';
     };
 
@@ -79,17 +56,65 @@ function HistorialMascotaMq() {
     };
 
     const handleAddRecord = (data) => {
-        // En un futuro esto llamará a la API (POST /api/historial...)
-        alert(`Guardando [${modalTitle}]: ${data.detail}`);
+        const todayStr = new Date().toLocaleDateString('es-CO');
+        
+        switch (modalTitle) {
+            case 'Añadir Vacuna':
+                const nuevaVacuna = {
+                    nombre: data.detail,
+                    fechaUlti: todayStr,
+                    fechaProx: 'Pendiente'
+                };
+                setMascota({
+                    ...mascota,
+                    vacunas: [...(mascota.vacunas || []), nuevaVacuna]
+                });
+                break;
+            case 'Añadir Consulta':
+                const nuevaConsulta = {
+                    tipo: 'Consulta General',
+                    fecha: todayStr,
+                    descripcion: data.detail
+                };
+                setMascota({
+                    ...mascota,
+                    ultconsultas: [...(mascota.ultconsultas || []), nuevaConsulta]
+                });
+                break;
+            case 'Añadir Receta':
+                setMascota({
+                    ...mascota,
+                    recetasActivas: {
+                        medicamento: data.detail,
+                        fechavalidez: '3 meses desde hoy'
+                    }
+                });
+                break;
+            case 'Actualizar': // Alergias
+                setMascota({
+                    ...mascota,
+                    alergias: data.detail
+                });
+                break;
+            case 'Editar': // Datos Generales / Condicion
+                setMascota({
+                    ...mascota,
+                    condicion: data.detail
+                });
+                break;
+            default:
+                break;
+        }
+        message.success(`${modalTitle} guardado exitosamente`);
     };
 
     const renderAddButton = (label) => {
-        if (!isVetAdmin) return null;
+        if (!canEdit) return null;
         return (
             <button 
                 onClick={() => openModal(label)}
                 className="vet-add-btn" 
-                style={{ marginLeft: '10px', fontSize: '0.8rem', padding: '5px 10px', cursor: 'pointer' }}
+                style={{ marginLeft: '10px', fontSize: '0.8rem', padding: '5px 10px', cursor: 'pointer', borderRadius: '4px', border: '1px solid #ccc' }}
             >
                 + {label}
             </button>
@@ -102,21 +127,22 @@ function HistorialMascotaMq() {
             <div className="ContenedorPrincipalHm-Mq">
                 <div className='titleGenHm-Mq'>
                     <h1>Historial de {mascota.name}</h1>
-                    <Link to={'/miperfil/mascotas'} ><button>Volver</button></Link>
+                    <Link to={canEdit ? '/adminClient' : '/miperfil/mascotas'} ><button>Volver</button></Link>
                 </div>
                 <div className="contenedorCardsHm-Mq">
                     <CardsByMq 
-                    style={'history'}
-                    image={mascota.imageUrl}
-                    raza={mascota.raceName}
-                    edad={calcularEdad(mascota.birthdate)}
-                    gen={mascota.gender}
+                        style={'history'}
+                        image={mascota.imageUrl || mascota.picture}
+                        raza={mascota.raceName || (mascota.raza ? mascota.raza.name : 'N/A')}
+                        edad={calcularEdad(mascota.birthdate)}
+                        gen={mascota.gender}
                     />
                 </div>
                 <article className="contDatosGenHm-Mq">
                     <h3>Datos Generales {renderAddButton('Editar')}</h3>
                     <table>
-                        <tbody><tr>
+                        <tbody>
+                            <tr>
                                 <td><i className="bi bi-calendar"></i> Nacimiento</td>
                                 <td>{mascota.birthdate}</td>
                                 <td>{calcularEdad(mascota.birthdate)}</td>
@@ -127,33 +153,32 @@ function HistorialMascotaMq() {
                             </tr>
                             <tr>
                                 <td><i className="bi bi-palette"></i> Color</td>
-                                <td>{mascota.color}</td>
+                                <td>{mascota.color || 'N/A'}</td>
                             </tr>
                             <tr>
                                 <td><i className="bi bi-speedometer2"></i> Peso</td>
                                 <td>{mascota.weight} Kg</td>
-                            </tr></tbody>
+                            </tr>
+                        </tbody>
                     </table>
                 </article>
-                 <article className="contDatosGenHm-Mq">
+                <article className="contDatosGenHm-Mq">
                     <h3>Vacunas {renderAddButton('Añadir Vacuna')}</h3>
                     {mascota.vacunas && mascota.vacunas.length > 0 ? (
                         <table>
                             <tbody>
-                            {mascota.vacunas.map((item,index)=> {
-                                return(
+                                {mascota.vacunas.map((item, index) => (
                                     <tr key={index}>
                                         <td><i className="bi bi-journal-medical"></i> {item.nombre}</td>
                                         <td>{item.fechaUlti}</td>
                                         <td>{item.fechaProx}</td>
                                     </tr>
-                                )
-                            })}
+                                ))}
                             </tbody>
                         </table>
                     ) : ( <p>No hay vacunas registradas.</p> )}
                 </article> 
-                 <article className="contBotonerasHm-Mq">
+                <article className="contBotonerasHm-Mq">
                     <h3>Alergias y Condiciones {renderAddButton('Actualizar')}</h3>
                     <div className="contBotonHm-Mq">
                         <i className="bi bi-check-circle"></i>
@@ -167,31 +192,29 @@ function HistorialMascotaMq() {
                         </div>
                     </div>
                 </article> 
-                 <article className="contBotonerasHm-Mq">
+                <article className="contBotonerasHm-Mq">
                     <h3>Consultas recientes {renderAddButton('Añadir Consulta')}</h3>
-                    {mascota.ultconsultas && mascota.ultconsultas.length > 0 ? mascota.ultconsultas.map((item, index)=>{
-                        return(
-                            <div className="contBotonHm-Mq" key={index}>
-                                <i className="bi bi-calendar-plus"></i>
-                                <div className="contenedorBotoneraIntHm-Mq">
-                                    <strong>{item.tipo}</strong>
-                                    <p>{item.fecha} - {item.descripcion}</p>
-                                </div>
+                    {mascota.ultconsultas && mascota.ultconsultas.length > 0 ? mascota.ultconsultas.map((item, index) => (
+                        <div className="contBotonHm-Mq" key={index}>
+                            <i className="bi bi-calendar-plus"></i>
+                            <div className="contenedorBotoneraIntHm-Mq">
+                                <strong>{item.tipo}</strong>
+                                <p>{item.fecha} - {item.descripcion}</p>
                             </div>
-                        )
-                    }) : <p>No hay consultas recientes.</p>}
+                        </div>
+                    )) : <p>No hay consultas recientes.</p>}
                 </article> 
-                 <article className="contBotonerasHm-Mq">
+                <article className="contBotonerasHm-Mq">
                     <h3>Recetas Activas {renderAddButton('Añadir Receta')}</h3>
                     {mascota.recetasActivas ? (
                         <div className="contBotonHm-Mq">
                             <i className="bi bi-capsule"></i>
                             <div className="contenedorBotoneraIntHm-Mq">
-                                <strong>{mascota.recetasActivas?.medicamento}</strong>
-                                <p>Receta valida hasta - {mascota.recetasActivas?.fechavalidez}</p>
+                                <strong>{mascota.recetasActivas.medicamento}</strong>
+                                <p>Receta valida hasta - {mascota.recetasActivas.fechavalidez}</p>
                             </div>        
                         </div>
-                    ):(
+                    ) : (
                         <div className="contBotonHm-Mq">
                             <i className="bi bi-capsule"></i>
                             <div className="contenedorBotoneraIntHm-Mq">
@@ -209,7 +232,7 @@ function HistorialMascotaMq() {
                 onSubmit={handleAddRecord} 
             />
         </>
-    )
+    );
 }
 
 export default HistorialMascotaMq

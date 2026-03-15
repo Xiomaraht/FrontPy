@@ -1,7 +1,6 @@
 import React from 'react';
-import { Table, Typography, Avatar } from 'antd';
-
-const { Title } = Typography;
+import { Table, Avatar, Typography } from 'antd';
+import { Link } from 'react-router-dom';
 
 const ContentPetsLg = ({ data }) => {
     const columns = [
@@ -17,6 +16,23 @@ const ContentPetsLg = ({ data }) => {
             record.raza ? `${record.raza.name}` : 'N/A'
         )},
         { title: 'Sexo', dataIndex: 'gender', key: 'gender' },
+        { title: 'Acciones', key: 'actions', render: (_, record) => (
+            <Link 
+                to="/historial" 
+                state={{ mascota: record }}
+                style={{
+                    backgroundColor: '#0b4f6c',
+                    color: 'white',
+                    border: 'none',
+                    padding: '8px 12px',
+                    borderRadius: '4px',
+                    textDecoration: 'none',
+                    display: 'inline-block'
+                }}
+            >
+                Ver Historial
+            </Link>
+        )},
     ];
 
     return (

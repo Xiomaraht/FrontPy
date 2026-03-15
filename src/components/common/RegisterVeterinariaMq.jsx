@@ -57,7 +57,7 @@ export default function RegisterVeterinariaMq({setChange, datosUsuario}) {
                 </div>
                 <div className="contSubtitle">
                     <h3>Información de tu Veterinaria</h3>
-                    <p>Completa los datos corporativos de la clínica</p>
+                    <p>Completa los datos corporativos para {datosUsuario.current?.clinicName || 'tu clínica'}</p>
                 </div>
                 <article>
                     <div className="infoPersonalOneL-Mq">

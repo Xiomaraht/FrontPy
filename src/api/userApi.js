@@ -23,3 +23,15 @@ export const getUserByIdApi = async (id) => {
         throw error;
     }
 };
+
+export const obtenerUsuarios = async () => {
+    try {
+        const { data } = await api.get("/api/users");
+        return data;
+    } catch (error) {
+        if (!error.response) {
+            throw new Error("No se pudo conectar con el servidor");
+        }
+        throw error;
+    }
+};

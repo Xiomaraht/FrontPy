@@ -1,27 +1,13 @@
 [
     {
-        "title": "Hospital Veterinario San Francisco",
-        "description": "Atención 24/7, urgencias, cirugías complejas y hospitalización. Contamos con los mejores especialistas del país.",
-        "image": "https://images.unsplash.com/photo-1583337130417-3346a1be7dee?w=500"
-    },
-    {
-        "title": "Clínica Veterinaria PetCare Especialidades",
-        "description": "Especialistas en dermatología, cardiología y oftalmología veterinaria. Equipos de última tecnología.",
-        "image": "https://images.unsplash.com/photo-1599443015574-be5fe8a05783?w=500"
-    },
-    {
-        "title": "Centro Veterinario La Mascota Feliz",
-        "description": "Consultas generales, vacunación, desparasitación y peluquería canina y felina integral.",
-        "image": "https://images.unsplash.com/photo-1628009368231-7bb7cbcb8127?w=500"
-    },
-    {
-        "title": "Veterinaria SOS Animal",
-        "description": "Atención rápida y económica para emergencias menores, profilaxis dental y planes de nutrición especializada.",
-        "image": "https://images.unsplash.com/photo-1584820927498-cafe2c1bf015?w=500"
-    },
-    {
-        "title": "Clínica Felina The Cat Doctor",
-        "description": "Exclusivo para gatos. Ambientes libres de estrés, medicina preventiva y tratamientos específicos felinos.",
-        "image": "https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=500"
+        "title": "Clínica Veterinaria Petitos",
+        "description": "Tu clínica de confianza para el cuidado integral de tus mascotas. Contamos con tecnología de punta y el mejor equipo médico.",
+        "image": "https://images.unsplash.com/photo-1584820927498-cafe2c1bf015?w=500",
+        "nit": "900.123.456-1",
+        "email": "contacto@petitos.com",
+        "phone": "3109876543",
+        "address": "Carrera 15 # 45-67",
+        "status": "Activo",
+        "admin": "Prueba Usuario"
     }
 ]
