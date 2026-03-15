@@ -19,6 +19,8 @@ import VetsAddTl from '@/components/common/VetsAddTl'; //Esto se esta usando? @M
 import UsersRegisterTL from '@/components/common/UsersRegisterTL'; // Formulario de registro de administradores
 import InitialAdminsData from '@/components/Data/AdmiDataLg.json'; // Data de administradores
 import ContentSubscriptionsGenLg from '@/components/adminGeneral/ContentSubscriptionsGenLg';
+import { obtenerClinicasVeterinarias } from '@/api/veterinaryClinicApi';
+import { obtenerUsuarios } from '@/api/userApi'; // Assuming this exists or I'll check
 
 // Componentes de otras secciones (mantenidos para estructura)
 // import VetRegisterTL from '@/components/common/VetRegisterTL'; // Parece no usarse, lo dejo comentado si no lo necesitas
@@ -30,7 +32,7 @@ export default function RouteAdminGenMq() {
     const [pagina, setPagina] = useState('veterinarias');
 
     // --- Estados y Lógica para VETERINARIAS ---
-    const [vetsData, setVetsData] = useState(InitialVetsData);
+    const [vetsData, setVetsData] = useState([]);
     const [vetSearchTerm, setVetSearchTerm] = useState('');
     const [vetFilterStatus, setVetFilterStatus] = useState('Todos');
     const [vetCurrentPage, setVetCurrentPage] = useState(1);
@@ -41,8 +43,28 @@ export default function RouteAdminGenMq() {
     const [showVetProfileCreated, setShowVetProfileCreated] = useState(false);
     const [newlyCreatedVet, setNewlyCreatedVet] = useState(null);
 
+    const [isLoading, setIsLoading] = useState(false);
+
+    const fetchVets = async () => {
+        try {
+            setIsLoading(true);
+            const data = await obtenerClinicasVeterinarias();
+            setVetsData(data);
+        } catch (error) {
+            message.error("Error al cargar veterinarias reales");
+        } finally {
+            setIsLoading(false);
+        }
+    };
+
+    useEffect(() => {
+        if (pagina === 'veterinarias') {
+            fetchVets();
+        }
+    }, [pagina]);
+
     // --- Estados y Lógica para ADMINISTRADORES (Sección 'users') ---
-    const [adminsData, setAdminsData] = useState(InitialAdminsData);
+    const [adminsData, setAdminsData] = useState([]);
     const [adminSearchTerm, setAdminSearchTerm] = useState('');
     const [adminFilterStatus, setAdminFilterStatus] = useState('Todos');
     const [adminCurrentPage, setAdminCurrentPage] = useState(1);
@@ -52,6 +74,32 @@ export default function RouteAdminGenMq() {
     const [showAddAdminForm, setShowAddAdminForm] = useState(false);
     const [showAdminProfileCreated, setShowAdminProfileCreated] = useState(false);
     const [newlyCreatedAdmin, setNewlyCreatedAdmin] = useState(null);
+
+    const fetchAdmins = async () => {
+        try {
+            const data = await obtenerUsuarios();
+            // Map real users to the format expected by the table if necessary
+            const mappedAdmins = data.map(u => ({
+                id: u.id,
+                name: `${u.firstName || ''} ${u.lastName || ''}`.trim() || u.username,
+                identification: u.username,
+                email: u.email,
+                phone: u.phone || 'N/A',
+                status: 'Activo', // Default for now
+                role: u.role,
+                imageUrl: u.picture
+            }));
+            setAdminsData(mappedAdmins);
+        } catch (error) {
+            message.error("Error al cargar administradores reales");
+        }
+    };
+
+    useEffect(() => {
+        if (pagina === 'users') {
+            fetchAdmins();
+        }
+    }, [pagina]);
 
 
     // --- Columnas y campos de detalle para VETERINARIAS ---

@@ -35,3 +35,12 @@ export const actualizarClinica = async (id, data) => {
         throw new Error(error.response?.data?.message || "Error al actualizar la veterinaria");
     }
 };
+
+export const obtenerClinicasVeterinarias = async () => {
+    try {
+        const response = await api.get("/api/veterinary-clinics");
+        return response.data;
+    } catch (error) {
+        throw new Error(error.response?.data?.message || "Error al obtener las veterinarias");
+    }
+};

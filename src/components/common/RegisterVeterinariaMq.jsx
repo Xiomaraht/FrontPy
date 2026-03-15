@@ -25,6 +25,7 @@ export default function RegisterVeterinariaMq({setChange, datosUsuario}) {
         }
 
         const vetData = {
+            name: datosUsuario.current?.clinicName || '',
             address: address,
             phone: phone,
             email: email,

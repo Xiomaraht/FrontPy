@@ -100,7 +100,11 @@ const [isLoading, setIsLoading] = useState(false);
 
             if (createdUserId) {
                 // Guarda el ID para usarlo en el siguiente paso (Customer o Veterinary)
-                datosUsuario.current = { ...userData, userId: createdUserId };
+                datosUsuario.current = { 
+                    ...userData, 
+                    userId: createdUserId,
+                    clinicName: defaultRole === 'vet' ? login : '' 
+                };
                 
                 if (parseInt(rolId) === 3) {
                     setChange("registerCustomer");
@@ -153,8 +157,8 @@ const [isLoading, setIsLoading] = useState(false);
                         </div>
 
                         <div className="contUser3">
-                            <p>Nombre de usuario</p>
-                            <input type="text" placeholder='Ingresa tu username' required onChange={(e) => setLogin(e.target.value)}/>
+                            <p>{defaultRole === 'vet' ? 'Nombre de la Veterinaria' : 'Nombre de usuario'}</p>
+                            <input type="text" placeholder={defaultRole === 'vet' ? 'Ingresa el nombre de tu clínica' : 'Ingresa tu username'} required onChange={(e) => setLogin(e.target.value)}/>
                         </div>
                         <div className="contUser3" >
                             <p>Contraseña</p>
