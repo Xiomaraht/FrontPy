@@ -1,6 +1,4 @@
-import React, { useState, useEffect } from 'react';
 import { Button, Input, Modal, message, Row, Col, Form, Select, Upload } from 'antd';
-import { LoadingOutlined, PlusOutlined, UploadOutlined } from '@ant-design/icons';
 import { uploadImageToCloudinary } from '@/utilities/useImageUploader'
 import '@/components/styles/ContentMq.css'; 
 
@@ -66,7 +64,11 @@ const UploadImagenMq = ({ value, onChange }) => {
 
     const uploadButton = (
         <div>
-            {loading ? <LoadingOutlined /> : <PlusOutlined />}
+            {loading ? (
+                <span className="material-symbols-outlined spinning">sync</span>
+            ) : (
+                <span className="material-symbols-outlined">add</span>
+            )}
             <div style={{ marginTop: 8 }}>Subir</div>
         </div>
     );

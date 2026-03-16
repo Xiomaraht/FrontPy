@@ -1,6 +1,4 @@
-import React, { useEffect, useState } from 'react';
 import { Button, Modal, Row, Col, Form, message, Input, Select, Upload } from 'antd';
-import { UploadOutlined } from '@ant-design/icons';
 
 // =========================================================================
 // SIMULACIÓN DE COMPONENTES Mq (para evitar errores de importación)
@@ -61,7 +59,7 @@ const UploadImagenMq = ({ value, onChange }) => {
             showUploadList={false} // No mostramos la lista de archivos subidos
             beforeUpload={customUpload}
         >
-            <Button icon={<UploadOutlined />} style={{ width: '100%' }}>
+            <Button icon={<span className="material-symbols-outlined" style={{ fontSize: '18px', verticalAlign: 'middle' }}>upload</span>} style={{ width: '100%' }}>
                 {isImageSelected ? 'Cambiar Imagen' : 'Subir Imagen'}
             </Button>
             {isImageSelected && <span style={{ marginLeft: 8, color: 'green' }}>Imagen cargada o URL existente.</span>}

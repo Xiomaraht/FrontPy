@@ -1,5 +1,5 @@
-// src/RouteAdminGenMq.jsx
 import React, { useState, useMemo, useCallback, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { message } from 'antd';
 
 // Componentes generales
@@ -12,7 +12,7 @@ import ButtonLg from '@/components/common/ButtonLg';
 
 // Componentes específicos de Veterinarias
 import AddVetLg from '@/components/adminGeneral/AddVetLg';
-import ProfileCreatedLg from '@/components/common/ProfileCreatedLg';
+// import ProfileCreatedLg from '@/components/common/ProfileCreatedLg'; // Comentado por si no existe
 import InitialVetsData from '@/components/Data/VetsDataLg.json';
 import ContenidoAdminGeneralMq from '@/components/adminGeneral/ContenidoAdminGeneralMq';
 import VetsAddTl from '@/components/common/VetsAddTl'; //Esto se esta usando? @Manuel
@@ -50,8 +50,23 @@ export default function RouteAdminGenMq() {
         try {
             setIsLoading(true);
             const data = await obtenerClinicasVeterinarias();
-            setVetsData(data);
+            // Map real clinics to match table structure
+            const mappedVets = data.map(v => ({
+                id: v.id,
+                name: v.name,
+                admin: v.owner?.firstName ? `${v.owner.firstName} ${v.owner.lastName || ''}`.trim() : (v.user?.username || 'Sin Admin'),
+                email: v.email,
+                phone: v.phone || 'N/A',
+                address: v.address || 'N/A',
+                nit: v.documentNumber || v.nit || 'N/A',
+                status: 'Activo', // Defaulting to active if it comes from DB
+                registered: v.createdAt ? new Date(v.createdAt).toLocaleDateString('es-CO') : 'N/A',
+                suspend: 'N/A',
+                imageUrl: v.picture
+            }));
+            setVetsData(mappedVets);
         } catch (error) {
+            console.error("Error loading vets:", error);
             message.error("Error al cargar veterinarias reales");
         } finally {
             setIsLoading(false);
@@ -79,9 +94,9 @@ export default function RouteAdminGenMq() {
     const fetchAdmins = async () => {
         try {
             const data = await obtenerUsuarios();
-            // Map real users and filter out veterinarians
+            // Map real users and filter out veterinarians, keeping only 'prueba'
             const mappedAdmins = data
-                .filter(u => u.role !== 'ROLE_VETERINARIAN')
+                .filter(u => u.username === 'prueba')
                 .map(u => ({
                     id: u.id,
                     name: `${u.firstName || ''} ${u.lastName || ''}`.trim() || u.username,

@@ -1,7 +1,7 @@
 // ContentMq.jsx
 
 import { useState } from 'react';
-import { Button, Input, Modal, message } from 'antd';
+import { Button, Input, Modal, message, Tag } from 'antd';
 import ModalMq from "@/components/common/ModalMq";
 import '@/components/styles/ContentMq.css';
 
@@ -102,6 +102,7 @@ const handleConfirmarEliminar = () => {
                             <th>Marca</th>
                             <th>Precio</th>
                             <th>Stock</th>
+                            <th>Estado</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -119,6 +120,7 @@ const handleConfirmarEliminar = () => {
                             <td>{producto.brand}</td>
                             <td>${producto.price.toFixed(2)}</td>
                             <td>{producto.stock} Und</td>
+                            <td>{producto.status === 'ACTIVE' || producto.status === true || producto.state === 1 ? <Tag color="green">Activo</Tag> : <Tag color="red">Inactivo</Tag>}</td>
                         </tr>
                         ))}
                     </tbody>

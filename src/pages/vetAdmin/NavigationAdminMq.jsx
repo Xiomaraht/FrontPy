@@ -126,7 +126,9 @@ function NavigationAdminMq() {
     // LÓGICA CRUD PARA PRODUCTOS (Sin cambios)
     const handleCrearProducto = async (data) => {
         try {
-            await crearProducto(data);
+            const userInfo = JSON.parse(localStorage.getItem('userInfo') || '{}');
+            const clinicId = userInfo.clinicId;
+            await crearProducto({ ...data, clinicId });
             message.success('¡Producto creado exitosamente! ✅');
             refrescarProductos(); 
         } catch (err) {
@@ -175,7 +177,9 @@ function NavigationAdminMq() {
     // 6. LÓGICA CRUD PARA SERVICIOS (Clonado de Productos)
     const handleCrearServicio = async (data) => {
         try {
-            await crearServicio(data);
+            const userInfo = JSON.parse(localStorage.getItem('userInfo') || '{}');
+            const clinicId = userInfo.clinicId;
+            await crearServicio({ ...data, clinicId });
             message.success('¡Servicio creado exitosamente! ✅');
             refrescarServicios(); 
         } catch (err) {

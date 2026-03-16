@@ -48,6 +48,7 @@ useEffect(() => {
                 stock: parseInt(values.stock, 10),
                 brand: values.marca,
                 description: values.descripcion,
+                status: values.status === 1,
                 categories: [{ id: parseInt(values.selector, 10) }]
             };
 
@@ -105,6 +106,15 @@ useEffect(() => {
                     </Form.Item>
                     <Form.Item label="Categoría del producto" name="selector" rules={[{ required: true, message: 'Debes seleccionar una categoría' }]}>
                         <SelectorMq />
+                    </Form.Item>
+                    <Form.Item label="Estado del producto" name="status" initialValue={1}>
+                        <SelectorMq 
+                            placeholder="Estado"
+                            options={[
+                                { value: 1, label: 'Activo' },
+                                { value: 0, label: 'Inactivo' }
+                            ]}
+                        />
                     </Form.Item>
                     <Form.Item label="Imagen del producto" name="imagen">
                         <UploadImagenMq />

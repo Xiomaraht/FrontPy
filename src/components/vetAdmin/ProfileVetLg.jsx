@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Form, Input, Button, Card, message, Spin, Row, Col, Typography, Divider } from 'antd';
-import { ShoppingOutlined, PhoneOutlined, MailOutlined, EnvironmentOutlined, ClockCircleOutlined, InfoCircleOutlined, IdcardOutlined } from '@ant-design/icons';
 import { obtenerClinicaPorId, actualizarClinica } from '@/api/veterinaryClinicApi';
 import '@/components/styles/ProfileVetLg.css';
 
@@ -65,6 +64,26 @@ const ProfileVetLg = ({ clinicId }) => {
             const payload = { ...values, picture: pictureUrl };
             await actualizarClinica(clinicId, payload);
             setClinicData(prev => ({ ...prev, ...payload }));
+            
+            // Sync with user profile picture if possible
+            const userInfo = JSON.parse(localStorage.getItem('userInfo') || '{}');
+            if (userInfo.role === 'ROLE_VETERINARIAN' || userInfo.role === 'VETERINARIAN') {
+                 try {
+                    const { updateUserApi } = await import('@/api/userApi');
+                    await updateUserApi({
+                        id: userInfo.userId || userInfo.id,
+                        picture: pictureUrl
+                    });
+                    // Update localStorage
+                    userInfo.picture = pictureUrl;
+                    localStorage.setItem('userInfo', JSON.stringify(userInfo));
+                    // Dispatch event for components listening to storage changes (like Header)
+                    window.dispatchEvent(new Event('storage'));
+                 } catch (userErr) {
+                    console.error("Could not sync user picture:", userErr);
+                 }
+            }
+
             message.success("Perfil de la clínica actualizado correctamente");
         } catch (error) {
             message.error("Error al actualizar el perfil");
@@ -85,7 +104,7 @@ const ProfileVetLg = ({ clinicId }) => {
                                 <img src={fotoPreview} alt="Clinic" className="profile-img" />
                             ) : (
                                 <div className="profile-placeholder">
-                                    <ShoppingOutlined style={{ fontSize: 64, color: '#fff' }} />
+                                    <span className="material-symbols-outlined" style={{ fontSize: 64, color: '#fff' }}>local_hospital</span>
                                 </div>
                             )}
                             <input
@@ -112,25 +131,25 @@ const ProfileVetLg = ({ clinicId }) => {
                                 borderRadius: '20px',
                                 fontSize: '12px'
                             }}>
-                                <IdcardOutlined /> Cambiar foto
+                                <span className="material-symbols-outlined" style={{ fontSize: '14px', verticalAlign: 'middle' }}>photo_camera</span> Cambiar foto
                             </div>
                         </div>
                     }>
-                        <div className="profile-card-content">
+                            <div className="profile-card-content">
                             <Title level={3}>{clinicData?.name || 'Veterinaria'}</Title>
-                            <Text type="secondary"><IdcardOutlined /> NIT: {clinicData?.nit || 'No definido'}</Text>
+                            <Text type="secondary"><span className="material-symbols-outlined" style={{ fontSize: '16px', verticalAlign: 'middle' }}>id_card</span> NIT: {clinicData?.nit || 'No definido'}</Text>
                             <Divider />
                             <div className="info-item">
-                                <EnvironmentOutlined /> <Text>{clinicData?.address}</Text>
+                                <span className="material-symbols-outlined">location_on</span> <Text>{clinicData?.address}</Text>
                             </div>
                             <div className="info-item">
-                                <PhoneOutlined /> <Text>{clinicData?.phone}</Text>
+                                <span className="material-symbols-outlined">phone</span> <Text>{clinicData?.phone}</Text>
                             </div>
                             <div className="info-item">
-                                <MailOutlined /> <Text>{clinicData?.email}</Text>
+                                <span className="material-symbols-outlined">mail</span> <Text>{clinicData?.email}</Text>
                             </div>
                             <div className="info-item">
-                                <ClockCircleOutlined /> <Text>{clinicData?.openingHours || 'No definido'}</Text>
+                                <span className="material-symbols-outlined">schedule</span> <Text>{clinicData?.openingHours || 'No definido'}</Text>
                             </div>
                         </div>
                     </Card>
@@ -151,7 +170,7 @@ const ProfileVetLg = ({ clinicId }) => {
                                         label="Nombre de la Clínica"
                                         rules={[{ required: true, message: 'Por favor ingrese el nombre' }]}
                                     >
-                                        <Input prefix={<ShoppingOutlined />} placeholder="Nombre comercial" />
+                                        <Input prefix={<span className="material-symbols-outlined">storefront</span>} placeholder="Nombre comercial" />
                                     </Form.Item>
                                 </Col>
                                 <Col span={12}>
@@ -160,7 +179,7 @@ const ProfileVetLg = ({ clinicId }) => {
                                         label="NIT"
                                         rules={[{ required: true, message: 'Por favor ingrese el NIT' }]}
                                     >
-                                        <Input prefix={<IdcardOutlined />} placeholder="NIT de la empresa" />
+                                        <Input prefix={<span className="material-symbols-outlined">id_card</span>} placeholder="NIT de la empresa" />
                                     </Form.Item>
                                 </Col>
                             </Row>
@@ -172,7 +191,7 @@ const ProfileVetLg = ({ clinicId }) => {
                                         label="Teléfono de Contacto"
                                         rules={[{ required: true, message: 'Por favor ingrese el teléfono' }]}
                                     >
-                                        <Input prefix={<PhoneOutlined />} placeholder="Teléfono" />
+                                        <Input prefix={<span className="material-symbols-outlined">phone</span>} placeholder="Teléfono" />
                                     </Form.Item>
                                 </Col>
                                 <Col span={12}>
@@ -181,7 +200,7 @@ const ProfileVetLg = ({ clinicId }) => {
                                         label="Correo Electrónico"
                                         rules={[{ required: true, type: 'email', message: 'Por favor ingrese un email válido' }]}
                                     >
-                                        <Input prefix={<MailOutlined />} placeholder="Email de contacto" />
+                                        <Input prefix={<span className="material-symbols-outlined">mail</span>} placeholder="Email de contacto" />
                                     </Form.Item>
                                 </Col>
                             </Row>
@@ -191,14 +210,14 @@ const ProfileVetLg = ({ clinicId }) => {
                                 label="Dirección"
                                 rules={[{ required: true, message: 'Por favor ingrese la dirección' }]}
                             >
-                                <Input prefix={<EnvironmentOutlined />} placeholder="Dirección completa" />
+                                <Input prefix={<span className="material-symbols-outlined">location_on</span>} placeholder="Dirección completa" />
                             </Form.Item>
 
                             <Form.Item
                                 name="openingHours"
                                 label="Horario de Atención"
                             >
-                                <Input prefix={<ClockCircleOutlined />} placeholder="Ej: Lunes a Viernes 8:00 AM - 6:00 PM" />
+                                <Input prefix={<span className="material-symbols-outlined">schedule</span>} placeholder="Ej: Lunes a Viernes 8:00 AM - 6:00 PM" />
                             </Form.Item>
 
                             <Form.Item
