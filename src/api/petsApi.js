@@ -45,3 +45,12 @@ export const obtenerMascotasPorClinica = async (clinicId) => {
     throw error.response?.data?.message || "Error al obtener mascotas por clínica";
   }
 };
+
+export const updatePetApi = async (id, petData) => {
+  try {
+    const response = await api.put(`/pets/${id}`, petData);
+    return response.data;
+  } catch (error) {
+    throw new Error(error.response?.data?.message || "Error al actualizar la mascota");
+  }
+};

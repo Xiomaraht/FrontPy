@@ -153,7 +153,8 @@ export default function RegisterMascotasMq() {
                 color: cleanOpcional(color), 
                 weight: cleanOpcional(weight),
                 gender: gender.toUpperCase(), 
-                raceId: parseInt(selectedRaceId) 
+                raceId: parseInt(selectedRaceId),
+                status: true
             };
             
             console.log("Pet Registration DTO a enviar:", petRegistrationDTO);

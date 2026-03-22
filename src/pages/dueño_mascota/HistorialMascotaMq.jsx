@@ -3,14 +3,42 @@ import '@/components/styles/HistorialMascotaMq.css'
 import FooterLg from '@/components/common/FooterLg'
 import CardsByMq from '@/components/common/CardsByMq'
 import MedicalRecordForm from '@/components/vetAdmin/MedicalRecordForm'
-import { useLocation, Link } from 'react-router-dom'
-import { useState } from 'react'
-
+import { useLocation, Link, useNavigate } from 'react-router-dom'
+import { useState, useEffect } from 'react'
+import { obtenerCitasPorMascota } from '@/api/appointmentsApi';
 
 
 function HistorialMascotaMq() {
     const locacion = useLocation();
-    const [mascota, setMascota] = useState(locacion.state?.mascota);
+    const [mascota, setMascota] = useState(null); // Initialize with null or an empty object
+    const navigate = useNavigate(); // Added for potential navigation
+
+    useEffect(() => {
+        if (locacion.state?.mascota) {
+            setMascota(locacion.state.mascota);
+            if (locacion.state.mascota.id) {
+                fetchConsultas(locacion.state.mascota.id);
+            }
+        } else {
+            // If no mascota in state, redirect or show error
+            navigate('/miperfil/mascotas'); // Example: redirect to pets list
+        }
+    }, [locacion, navigate]);
+
+    const fetchConsultas = async (petId) => {
+        try {
+            const data = await obtenerCitasPorMascota(petId);
+            // Mapear citas a formato de 'ultconsultas' si es necesario
+            const mappedConsultas = data.map(cita => ({
+                tipo: cita.service?.name || 'Consulta General',
+                fecha: cita.appointmentDate,
+                descripcion: cita.reason
+            }));
+            setMascota(prev => ({ ...prev, ultconsultas: mappedConsultas }));
+        } catch (error) {
+            console.error("Error fetching pet consultations:", error);
+        }
+    };
     
     // Obtener info del usuario para manejo de roles
     const userInfoString = localStorage.getItem('userInfo');

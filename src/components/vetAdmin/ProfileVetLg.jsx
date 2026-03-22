@@ -21,7 +21,15 @@ const ProfileVetLg = ({ clinicId }) => {
                 const data = await obtenerClinicaPorId(clinicId);
                 setClinicData(data);
                 setFotoPreview(data.picture);
-                form.setFieldsValue(data);
+                
+                // Cargar datos del usuario también
+                const userInfo = JSON.parse(localStorage.getItem('userInfo') || '{}');
+                form.setFieldsValue({
+                    ...data,
+                    firstName: userInfo.firstName || '',
+                    lastName: userInfo.lastName || '',
+                    userEmail: userInfo.email || ''
+                });
             } catch (error) {
                 message.error("Error al cargar los datos de la clínica");
             } finally {
@@ -67,22 +75,26 @@ const ProfileVetLg = ({ clinicId }) => {
             
             // Sync with user profile picture if possible
             const userInfo = JSON.parse(localStorage.getItem('userInfo') || '{}');
-            if (userInfo.role === 'ROLE_VETERINARIAN' || userInfo.role === 'VETERINARIAN') {
-                 try {
-                    const { updateUserApi } = await import('@/api/userApi');
-                    await updateUserApi({
-                        id: userInfo.userId || userInfo.id,
-                        picture: pictureUrl
-                    });
-                    // Update localStorage
-                    userInfo.picture = pictureUrl;
-                    localStorage.setItem('userInfo', JSON.stringify(userInfo));
-                    // Dispatch event for components listening to storage changes (like Header)
-                    window.dispatchEvent(new Event('storage'));
-                 } catch (userErr) {
-                    console.error("Could not sync user picture:", userErr);
-                 }
-            }
+            const { updateUserApi } = await import('@/api/userApi');
+            
+            const userPayload = {
+                id: userInfo.userId || userInfo.id,
+                picture: pictureUrl,
+                firstName: values.firstName,
+                lastName: values.lastName,
+                email: values.userEmail
+            };
+            
+            await updateUserApi(userPayload);
+            
+            // Update localStorage
+            userInfo.picture = pictureUrl;
+            userInfo.firstName = values.firstName;
+            userInfo.lastName = values.lastName;
+            userInfo.email = values.userEmail;
+            
+            localStorage.setItem('userInfo', JSON.stringify(userInfo));
+            window.dispatchEvent(new Event('storage'));
 
             message.success("Perfil de la clínica actualizado correctamente");
         } catch (error) {
@@ -156,13 +168,42 @@ const ProfileVetLg = ({ clinicId }) => {
                 </Col>
 
                 <Col xs={24} lg={16}>
-                    <Card className="profile-edit-card" title="Editar Información de la Clínica">
+                    <Card className="profile-edit-card" title="Editar Información Personal y de la Clínica">
                         <Form
                             form={form}
                             layout="vertical"
                             onFinish={onFinish}
-                            initialValues={clinicData}
                         >
+                            <Divider orientation="left">Datos Personales</Divider>
+                            <Row gutter={16}>
+                                <Col span={12}>
+                                    <Form.Item
+                                        name="firstName"
+                                        label="Nombres"
+                                        rules={[{ required: true, message: 'Por favor ingrese sus nombres' }]}
+                                    >
+                                        <Input prefix={<span className="material-symbols-outlined">person</span>} placeholder="Tus nombres" />
+                                    </Form.Item>
+                                </Col>
+                                <Col span={12}>
+                                    <Form.Item
+                                        name="lastName"
+                                        label="Apellidos"
+                                        rules={[{ required: true, message: 'Por favor ingrese sus apellidos' }]}
+                                    >
+                                        <Input prefix={<span className="material-symbols-outlined">person</span>} placeholder="Tus apellidos" />
+                                    </Form.Item>
+                                </Col>
+                            </Row>
+                            <Form.Item
+                                name="userEmail"
+                                label="Correo de Usuario"
+                                rules={[{ required: true, type: 'email', message: 'Por favor ingrese un email válido' }]}
+                            >
+                                <Input prefix={<span className="material-symbols-outlined">mail</span>} placeholder="Email personal" />
+                            </Form.Item>
+
+                            <Divider orientation="left">Datos de la Clínica</Divider>
                             <Row gutter={16}>
                                 <Col span={12}>
                                     <Form.Item

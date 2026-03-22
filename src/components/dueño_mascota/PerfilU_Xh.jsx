@@ -7,7 +7,6 @@ export default function PerfilU({ seccionActiva, setSeccionActiva, datos }) {
   const redireccion = useNavigate();
   const items = [
     { key: 'mascotas', label: 'Mis Mascotas' },
-    { key: 'historialPe', label: 'Historial de Pedidos' },
     { key: 'metodos', label: 'Métodos de Pago' },
     { key: 'config', label: 'Configuración' }
   ];

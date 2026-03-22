@@ -4,8 +4,6 @@ import HeaderLg from '@/components/common/HeaderLg'
 import FooterLg from '@/components/common/FooterLg'
 import PerfilU from '@/components/dueño_mascota/PerfilU_Xh';
 import MascotasXh from '@/components/dueño_mascota/MascotasXh';
-import HistorialPe_Xh from '@/components/dueño_mascota/HistorialPe_Xh';
-import PaymentMethod_Xh from '@/components/dueño_mascota/PaymentMethod_Xh';
 import Configuracion_Xh from '@/components/dueño_mascota/Configuracion_Xh';
 import LogOut_Xh from '@/components/dueño_mascota/CloseSession';
 import { getCustomerApi } from '@/api/customerApi'; // Asumo que getCustomerApi está en '../api/CustomerApi'
@@ -138,10 +136,9 @@ export default function MiPerfilXh() {
           {/* Le pasamos los datos del perfil cargados por la API */}
           <PerfilU seccionActiva={seccionActiva} setSeccionActiva={setSeccionActiva} datos={perfil} /> 
           <div className="containerMp-Xh">
-            {seccionActiva === "mascotas" && <MascotasXh perfil={perfil} />}
-            {seccionActiva === "historialPe" && <HistorialPe_Xh />}
+            {seccionActiva === "mascotas" && <MascotasXh perfil={perfil} onUpdate={fetchProfile} />}
             {seccionActiva === "metodos" && <PaymentMethod_Xh />}
-            {seccionActiva === "config" && <Configuracion_Xh perfil={perfil} />}
+            {seccionActiva === "config" && <Configuracion_Xh perfil={perfil} onUpdate={fetchProfile} />}
             {seccionActiva === "cerrar" && <LogOut_Xh/>}
           </div>
         </div>

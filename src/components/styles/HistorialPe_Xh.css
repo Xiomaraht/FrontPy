@@ -1,109 +1,113 @@
-.Historial {
-  padding: 20px;
+.Historial, .Consultas {
+  padding: 10px;
+  width: 60vw;
 }
 
-.Historial h2 {
-  text-align: center;
+.titulo-seccion {
+  text-align: left;
   color: #D9308D; 
-  margin-bottom: 20px;
+  margin-bottom: 5px;
+  font-weight: bold;
 }
 
-.pedido-card {
+.subtitulo-seccion {
+    color: #666;
+    font-size: 0.9rem;
+    margin-bottom: 25px;
+}
+
+/* Pet History Cards */
+.pet-history-card {
   background: #fff;
   border-radius: 12px;
-  padding: 16px;
-  margin-bottom: 20px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-  font-size: 0.95rem;
-  width: 60vw;
-  
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  border: 1px solid #eee;
+  transition: transform 0.2s;
 }
 
-.pedido-header {
+.pet-history-card:hover {
+    transform: translateY(-3px);
+}
+
+.pet-info-header {
   display: flex;
-  justify-content: space-between;
-  margin-bottom: 12px;
-  font-weight: bold;
-  color: #024059; /* azul petróleo */
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 15px;
+  border-bottom: 1px solid #f0f0f0;
+  padding-bottom: 12px;
 }
 
-.estado {
-  padding: 4px 10px;
-  border-radius: 6px;
+.pet-thumb {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #D9308D;
+}
+
+.pet-basic-data h3 {
+  margin: 0;
+  color: #024059;
+  font-size: 1.2rem;
+}
+
+.pet-basic-data span {
+  color: #777;
   font-size: 0.85rem;
-  font-weight: bold;
 }
 
-.estado.entregado {
-  background: #0388A6;
-  color: #fff;
-}
-
-.pedido-productos {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+.pet-details-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 8px;
   margin-bottom: 15px;
 }
 
-.producto {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.producto-img {
-  width: 50px;
-  height: 50px;
-  background: #F2055C; /* rosa neón */
-  border-radius: 8px;
-}
-
-.producto p {
-  margin: 0;
-  font-weight: 500;
-  color: #024059;
-}
-
-.producto span {
+.detail-item {
   font-size: 0.9rem;
-  color: #BF0436; /* rojo oscuro */
+  color: #444;
 }
 
-.pedido-footer {
-  border-top: 1px solid #eee;
-  padding-top: 12px;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-.pedido-footer p {
-  margin: 0;
-  color: #555;
-}
-
-.total {
-  font-weight: bold;
+.detail-item strong {
   color: #024059;
-  margin-top: 6px;
+  width: 80px;
+  display: inline-block;
 }
 
-.pedido-footer button {
-  margin-top: 10px;
-  align-self: flex-start;
-  background: #BF0436;
+.pet-card-footer {
+  text-align: right;
+}
+
+.btn-ver-historial {
+  background: #D9308D;
   color: #fff;
   border: none;
   padding: 8px 16px;
-  border-radius: 6px;
+  border-radius: 20px;
   cursor: pointer;
-  font-weight: bold;
+  font-weight: 500;
+  font-size: 0.85rem;
   transition: background 0.3s;
 }
 
-.pedido-footer button:hover {
-  background: #F2055C;
+.btn-ver-historial:hover {
+  background: #BF0436;
+}
+
+/* Table styling */
+.table-container-xh {
+    background: #fff;
+    border-radius: 12px;
+    padding: 15px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.ant-table-thead > tr > th {
+    background: #f8f9fa !important;
+    color: #024059 !important;
+    font-weight: 600 !important;
 }
 
    

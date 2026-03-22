@@ -35,3 +35,12 @@ export const actualizarEstadoCita = async (id, status) => {
     throw new Error("Error al actualizar el estado de la cita");
   }
 };
+
+export const obtenerCitasPorMascota = async (petId) => {
+  try {
+    const response = await api.get(`/api/appointments/pet/${petId}`);
+    return response.data;
+  } catch (error) {
+    throw new Error("Error al obtener las citas de la mascota");
+  }
+};

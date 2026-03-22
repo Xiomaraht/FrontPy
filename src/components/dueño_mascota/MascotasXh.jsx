@@ -25,17 +25,14 @@ export default function MascotasXh({perfil}) {
         }
 
         const fetchPets = async () => {
+            if (!customerId) return;
             try {
-                //DEpuracion
-                console.log(customerId)
                 const petsData = await getPetsByCustomerIdApi(customerId);
                 if (isMounted) {
                     setMascotas(petsData);
-                    console.log("Mascotas cargadas:", petsData);
                 }
             } catch (error) {
                 console.error("Error al obtener las mascotas:", error);
-                // No actualizamos estados o renderizamos en caso de error aquí, lo manejamos arriba.
             } finally {
                 if (isMounted) {
                     setIsLoading(false);
@@ -88,7 +85,11 @@ export default function MascotasXh({perfil}) {
                 {mascotas.map(mascota => (
                     <CardsXh 
                         key ={mascota.id}
-                        mascota ={mascota} // Le pasa el PetDTO completo
+                        mascota ={mascota}
+                        onUpdate={() => {
+                            // Re-fetch pets when one is updated
+                            getPetsByCustomerIdApi(customerId).then(data => setMascotas(data));
+                        }}
                     />
                 ))}
             </div>

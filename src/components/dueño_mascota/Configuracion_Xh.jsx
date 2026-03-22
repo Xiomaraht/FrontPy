@@ -6,7 +6,7 @@ import { updateCustomerApi } from '@/api/customerApi';
 import { uploadImageToCloudinary } from '@/utilities/useImageUploader';
 import { message } from 'antd';
 
-export default function Configuracion_Xh({ perfil }) {
+export default function Configuracion_Xh({ perfil, onUpdate }) {
   const [mostrarCambio, setMostrarCambio] = useState(false);
   const [foto, setFoto] = useState(perfil?.picture || null);
   const [fotoFile, setFotoFile] = useState(null);
@@ -18,6 +18,9 @@ export default function Configuracion_Xh({ perfil }) {
     email: perfil?.email || '',
     phone: perfil?.phone || '',
     address: perfil?.address || '',
+    documentNumber: perfil?.documentNumber || '',
+    birthdate: perfil?.birthdate || '',
+    addressDetail: perfil?.addressDetail || '',
   });
 
   useEffect(() => {
@@ -28,6 +31,9 @@ export default function Configuracion_Xh({ perfil }) {
         email: perfil.email || '',
         phone: perfil.phone || '',
         address: perfil.address || '',
+        documentNumber: perfil.documentNumber || '',
+        birthdate: perfil.birthdate || '',
+        addressDetail: perfil.addressDetail || '',
       });
       setFoto(perfil.picture || null);
     }
@@ -74,11 +80,15 @@ export default function Configuracion_Xh({ perfil }) {
               email: formData.email,
               name: formData.firstName + ' ' + formData.lastName,
               picture: pictureUrl,
+              documentNumber: formData.documentNumber,
+              birthdate: formData.birthdate,
+              addressDetail: formData.addressDetail,
           };
           await updateCustomerApi(perfil.id, updateCustomerData);
       }
 
-      message.success('Perfil actualizado correctamente. Refresca para ver los cambios.');
+      message.success('Información actualizada correctamente');
+      if (onUpdate) onUpdate();
       
       // Actualizar userInfo en localStorage si el correo o foto cambiaron
       const updatedUserInfo = { ...userInfo, email: formData.email, picture: pictureUrl };
@@ -139,8 +149,23 @@ export default function Configuracion_Xh({ perfil }) {
 
           <div className="form-row">
             <div className="form-group">
-              <label htmlFor="direccion">Dirección</label>
+              <label htmlFor="address">Dirección</label>
               <input id="address" type="text" value={formData.address} onChange={handleChange} placeholder="Dirección" />
+            </div>
+            <div className="form-group">
+              <label htmlFor="addressDetail">Detalle Dirección</label>
+              <input id="addressDetail" type="text" value={formData.addressDetail} onChange={handleChange} placeholder="Ej: Apto 301, Torre 2" />
+            </div>
+          </div>
+
+          <div className="form-row">
+            <div className="form-group">
+              <label htmlFor="documentNumber">Número de Documento</label>
+              <input id="documentNumber" type="text" value={formData.documentNumber} onChange={handleChange} placeholder="Cédula / Pasaporte" />
+            </div>
+            <div className="form-group">
+              <label htmlFor="birthdate">Fecha de Nacimiento</label>
+              <input id="birthdate" type="date" value={formData.birthdate} onChange={handleChange} />
             </div>
           </div>
 
