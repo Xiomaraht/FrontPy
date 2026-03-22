@@ -2,6 +2,8 @@ import React from 'react';
 import { Table, Avatar, Typography } from 'antd';
 import { Link } from 'react-router-dom';
 
+const { Title } = Typography;
+
 const ContentPetsLg = ({ data }) => {
     const columns = [
         { title: 'ID', dataIndex: 'id', key: 'id' },

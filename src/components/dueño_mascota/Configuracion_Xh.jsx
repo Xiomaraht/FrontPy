@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import ChangePassword_Xh from './ChangePassword_Xh';
 import '@/components/styles/Configuracion_Xh.css';
 import { updateUserApi } from '@/api/userApi';
+import { updateCustomerApi } from '@/api/customerApi';
 import { uploadImageToCloudinary } from '@/utilities/useImageUploader';
 import { message } from 'antd';
 
@@ -64,6 +65,19 @@ export default function Configuracion_Xh({ perfil }) {
       };
 
       await updateUserApi(updateData);
+      
+      if (perfil && perfil.id) {
+          const updateCustomerData = {
+              id: perfil.id,
+              address: formData.address,
+              phone: formData.phone,
+              email: formData.email,
+              name: formData.firstName + ' ' + formData.lastName,
+              picture: pictureUrl,
+          };
+          await updateCustomerApi(perfil.id, updateCustomerData);
+      }
+
       message.success('Perfil actualizado correctamente. Refresca para ver los cambios.');
       
       // Actualizar userInfo en localStorage si el correo o foto cambiaron

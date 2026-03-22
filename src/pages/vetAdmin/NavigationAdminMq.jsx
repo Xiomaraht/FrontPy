@@ -174,12 +174,19 @@ function NavigationAdminMq() {
         }
     };
 
-    // 6. LÓGICA CRUD PARA SERVICIOS (Clonado de Productos)
     const handleCrearServicio = async (data) => {
         try {
             const userInfo = JSON.parse(localStorage.getItem('userInfo') || '{}');
-            const clinicId = userInfo.clinicId;
-            await crearServicio({ ...data, clinicId });
+            const clinicId = userInfo.clinicId || userInfo.id;
+            // Map payload to match backend ServicesRegistrationDTO exactly
+            const mappedData = {
+                ...data,
+                picture: data.imageUrl,
+                veterinaryClinicIds: [clinicId]
+            };
+            delete mappedData.imageUrl;
+            
+            await crearServicio(mappedData);
             message.success('¡Servicio creado exitosamente! ✅');
             refrescarServicios(); 
         } catch (err) {

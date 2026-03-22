@@ -1,3 +1,4 @@
+import React, { useState, useEffect } from 'react';
 import { Button, Input, Modal, message, Row, Col, Form, Select, Upload } from 'antd';
 import { uploadImageToCloudinary } from '@/utilities/useImageUploader'
 import '@/components/styles/ContentMq.css'; 
@@ -103,8 +104,8 @@ const ModalServicesLg = ({ open, onCancel, onSubmit, initialData }) => {
                 form.setFieldsValue({
                     nombre: initialData.name,
                     descripcion: initialData.description,
-                    estado: Number(initialData.state),
-                    imagen: initialData.imageUrl, // Usamos imageUrl consistentemente
+                    estado: initialData.status ? 1 : 0,
+                    imagen: initialData.picture, // Usamos picture consistentemente
                 });
             }
         }
@@ -123,7 +124,7 @@ const ModalServicesLg = ({ open, onCancel, onSubmit, initialData }) => {
                 description: values.descripcion,
                 status: values.estado === 1,
                 // ✅ Asigna la URL directamente. Si no hay una nueva, se mantiene la anterior o es undefined.
-                imageUrl: values.imagen || initialData?.imageUrl || undefined,
+                imageUrl: values.imagen || initialData?.picture || undefined,
             };
             await onSubmit(serviceData);
         } catch (error) {
@@ -282,11 +283,11 @@ function ContentServicesLg({ title, data, onCrear, onActualizar, onEliminar, onB
                                 <td>{servicio.id}</td>
                                 <td>{servicio.name}</td>
                                 <td>{servicio.description}</td>
-                                <td>{servicio.state === 1 ? 'Activo' : 'Inactivo'}</td>
+                                <td>{servicio.status ? 'Activo' : 'Inactivo'}</td>
                                 <td>
                                     {/* ✅ Muestra una miniatura de la imagen */}
-                                    {servicio.imageUrl ? (
-                                        <img src={servicio.imageUrl} alt={servicio.name} style={{ width: '60px', height: 'auto', borderRadius: '4px' }} />
+                                    {servicio.picture ? (
+                                        <img src={servicio.picture} alt={servicio.name} style={{ width: '60px', height: 'auto', borderRadius: '4px' }} />
                                     ) : (
                                         'No'
                                     )}

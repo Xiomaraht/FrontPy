@@ -88,7 +88,7 @@ const ModalServicesLg = ({ open, onCancel, onSubmit, initialData }) => {
             form.resetFields();
             if (isEditing && initialData) {
                 // Aseguramos que 'estado' sea numérico para el Select
-                const stateValue = initialData.state !== undefined ? Number(initialData.state) : undefined;
+                const stateValue = initialData.status !== undefined ? (initialData.status ? 1 : 0) : undefined;
                 
                 form.setFieldsValue({
                     nombre: initialData.name,

@@ -33,7 +33,7 @@ export const registerPetForCustomer = async (customerId, petData) => {
     if (error.response?.status === 403) {
       throw new Error("Acceso denegado. Verifique su rol.");
     }
-    throw error.response?.data?.message || "Error al registrar mascota";
+    throw new Error(error.response?.data?.message || "Error al registrar mascota");
   }
 };
 

@@ -138,15 +138,22 @@ export default function RegisterMascotasMq() {
             
             // C. CONSTRUIR EL DTO DE REGISTRO (PetRegistrationDTO)
             // Ya no usamos raceName/specieName, ¡usamos raceId!
+            const cleanOpcional = (val) => {
+                if (!val) return null;
+                const trimmed = val.trim();
+                if (trimmed.toLowerCase() === 'opcional' || trimmed === '') return null;
+                return trimmed;
+            };
+
             const petRegistrationDTO = {
                 imageUrl: imageUrl, 
                 name: name,
                 birthdate: birthdate, 
-                microchip: microchip, 
-                color: color, 
-                weight: weight,
+                microchip: cleanOpcional(microchip), 
+                color: cleanOpcional(color), 
+                weight: cleanOpcional(weight),
                 gender: gender.toUpperCase(), 
-                raceId: parseInt(selectedRaceId) // 🔥 Este es el campo clave para la asociación
+                raceId: parseInt(selectedRaceId) 
             };
             
             console.log("Pet Registration DTO a enviar:", petRegistrationDTO);

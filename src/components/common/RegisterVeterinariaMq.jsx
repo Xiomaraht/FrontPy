@@ -38,7 +38,13 @@ export default function RegisterVeterinariaMq({setChange, datosUsuario}) {
         setIsLoading(true);
 
         try{
-            await registerVeterinaryApi(vetData);
+            const nuevaClinica = await registerVeterinaryApi(vetData);
+            
+            // Actualizar userInfo en localStorage para reflejar la relación con la veterinaria inmediatamente
+            const currentUserInfo = JSON.parse(localStorage.getItem('userInfo') || '{}');
+            const updatedUserInfo = { ...currentUserInfo, clinicId: nuevaClinica.id, rol: "VETERINARIO" };
+            localStorage.setItem('userInfo', JSON.stringify(updatedUserInfo));
+
             setChange("exito");
         } catch (error) {
             console.error("Fallo en el registro de la veterinaria:", error);

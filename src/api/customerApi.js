@@ -34,3 +34,16 @@ export const getCustomerApi = async (userId) => {
     throw error;
   }
 };
+
+// Actualizar cliente
+export const updateCustomerApi = async (id, customerData) => {
+  try {
+    const { data } = await api.put(`/api/customers/${id}`, customerData);
+    return data;
+  } catch (error) {
+    if (!error.response) {
+      throw new Error("No se pudo conectar con el servidor");
+    }
+    throw error;
+  }
+};
