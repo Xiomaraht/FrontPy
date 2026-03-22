@@ -37,7 +37,18 @@ const ProfileVetLg = ({ clinicId }) => {
             }
         };
 
-        if (clinicId) fetchClinic();
+        if (clinicId) {
+            fetchClinic();
+        } else {
+            setLoading(false);
+            // Optionally load user info even if clinic is missing
+            const userInfo = JSON.parse(localStorage.getItem('userInfo') || '{}');
+            form.setFieldsValue({
+                firstName: userInfo.firstName || '',
+                lastName: userInfo.lastName || '',
+                userEmail: userInfo.email || ''
+            });
+        }
     }, [clinicId, form]);
 
     const handleImagen = (e) => {
@@ -64,14 +75,17 @@ const ProfileVetLg = ({ clinicId }) => {
     const onFinish = async (values) => {
         try {
             setSaving(true);
-            let pictureUrl = clinicData.picture;
+            let pictureUrl = clinicData?.picture || '';
             if (fotoFile) {
                 pictureUrl = await uploadImageToCloudinary(fotoFile);
             }
             
             const payload = { ...values, picture: pictureUrl };
-            await actualizarClinica(clinicId, payload);
-            setClinicData(prev => ({ ...prev, ...payload }));
+            
+            if (clinicId) {
+                await actualizarClinica(clinicId, payload);
+                setClinicData(prev => ({ ...prev, ...payload }));
+            }
             
             // Sync with user profile picture if possible
             const userInfo = JSON.parse(localStorage.getItem('userInfo') || '{}');

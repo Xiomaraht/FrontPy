@@ -6,9 +6,10 @@ import PerfilU from '@/components/dueño_mascota/PerfilU_Xh';
 import MascotasXh from '@/components/dueño_mascota/MascotasXh';
 import Configuracion_Xh from '@/components/dueño_mascota/Configuracion_Xh';
 import LogOut_Xh from '@/components/dueño_mascota/CloseSession';
-import { getCustomerApi } from '@/api/customerApi'; // Asumo que getCustomerApi está en '../api/CustomerApi'
+import { getCustomerApi } from '@/api/customerApi'; 
 import '@/components/styles/MiPerfilXh.css';
 import RegisterCustomerMq from '@/components/common/RegisterCustomerMq';
+import PaymentMethod_Xh from '@/components/dueño_mascota/PaymentMethod_Xh';
 
 // Función para obtener la información de usuario del localStorage
 const getUserInfoFromStorage = () => {
@@ -28,79 +29,52 @@ const getUserInfoFromStorage = () => {
 export default function MiPerfilXh() {
   const [seccionActiva, setSeccionActiva] = useState("mascotas");
   const redireccion = useNavigate();
-  // El estado 'perfil' ahora almacenará los datos completos del cliente obtenidos de la API
   const [perfil, setPerfil] = useState(null); 
-  const [isLoading, setIsLoading] = useState(true); // Nuevo estado para manejar la carga
-  const [perfilInexistente, setPerfilInexistente] = useState(false); // Nuevo estado
+  const [isLoading, setIsLoading] = useState(true);
+  const [perfilInexistente, setPerfilInexistente] = useState(false);
   const datosUsuarioRef = useRef({ userId: getUserInfoFromStorage()?.userId });
 
-      useEffect(() => {
-        // Bandera para evitar actualizaciones de estado en un componente desmontado
-        let isMounted = true; 
-        
-        const userInfo = getUserInfoFromStorage();
-
-        if (!userInfo || !userInfo.userId) {
-            setIsLoading(false);
-            return; 
-        }
-
-        const fetchPerfil = async (userId) => {
-            try {
-                const userData = await getCustomerApi(userId); 
-                
-                // Solo actualiza el estado si el componente sigue montado
-                if (isMounted) {
-                    setPerfil(userData);
-                    setPerfilInexistente(false);
-                    console.log("Datos del perfil cargados:", userData);
-                }
-            } catch (error) {
-                console.error("Error al obtener datos del perfil:", error);
-                
-                // Solo redirige si el componente sigue montado (si no, la navegación es innecesaria)
-                if (isMounted) {
-                    if (error.response?.status === 404) {
-                        setPerfilInexistente(true);
-                        // Opcionalmente, puedes establecer un perfil dummy o null para que el UI se adapte
-                        setPerfil(null); 
-                    } else {
-                        redireccion('/auth/login'); 
-                    }
-                }
-            } finally {
-                if (isMounted) {
-                    setIsLoading(false);
-                }
-            }
-        };
-        fetchPerfil(userInfo.userId);
-
-        // 🔥 FUNCIÓN DE LIMPIEZA
-        // Cuando el componente se desmonte, isMounted se vuelve falso.
-        // Esto evita que React intente actualizar estados o navegar después del desmontaje,
-        // que es donde suele fallar el "destroy is not a function".
-        return () => {
-            isMounted = false;
-        };
-
-    }, [redireccion]); // Dependencia de redireccion
-
-    // Mostrar un estado de carga mientras se obtienen los datos
-    if (isLoading) {
-        // Podrías usar un spinner o un mensaje más elaborado
-        return (
-            <>
-                <HeaderLg />
-                <div className="Contenedor_P">
-                    <h1 className="tituloMp-Xh">Cargando perfil...</h1>
-                </div>
-                <FooterLg />
-            </>
-        );
+  const fetchPerfilData = async () => {
+    const userInfo = getUserInfoFromStorage();
+    if (!userInfo || !userInfo.userId) {
+        setIsLoading(false);
+        return; 
     }
+    try {
+        const userData = await getCustomerApi(userInfo.userId); 
+        setPerfil(userData);
+        setPerfilInexistente(false);
+        console.log("Datos del perfil cargados:", userData);
+    } catch (error) {
+        console.error("Error al obtener datos del perfil:", error);
+        if (error.response?.status === 404) {
+            setPerfilInexistente(true);
+            setPerfil(null); 
+        } else {
+            redireccion('/auth/login'); 
+        }
+    } finally {
+        setIsLoading(false);
+    }
+  };
 
-    if (perfilInexistente) {
+  useEffect(() => {
+    fetchPerfilData();
+  }, [redireccion]); 
+
+  if (isLoading) {
+    return (
+        <>
+            <HeaderLg />
+            <div className="Contenedor_P">
+                <h1 className="tituloMp-Xh">Cargando perfil...</h1>
+            </div>
+            <FooterLg />
+        </>
+    );
+  }
+
+  if (perfilInexistente) {
       return (
         <>
             <HeaderLg />
@@ -111,7 +85,7 @@ export default function MiPerfilXh() {
                 </div>
                 <RegisterCustomerMq 
                     setChange={(val) => {
-                        if (val === 'exito') window.location.reload(); 
+                        if (val === 'exito') fetchPerfilData(); 
                     }} 
                     datosUsuario={datosUsuarioRef} 
                 />
@@ -121,7 +95,6 @@ export default function MiPerfilXh() {
       )
   }
     
-  // Si los datos están cargados, renderiza el contenido
   return (
     <>
       <HeaderLg />
@@ -133,12 +106,11 @@ export default function MiPerfilXh() {
           </p>
         </div>
         <div className="containerMas-Xh">
-          {/* Le pasamos los datos del perfil cargados por la API */}
           <PerfilU seccionActiva={seccionActiva} setSeccionActiva={setSeccionActiva} datos={perfil} /> 
           <div className="containerMp-Xh">
-            {seccionActiva === "mascotas" && <MascotasXh perfil={perfil} onUpdate={fetchProfile} />}
+            {seccionActiva === "mascotas" && <MascotasXh perfil={perfil} onUpdate={fetchPerfilData} />}
             {seccionActiva === "metodos" && <PaymentMethod_Xh />}
-            {seccionActiva === "config" && <Configuracion_Xh perfil={perfil} onUpdate={fetchProfile} />}
+            {seccionActiva === "config" && <Configuracion_Xh perfil={perfil} onUpdate={fetchPerfilData} />}
             {seccionActiva === "cerrar" && <LogOut_Xh/>}
           </div>
         </div>

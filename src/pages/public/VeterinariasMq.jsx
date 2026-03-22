@@ -34,7 +34,7 @@ export default function VeterinariasMq() {
                             </div>
                         </div>
                         <div className="containerCardsVet-Mq">
-                            {VeterinariasDataMq.map((item, index)=>{
+                            {VeterinariasDataMq.filter(item => item.title === 'Clínica Veterinaria Petitos').map((item, index)=>{
                                 return(
                                     <div key={index} onClick={() => handleSelectClinic(item)} style={{ cursor: 'pointer' }}>
                                         <CardsByMq title={item.title} description={item.description} image={item.image} style={'veterinaria'}/>

@@ -76,7 +76,7 @@ export default function MascotasXh({perfil}) {
         <div className='Mascota_1'>
             <div className='Mascota_2'>
                 <h2>Mis Mascotas</h2>
-                <button className='Bton_1'>
+                <button className='Bton_1' onClick={handleRegisterPet}>
                     Agregar Mascotas
                 </button>
             </div>

@@ -14,25 +14,44 @@ export default function AppointmentModal({ service, clinic, onClose }) {
     setIsLoading(true);
     setMessage('');
 
-    const userInfo = JSON.parse(localStorage.getItem('userInfo') || '{}');
-    const customerId = userInfo.customerId || userInfo.id;
-    if (!customerId) {
-        setMessage('Error: No se encontró información de cliente.');
-        setIsLoading(false);
-        return;
-    }
-
-    const appointmentData = {
-      appointmentDate: date,
-      appointmentTime: time + ":00", // Ensure HH:mm:ss format
-      reason: reason,
-      customer: { id: customerId },
-      veterinaryClinic: { id: clinic.id },
-      service: { id: service.id },
-      status: 'PENDING'
-    };
-
     try {
+      const userInfo = JSON.parse(localStorage.getItem('userInfo') || '{}');
+      if (!userInfo.id) {
+          setMessage('Error: Debes iniciar sesión.');
+          setIsLoading(false);
+          return;
+      }
+
+      let realCustomerId = userInfo.customerId;
+
+      if (!realCustomerId) {
+          try {
+              const response = await fetch(`http://localhost:8080/api/customers/user/${userInfo.id}`);
+              if (response.ok) {
+                  const customerData = await response.json();
+                  realCustomerId = customerData.id;
+              } else {
+                  setMessage('Error: No se encontró perfil de cliente. ¿Completaste tu registro?');
+                  setIsLoading(false);
+                  return;
+              }
+          } catch (err) {
+              setMessage('Error de conexión al verificar el cliente.');
+              setIsLoading(false);
+              return;
+          }
+      }
+
+      const appointmentData = {
+        appointmentDate: date,
+        appointmentTime: time + ":00", 
+        reason: reason,
+        customer: { id: realCustomerId },
+        veterinaryClinic: { id: clinic.id },
+        service: { id: service.id },
+        status: 'PENDING'
+      };
+
       await createAppointmentApi(appointmentData);
       setMessage('✅ Cita agendada con éxito.');
       setTimeout(onClose, 2000);

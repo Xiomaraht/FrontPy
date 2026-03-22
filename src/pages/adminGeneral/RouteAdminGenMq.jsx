@@ -50,20 +50,22 @@ export default function RouteAdminGenMq() {
         try {
             setIsLoading(true);
             const data = await obtenerClinicasVeterinarias();
-            // Map real clinics to match table structure
-            const mappedVets = data.map(v => ({
-                id: v.id,
-                name: v.name,
-                admin: v.owner?.firstName ? `${v.owner.firstName} ${v.owner.lastName || ''}`.trim() : (v.user?.username || 'Sin Admin'),
-                email: v.email,
-                phone: v.phone || 'N/A',
-                address: v.address || 'N/A',
-                nit: v.documentNumber || v.nit || 'N/A',
-                status: 'Activo', // Defaulting to active if it comes from DB
-                registered: v.createdAt ? new Date(v.createdAt).toLocaleDateString('es-CO') : 'N/A',
-                suspend: 'N/A',
-                imageUrl: v.picture
-            }));
+            // Map real clinics to match table structure and filter for 'Petitos'
+            const mappedVets = data
+                .filter(v => v.name && v.name.toLowerCase().includes('petitos'))
+                .map(v => ({
+                    id: v.id,
+                    name: v.name,
+                    admin: v.owner?.firstName ? `${v.owner.firstName} ${v.owner.lastName || ''}`.trim() : (v.user?.username || 'prueba'),
+                    email: v.email,
+                    phone: v.phone || 'N/A',
+                    address: v.address || 'N/A',
+                    nit: v.documentNumber || v.nit || 'N/A',
+                    status: 'Activo', // Defaulting to active if it comes from DB
+                    registered: v.createdAt ? new Date(v.createdAt).toLocaleDateString('es-CO') : 'N/A',
+                    suspend: 'N/A',
+                    imageUrl: v.picture
+                }));
             setVetsData(mappedVets);
         } catch (error) {
             console.error("Error loading vets:", error);

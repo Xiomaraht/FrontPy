@@ -12,6 +12,8 @@ function HistorialMascotaMq() {
     const locacion = useLocation();
     const [mascota, setMascota] = useState(null); // Initialize with null or an empty object
     const navigate = useNavigate(); // Added for potential navigation
+    const [modalOpen, setModalOpen] = useState(false);
+    const [modalTitle, setModalTitle] = useState('');
 
     useEffect(() => {
         if (locacion.state?.mascota) {
@@ -57,7 +59,6 @@ function HistorialMascotaMq() {
         return <h1>NO SE HA SELECCIONADO UNA MASCOTA</h1>
     }
 
-    // Calcular edad
     const calcularEdad = (birthdate) => {
         if (!birthdate) return 'N/A';
         const today = new Date();
@@ -74,9 +75,6 @@ function HistorialMascotaMq() {
         if (months > 0) return `${months} meses`;
         return 'Menos de 1 mes';
     };
-
-    const [modalOpen, setModalOpen] = useState(false);
-    const [modalTitle, setModalTitle] = useState('');
 
     const openModal = (title) => {
         setModalTitle(title);
@@ -154,16 +152,16 @@ function HistorialMascotaMq() {
             <HeaderLg />
             <div className="ContenedorPrincipalHm-Mq">
                 <div className='titleGenHm-Mq'>
-                    <h1>Historial de {mascota.name}</h1>
+                    <h1>Historial de {mascota?.name || 'Mascota'}</h1>
                     <Link to={canEdit ? '/adminClient' : '/miperfil/mascotas'} ><button>Volver</button></Link>
                 </div>
                 <div className="contenedorCardsHm-Mq">
                     <CardsByMq 
                         style={'history'}
-                        image={mascota.imageUrl || mascota.picture}
-                        raza={mascota.raceName || (mascota.raza ? mascota.raza.name : 'N/A')}
-                        edad={calcularEdad(mascota.birthdate)}
-                        gen={mascota.gender}
+                        image={mascota?.imageUrl || mascota?.picture}
+                        raza={mascota?.raceName || (mascota?.raza ? mascota?.raza.name : 'N/A')}
+                        edad={calcularEdad(mascota?.birthdate)}
+                        gen={mascota?.gender}
                     />
                 </div>
                 <article className="contDatosGenHm-Mq">
@@ -172,20 +170,20 @@ function HistorialMascotaMq() {
                         <tbody>
                             <tr>
                                 <td><i className="bi bi-calendar"></i> Nacimiento</td>
-                                <td>{mascota.birthdate}</td>
-                                <td>{calcularEdad(mascota.birthdate)}</td>
+                                <td>{mascota?.birthdate}</td>
+                                <td>{calcularEdad(mascota?.birthdate)}</td>
                             </tr>
                             <tr>
                                 <td><i className="bi bi-cpu"></i> Microchip</td>
-                                <td>{mascota.microchip || 'Sin registrar'}</td>
+                                <td>{mascota?.microchip || 'Sin registrar'}</td>
                             </tr>
                             <tr>
                                 <td><i className="bi bi-palette"></i> Color</td>
-                                <td>{mascota.color || 'N/A'}</td>
+                                <td>{mascota?.color || 'N/A'}</td>
                             </tr>
                             <tr>
                                 <td><i className="bi bi-speedometer2"></i> Peso</td>
-                                <td>{mascota.weight} Kg</td>
+                                <td>{mascota?.weight} Kg</td>
                             </tr>
                         </tbody>
                     </table>
@@ -210,19 +208,19 @@ function HistorialMascotaMq() {
                     <h3>Alergias y Condiciones {renderAddButton('Actualizar')}</h3>
                     <div className="contBotonHm-Mq">
                         <i className="bi bi-check-circle"></i>
-                        <strong>{mascota.alergias || 'Sin alergias registradas'}</strong>
+                        <strong>{mascota?.alergias || 'Sin alergias registradas'}</strong>
                     </div>
                     <div className="contBotonHm-Mq">
                         <i className="bi bi-bandaid"></i>
                         <div className="contenedorBotoneraIntHm-Mq">
                             <strong>Condicion cronica</strong>
-                            <p>{mascota.condicion || 'Ninguna registrada'}</p>
+                            <p>{mascota?.condicion || 'Ninguna registrada'}</p>
                         </div>
                     </div>
                 </article> 
                 <article className="contBotonerasHm-Mq">
                     <h3>Consultas recientes {renderAddButton('Añadir Consulta')}</h3>
-                    {mascota.ultconsultas && mascota.ultconsultas.length > 0 ? mascota.ultconsultas.map((item, index) => (
+                    {mascota?.ultconsultas && mascota.ultconsultas.length > 0 ? mascota.ultconsultas.map((item, index) => (
                         <div className="contBotonHm-Mq" key={index}>
                             <i className="bi bi-calendar-plus"></i>
                             <div className="contenedorBotoneraIntHm-Mq">
@@ -234,7 +232,7 @@ function HistorialMascotaMq() {
                 </article> 
                 <article className="contBotonerasHm-Mq">
                     <h3>Recetas Activas {renderAddButton('Añadir Receta')}</h3>
-                    {mascota.recetasActivas ? (
+                    {mascota?.recetasActivas ? (
                         <div className="contBotonHm-Mq">
                             <i className="bi bi-capsule"></i>
                             <div className="contenedorBotoneraIntHm-Mq">
