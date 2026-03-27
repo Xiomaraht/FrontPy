@@ -80,7 +80,7 @@ const ProfileVetLg = ({ clinicId }) => {
                 pictureUrl = await uploadImageToCloudinary(fotoFile);
             }
             
-            const payload = { ...values, picture: pictureUrl };
+            const payload = { ...clinicData, ...values, picture: pictureUrl };
             
             if (clinicId) {
                 await actualizarClinica(clinicId, payload);

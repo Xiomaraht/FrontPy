@@ -1,0 +1,98 @@
+.booking-modal-premium .ant-modal-content {
+  border-radius: 18px;
+  padding: 20px 10px;
+  background: #f9fbfd;
+}
+
+/* HEADER */
+.booking-modal-premium .ant-modal-header {
+  border-bottom: none;
+  text-align: center;
+  padding-bottom: 10px;
+}
+
+/* STEPS */
+.booking-modal-premium .ant-steps {
+  padding: 0 10px;
+}
+
+.booking-modal-premium .ant-steps-item-icon {
+  background: #e6f7ff;
+  border: none;
+  transition: all 0.3s ease;
+}
+
+.booking-modal-premium .ant-steps-item-process .ant-steps-item-icon {
+  background: linear-gradient(135deg, #38dbf8, #13c2c2);
+  color: white;
+  transform: scale(1.1);
+}
+
+/* CARD DE CADA STEP */
+.step-content {
+  background: white;
+  padding: 25px;
+  border-radius: 14px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+  animation: fadeIn 0.3s ease;
+}
+
+/* INPUTS */
+.booking-modal-premium .ant-select-selector,
+.booking-modal-premium .ant-picker,
+.booking-modal-premium textarea {
+  border-radius: 10px !important;
+  padding: 8px !important;
+  border: 1px solid #e5e7eb !important;
+  transition: all 0.2s ease;
+}
+
+/* FOCUS INPUT */
+.booking-modal-premium .ant-select-focused .ant-select-selector,
+.booking-modal-premium .ant-picker-focused,
+.booking-modal-premium textarea:focus {
+  border-color: #38dbf8 !important;
+  box-shadow: 0 0 0 2px rgba(56,219,248,0.2);
+}
+
+/* RESUMEN */
+.booking-summary {
+  background: linear-gradient(135deg, #e6f7ff, #f0faff);
+  border-radius: 10px;
+  padding: 12px;
+  font-size: 14px;
+}
+
+/* BOTONES */
+.booking-modal-premium .ant-btn {
+  border-radius: 10px;
+  height: 45px;
+  font-weight: 500;
+}
+
+.booking-modal-premium .ant-btn-primary {
+  background: linear-gradient(135deg, #38dbf8, #13c2c2);
+  border: none;
+}
+
+.booking-modal-premium .ant-btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+}
+
+/* BOTÓN CONFIRMAR */
+.booking-modal-premium .ant-btn[style*="52c41a"] {
+  background: linear-gradient(135deg, #52c41a, #389e0d) !important;
+}
+
+/* ANIMACIÓN */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

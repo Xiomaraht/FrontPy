@@ -8,8 +8,20 @@ export default function LandingPageMq() {
     return (
         <>
             <HeaderLg />
-            <ContentGenMq title={'Thiiy Get Your werkace Thiew For PariL ito Noft'} description={'Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis tempore esse, numquam accusantium neque sapiente similique dolor earum unde quidem expedita animi alias odit? Laudantium exercitationem rem explicabo inventore non'} buttons={[{texto:'Soy Dueño de Mascota', hrf:'/auth/login?action=register&role=customer'}, {texto:'Soy Veterinario', hrf:'/auth/login?action=register&role=vet'}]} imageSrc={heroImg1}/>
-            <ContentGenMq title='Here you can find all for your pet' description='Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis tempore esse, numquam accusantium neque sapiente similique dolor earum unde quidem expedita animi alias odit? Laudantium exercitationem rem explicabo inventore non' buttons={[{texto:'Services', hrf:'/servicios'}]} optionalStyle='whitestyle' miniTitle='Present' imageSrc={heroImg2}/>
+            <ContentGenMq 
+                title={'El mejor cuidado para tu mejor amigo'} 
+                description={'En PetCare conectamos a dueños de mascotas con las mejores veterinarias. Todo lo que tu compañero necesita en un solo lugar: salud, bienestar y amor.'} 
+                buttons={[{texto:'Soy Dueño de Mascota', hrf:'/auth/login?action=register&role=customer'}, {texto:'Soy Veterinario', hrf:'/auth/login?action=register&role=vet'}]} 
+                imageSrc={heroImg1}
+            />
+            <ContentGenMq 
+                title='Encuentra todo lo que buscas' 
+                description='Explora nuestro amplio catálogo de productos premium y servicios especializados. Agenda citas de manera rápida y segura desde cualquier dispositivo.' 
+                buttons={[{texto:'Ver Servicios', hrf:'/servicios'}]} 
+                optionalStyle='whitestyle' 
+                miniTitle='Servicios Exclusivos' 
+                imageSrc={heroImg2}
+            />
             <FooterLg />
         </>
     )

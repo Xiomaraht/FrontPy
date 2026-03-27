@@ -10,7 +10,7 @@ import FilterLw from '@/components/common/FilterLw';
 import CardLw from '@/components/common/CardLw';
 import PaginationLw from '@/components/common/PaginationLw';
 import FooterLg from '@/components/common/FooterLg';
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 
 export default function ServicesLw() {
     const [services, setServices] = useState([]);
@@ -20,6 +20,10 @@ export default function ServicesLw() {
     const [currentPage, setCurrentPage] = useState(1);
     const [activeFilters, setActiveFilters] = useState({});
     const servicesPerPage = 12;
+
+    const [searchParams] = useSearchParams();
+    const clinicDocParam = searchParams.get('clinicDoc');
+    const clinicNameParam = searchParams.get('clinicName');
 
     // --- Carga de Datos de la API ---
     useEffect(() => {
@@ -69,6 +73,14 @@ export default function ServicesLw() {
         if (activeFilters['Servicios'] && service.categoria !== activeFilters['Servicios']) {
             return false;
         }
+
+        if (clinicDocParam) {
+            // veterinaryClinics is now an array of objects
+            if (!service.veterinaryClinics || !service.veterinaryClinics.some(clinic => clinic.documentNumber === clinicDocParam)) {
+                return false;
+            }
+        }
+
         return true;
     });
 
@@ -86,10 +98,10 @@ export default function ServicesLw() {
 
     // --- Renderizado con manejo de estados ---
     if (isLoading) {
-         return (
+        return (
             <>
                 <HeaderLg />
-                <BannerLw titulo={'Servicios'} />
+                <BannerLw titulo={clinicNameParam ? `Servicios en ${clinicNameParam}` : 'Servicios'} />
                 <div className="products-page-container">
                     <p style={{textAlign: 'center', padding: '100px'}}>Cargando servicios...</p>
                 </div>
@@ -102,7 +114,7 @@ export default function ServicesLw() {
         return (
             <>
                 <HeaderLg />
-                <BannerLw titulo={'Servicios'} />
+                <BannerLw titulo={clinicNameParam ? `Servicios en ${clinicNameParam}` : 'Servicios'} />
                 <div className="products-page-container">
                     <p style={{textAlign: 'center', color: 'red', padding: '100px'}}>
                         Error al cargar los servicios: {errorMesagge}
@@ -116,7 +128,7 @@ export default function ServicesLw() {
     return (
         <>
             <HeaderLg />
-            <BannerLw titulo={'Servicios'} />
+            <BannerLw titulo={clinicNameParam ? `Servicios en ${clinicNameParam}` : 'Servicios'} />
             <div className="products-page-container">
                 <aside className="filters-sidebar">
                     <div className="sidebar-header">
@@ -158,17 +170,23 @@ export default function ServicesLw() {
 
 
                     <div className="product-grid">
-                        {paginatedServices.map(service => (
-                            <Link key={service.id} to={`/servicios/${service.id}`}>
-                                <CardLw
-                                    productName={service.name || service.nombre || 'Servicio sin nombre'} 
-                                    imageUrl={service.picture || service.imagenUrl || service.image || undefined} 
-                                    showPrice = {false}
-                                    showCartIcon = {false}
-                                    showHeartIcon = {false}
-                                />
-                            </Link>
-                        ))}
+                        {paginatedServices.length > 0 ? (
+                            paginatedServices.map(service => (
+                                <Link key={service.id} to={`/servicios/${service.id}`}>
+                                    <CardLw
+                                        productName={service.name || service.nombre || 'Servicio sin nombre'} 
+                                        imageUrl={service.picture || service.imagenUrl || service.image || undefined} 
+                                        showPrice={false}
+                                        showCartIcon={false}
+                                        showHeartIcon={false}
+                                    />
+                                </Link>
+                            ))
+                        ) : (
+                            <p style={{ gridColumn: '1 / -1', textAlign: 'center', margin: '40px 0', fontSize: '18px', color: '#666' }}>
+                                No se encontraron servicios {clinicNameParam ? `para ${clinicNameParam}` : 'con estos filtros'}.
+                            </p>
+                        )}
                     </div>
 
                     

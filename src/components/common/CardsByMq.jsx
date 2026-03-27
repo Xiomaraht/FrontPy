@@ -3,7 +3,7 @@ export default function CardsByMq({title, description, image, style, raza, edad,
     if(style === 'veterinaria'){
         return (
             <div className="contentCardCd-Mq">
-                <img src={image} alt={description} />
+                <img src={image} alt={title} />
                 <strong>{title}</strong>
             </div>
         )

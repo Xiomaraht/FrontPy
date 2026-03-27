@@ -160,13 +160,22 @@ export default function RegisterMascotasMq() {
             console.log("Pet Registration DTO a enviar:", petRegistrationDTO);
 
             // D. REGISTRAR MASCOTA
-            message.loading('Registrando mascota...');
-            await registerPetForCustomer(customerId, petRegistrationDTO); 
-            message.destroy();
+            message.loading('Registrando mascota...'); // Keep this message.loading here
+            try {
+                // Safety check for the malformed ID issue (e.g. "2:1")
+                const cleanCustomerId = parseInt(customerId.toString().split(':')[0]);
+                console.log("Using clean customerId for registration:", cleanCustomerId);
 
-            // E. MANEJAR ÉXITO Y REDIRECCIONAR
-            message.success('¡Mascota registrada con éxito!');
-            redireccion('/miperfil'); // 🚨 Uso de la redirección
+                const response = await registerPetForCustomer(cleanCustomerId, petRegistrationDTO);
+                message.destroy();
+
+                // E. MANEJAR ÉXITO Y REDIRECCIONAR
+                message.success('¡Mascota registrada con éxito!');
+                redireccion('/miperfil'); // 🚨 Uso de la redirección
+            } catch (registrationError) {
+                // Handle specific registration errors if needed, or rethrow
+                throw registrationError;
+            }
             
         } catch (error) {
             message.destroy();

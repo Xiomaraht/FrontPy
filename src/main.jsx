@@ -23,6 +23,7 @@ import MiWishListLg from '@/pages/dueño_mascota/MiWishListLg';
 import CarritoComprasTL from '@/components/dueño_mascota/CarritoComprasTL';
 import NavigationAdminMq from '@/pages/vetAdmin/NavigationAdminMq';
 import RegisterMascotasMq from '@/components/common/RegisterMascotasMq';
+import AgendarCitaMq from '@/pages/dueño_mascota/AgendarCitaMq';
 
 const rutas = createBrowserRouter([
       { path:'/', element:<LandingPageMq/>},
@@ -38,6 +39,11 @@ const rutas = createBrowserRouter([
       },
       { path:'/servicios', element:<ServicesLw />},
       { path:'/servicios/:serviceid', element:<ServicesItemsMq />}, 
+      { path:'/agendar-cita/:serviceid', element:
+        <ProtectedRoute allowedRoles={['ROLE_ADMIN','ROLE_CUSTOMER']}>
+          <AgendarCitaMq />
+        </ProtectedRoute>
+      },
       { path:'/miperfil/:sectionBack' ,element:
         <ProtectedRoute allowedRoles={['ROLE_ADMIN','ROLE_CUSTOMER']}>
           <MiPerfilXh />
@@ -50,7 +56,7 @@ const rutas = createBrowserRouter([
       },
       { path:'/veterinarias', element:<VeterinariasMq/>},
       { path:'/historial', element:
-        <ProtectedRoute allowedRoles={['ROLE_ADMIN','ROLE_CUSTOMER']}>
+        <ProtectedRoute allowedRoles={['ROLE_ADMIN','ROLE_CUSTOMER','ROLE_VETERINARIAN','VETERINARIO']}>
           <HistorialMascotaMq/>
         </ProtectedRoute>
       },

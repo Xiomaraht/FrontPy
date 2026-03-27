@@ -1,0 +1,252 @@
+@import './main.css';
+
+.contentForm{
+    display: flex;
+    flex-direction: row;
+    border-radius: 20px;
+    justify-content: center;
+    width: 90%;
+    max-width: 600px;
+    margin: 5vh auto;
+    padding: 30px;
+    background-color: var(--colorInterfazOscura);
+    box-shadow: 7px 8px 5px -3px rgba(0,0,0,0.4);
+}
+
+form{
+    width: 80%;
+    height: 100%;
+}
+
+
+/* ✅ Logo centrado y con tamaño adecuado */
+.logo-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px; /* espacio entre el logo y el texto */
+}
+
+.login-logo {
+  width: 90px;
+  height: auto;
+  display: block;
+}
+
+.logo-text {
+  font-size: 2.5em;
+  font-weight: 700;
+  color: var(--colorTituloOscura);
+  letter-spacing: 1px;
+}
+
+
+
+.contSubtitle{
+    width: 100%;
+    padding: 5px;
+    margin: 0.2em 0 1em;
+
+}
+.contSubtitle h3{
+    letter-spacing: -1px;
+    font-weight: bolder;
+    font-size: 2em;
+    text-align: center;
+    color: var(--colorEnfasisOscura);
+}
+.contSubtitle p{
+    font-size: 0.9em;
+    text-align: center;
+    color: var(--colorTituloOscura);
+}
+/*Estilos secundarios del titulo*/
+.contSubtitle2{
+    width: 100%;
+    padding: 5px;
+    margin: 0.2em 0 1em;
+}
+.contSubtitle2 h3{
+    letter-spacing: -2px;
+    font-weight: bolder;
+    font-size: 2em;
+    text-align: center;
+    margin: 0 0 0.5vh;
+    width: 100%;
+    color: var(--colorEnfasisOscura);    
+}
+.contSubtitle2 p{
+    font-size: 0.9em;
+    text-align: center;
+    color: var(--colorTituloOscura);
+}
+.contUser{
+    width: 100%;
+    padding: 5px;
+    margin: 2em 0 1em;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+#secundario{
+    margin: 2em 0 0;
+}
+
+.contUser input{
+    border: none;
+    background-color: white;
+    color: var(--colorInterfazOscura);
+    width: 100%;
+    height: 40px;
+    padding-left:10px ;
+    border-radius: 10px;
+}
+.contUser input:focus{
+    outline: none;
+}
+
+.contUser i{
+    color: var(--colorTituloOscura);
+    font-size: 25px;
+    border: 3px solid white;
+    border-radius: 70px;
+    padding: 2.0px;
+}
+.questions p{
+    text-align: right;
+    margin-right:12px ;
+    color: var(--colorTituloOscura);
+}
+
+.questions p span{
+    cursor: pointer;
+}
+.questions p span:hover{
+    text-decoration: underline;
+}
+.check{
+    margin:2em 0 2em;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    justify-content: center;
+    color: var(--colorTituloOscura);
+}
+.check input{
+    height: 18px;
+    width: 18px;
+}
+.contBtn{
+    display: flex;
+    width: 100%;
+    align-items: center;
+}
+
+.contBtn button{
+    border: none;
+    border-radius: 10px;
+    width: 45%;
+    height: 42px;
+    font-weight: bold;
+    font-size: 1em;
+    margin: 1em auto; 
+}
+
+.contBtn button:hover{
+    background-color: var(--colorEnfasisOscura);
+    color: var(--colorInterfazOscura);
+}
+/*Estilos secundarios*/
+
+.contentForm2{
+    display: flex;
+    flex-direction: row;
+    border-radius: 20px;
+    justify-content: center;
+    width: 90%;
+    max-width: 600px;
+    height: auto;
+    min-height: 600px;
+    margin: 10vh auto;
+    padding: 30px 30px 60px;
+    background-color: var(--colorInterfazOscura);
+    box-shadow: 7px 8px 5px -3px rgba(0,0,0,0.4);
+}
+.contBtn2{
+    display: flex;
+    width: 100%;
+    align-items: center;
+}
+
+.contBtn2 button{
+    border: none;
+    border-radius: 10px;
+    width: 70%;
+    height: 35px;
+    font-weight: bold;
+    font-size: 1em;
+    margin: 1em auto; 
+}
+
+.contBtn2 button:hover{
+    background-color:var(--colorEnfasisOscura);
+    color: var(--colorInterfazOscura);
+}
+
+.contLink{
+    font-weight: bold;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    margin: 2vh 0 3vh;
+    justify-content: center;
+    font-size: 1.1em;
+    color: var(--colorTituloOscura);
+}
+.contInfo{
+    color: var(--colorTituloOscura);
+}
+
+
+
+.contLink p span{
+    cursor: pointer;
+}
+
+.contLink:hover{
+    transition: ease-in 0.2s;
+    color: var(--colorEnfasisOscura);
+}
+
+.miniTitle{
+    font-weight: bold;
+    display: flex;
+    gap: 10px;
+    margin: 0 0 1vh;
+    color: var(--colorEnfasisOscura);
+}
+
+.miniTitle i{
+    font-size: 1.1em;
+}
+
+#hrL-M{
+    border: 0;
+    height: 10px;
+    background-color: var(--colorTituloOscura);
+    margin: 0 0 3vh;
+}
+
+.contRegister{
+    text-align: center;
+    margin-top: 1vh;
+    color: var(--colorTituloOscura);
+    cursor: pointer;
+
+}
+.contRegister:hover{
+    text-decoration: underline;
+
+}
+
+

@@ -88,7 +88,6 @@ export default function HeaderLg() {
                 <button 
                     className="header-login-link" 
                     onClick={() => setIsAuthMenuOpen(!isAuthMenuOpen)}
-                    style={{background: 'none', border:'none', cursor:'pointer', display: 'flex', alignItems: 'center', color: 'var(--colorTextoOscura)'}}
                 >
                     {isLoggedIn && userInfo?.picture ? (
                         <img src={userInfo.picture} alt="Perfil" style={{width: '32px', height: '32px', borderRadius: '50%', marginRight: '8px', objectFit: 'cover'}} />

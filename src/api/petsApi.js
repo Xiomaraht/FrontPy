@@ -3,7 +3,7 @@ import api from "@/api/axios";
 
 export const registerPet = async (petData) => {
   try {
-    const response = await api.post("/pets", petData);
+    const response = await api.post("/api/pets", petData);
     return response.data;
   } catch (error) {
     throw error.response?.data?.message || "Error al registrar la mascota";
@@ -12,7 +12,7 @@ export const registerPet = async (petData) => {
 
 export const getPetsByCustomerIdApi = async (customerId) => {
   try {
-    const response = await api.get(`/pets/customer/${customerId}`);
+    const response = await api.get(`/api/pets/customer/${customerId}`);
     return response.data;
   } catch (error) {
     if (error.response?.status === 404) {
@@ -25,7 +25,7 @@ export const getPetsByCustomerIdApi = async (customerId) => {
 export const registerPetForCustomer = async (customerId, petData) => {
   try {
     const response = await api.post(
-      `/pets/customer/${customerId}`,
+      `/api/pets/customer/${customerId}`,
       petData
     );
     return response.data;
@@ -39,7 +39,7 @@ export const registerPetForCustomer = async (customerId, petData) => {
 
 export const obtenerMascotasPorClinica = async (clinicId) => {
   try {
-    const response = await api.get(`/pets/clinic/${clinicId}`);
+    const response = await api.get(`/api/pets/clinic/${clinicId}`);
     return response.data;
   } catch (error) {
     throw error.response?.data?.message || "Error al obtener mascotas por clínica";
@@ -48,7 +48,7 @@ export const obtenerMascotasPorClinica = async (clinicId) => {
 
 export const updatePetApi = async (id, petData) => {
   try {
-    const response = await api.put(`/pets/${id}`, petData);
+    const response = await api.put(`/api/pets/${id}`, petData);
     return response.data;
   } catch (error) {
     throw new Error(error.response?.data?.message || "Error al actualizar la mascota");

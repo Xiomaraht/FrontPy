@@ -1,0 +1,128 @@
+@import './main.css';
+
+.textOne{
+    background:var(--colorContenedorOscura);
+    background-size:cover ;
+    background-position:center ;
+    width: 100vw;
+    margin: 7vh auto 0;
+}
+
+.containerContLp-Mq{
+    padding: 5rem;
+    display: flex;
+    flex-direction: row;
+    gap: 100px;
+    justify-content: space-evenly;
+}
+
+.conText{
+    width: 40%;
+    padding-top: 3rem;
+}
+
+.conText h1{
+    font-weight: 700;
+    font-size: 3em;
+    line-height: 55px;
+    letter-spacing: -3px;
+    width: 80%;
+    color: var(--colorTituloOscura);
+}
+
+.conText p{
+    padding: 5px;
+    width: 80%;
+    color: var(--colorTituloOscura);
+}
+
+.containerButtonCg-Mq{
+    display: flex;
+    flex-direction: row;
+}
+
+.botonCg-Mq{
+    display: block;
+    font-weight: bold;
+    margin: 5% 3% 0 0;
+    padding: 15px 13px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    background-color: var(--colorInterfazOscura);
+    width: 150px;
+    text-align: center;
+    color: var(--colorTituloOscura);
+    text-decoration: none;
+    transition: ease .55s;
+}
+
+.botonCg-Mq:hover{
+    background: var(--colorEnfasisOscura);
+    color: var(--colorInterfazOscura);
+}
+
+.textTwo{
+    width: 100vw;
+    background: var(--colorContenedorOscura);
+}
+
+.textTwo h6{
+    color: var(--colorEnfasisOscura);
+    font-size: 1em;
+}
+
+.conTextTwo{
+    width: 40%;
+}
+
+.conTextTwo img{
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+    border-radius: 20px;
+}
+
+@media screen and (max-width: 768px) {
+    .containerContLp-Mq {
+        padding: 3rem 1.5rem;
+        flex-direction: column;
+        gap: 40px;
+        text-align: center;
+    }
+
+    .conText {
+        width: 100%;
+        padding-top: 0;
+    }
+
+    .conText h1 {
+        font-size: 2em;
+        line-height: normal;
+        width: 100%;
+        letter-spacing: -1px;
+    }
+
+    .conText p {
+        width: 100%;
+        font-size: 1rem;
+    }
+
+    .containerButtonCg-Mq {
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .botonCg-Mq {
+        margin: 10px auto;
+        width: 100%;
+        max-width: 250px;
+    }
+
+    .conTextTwo {
+        width: 100%;
+    }
+}
+
+

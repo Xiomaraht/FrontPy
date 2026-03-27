@@ -74,7 +74,12 @@ function NavigationAdminMq() {
     // 7. Función para recargar citas
     const refrescarCitas = () => {
         const userInfo = JSON.parse(localStorage.getItem('userInfo') || '{}');
-        const clinicId = userInfo.clinicId || userInfo.id; 
+        const clinicId = userInfo.clinicId; 
+        if (!clinicId) {
+            console.error("No se encontró clinicId en userInfo", userInfo);
+            message.warning("Tu sesión no está vinculada a una clínica. Contacta al administrador.");
+            return;
+        }
         obtenerCitasPorClinica(clinicId)
             .then(setCitas)
             .catch((fallo) => {
@@ -234,6 +239,11 @@ function NavigationAdminMq() {
     // 7. FIN DE LÓGICA CRUD PARA SERVICIOS
 
     const handleActualizarEstadoCita = async (id, status) => {
+        if (status === 'REFRESH') {
+            refrescarCitas();
+            message.success('Citas actualizadas. 🔄');
+            return;
+        }
         try {
             await actualizarEstadoCita(id, status);
             message.success('Estado de la cita actualizado. ✅');

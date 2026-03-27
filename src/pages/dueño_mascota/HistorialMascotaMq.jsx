@@ -6,6 +6,8 @@ import MedicalRecordForm from '@/components/vetAdmin/MedicalRecordForm'
 import { useLocation, Link, useNavigate } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import { obtenerCitasPorMascota } from '@/api/appointmentsApi';
+import { createMedicalRecordApi, getMedicalRecordsByPetIdApi } from '@/api/medicalRecordsApi';
+import { message } from 'antd'; // Ensure message is imported for feedback
 
 
 function HistorialMascotaMq() {
@@ -29,16 +31,47 @@ function HistorialMascotaMq() {
 
     const fetchConsultas = async (petId) => {
         try {
-            const data = await obtenerCitasPorMascota(petId);
-            // Mapear citas a formato de 'ultconsultas' si es necesario
-            const mappedConsultas = data.map(cita => ({
-                tipo: cita.service?.name || 'Consulta General',
+            const [citasData, recordsData] = await Promise.all([
+                obtenerCitasPorMascota(petId),
+                getMedicalRecordsByPetIdApi(petId)
+            ]);
+
+            // Mapear citas a formato de 'ultconsultas'
+            const mappedCitas = citasData.map(cita => ({
+                tipo: cita.service?.name || 'Cita Agendada',
                 fecha: cita.appointmentDate,
-                descripcion: cita.reason
+                descripcion: cita.reason,
+                isAppointment: true
             }));
-            setMascota(prev => ({ ...prev, ultconsultas: mappedConsultas }));
+
+            // Organizar records por tipo
+            const vacunas = recordsData.filter(r => r.type === 'VACUNA').map(r => ({
+                nombre: r.description,
+                fechaUlti: r.recordDate,
+                fechaProx: 'Pendiente'
+            }));
+
+            const consultasPersistentes = recordsData.filter(r => r.type === 'CONSULTA' || r.type === 'HALLAZGO').map(r => ({
+                tipo: r.type === 'HALLAZGO' ? 'Hallazgo Clínico' : 'Consulta',
+                fecha: r.recordDate,
+                descripcion: r.description
+            }));
+
+            const receta = recordsData.find(r => r.type === 'RECETA');
+
+            setMascota(prev => ({ 
+                ...prev, 
+                ultconsultas: [...mappedCitas, ...consultasPersistentes],
+                vacunas: vacunas,
+                recetasActivas: receta ? {
+                    medicamento: receta.description,
+                    fechavalidez: 'Ver detalle en receta'
+                } : null,
+                alergias: recordsData.find(r => r.type === 'ALERGIA')?.description || prev.alergias,
+                condicion: recordsData.find(r => r.type === 'CONDICION')?.description || prev.condicion
+            }));
         } catch (error) {
-            console.error("Error fetching pet consultations:", error);
+            console.error("Error fetching pet consultations and records:", error);
         }
     };
     
@@ -48,8 +81,9 @@ function HistorialMascotaMq() {
     if (userInfoString) {
         try {
             const userInfo = JSON.parse(userInfoString);
-            // Permitir edición a ADMIN y VETERINARIAN
-            canEdit = userInfo.rol === 'ROLE_ADMIN' || userInfo.rol === 'ROLE_VETERINARIAN' || userInfo.role === 'ROLE_ADMIN' || userInfo.role === 'ROLE_VETERINARIAN';
+            const userRole = (userInfo.rol || userInfo.role || '').toUpperCase();
+            // Permitir edición a ADMIN y VETERINARIAN (incluyendo VETERINARIO hardcodeado en React)
+            canEdit = userRole.includes('ADMIN') || userRole.includes('VETERINARIA') || userRole.includes('VETERINARIO');
         } catch (error) {
             console.error(error);
         }
@@ -81,57 +115,37 @@ function HistorialMascotaMq() {
         setModalOpen(true);
     };
 
-    const handleAddRecord = (data) => {
-        const todayStr = new Date().toLocaleDateString('es-CO');
+    const handleAddRecord = async (data) => {
+        const userInfo = JSON.parse(localStorage.getItem('userInfo') || '{}');
+        const clinicId = userInfo.clinicId || userInfo.userId;
+        const todayStr = new Date().toISOString().split('T')[0];
         
-        switch (modalTitle) {
-            case 'Añadir Vacuna':
-                const nuevaVacuna = {
-                    nombre: data.detail,
-                    fechaUlti: todayStr,
-                    fechaProx: 'Pendiente'
-                };
-                setMascota({
-                    ...mascota,
-                    vacunas: [...(mascota.vacunas || []), nuevaVacuna]
-                });
-                break;
-            case 'Añadir Consulta':
-                const nuevaConsulta = {
-                    tipo: 'Consulta General',
-                    fecha: todayStr,
-                    descripcion: data.detail
-                };
-                setMascota({
-                    ...mascota,
-                    ultconsultas: [...(mascota.ultconsultas || []), nuevaConsulta]
-                });
-                break;
-            case 'Añadir Receta':
-                setMascota({
-                    ...mascota,
-                    recetasActivas: {
-                        medicamento: data.detail,
-                        fechavalidez: '3 meses desde hoy'
-                    }
-                });
-                break;
-            case 'Actualizar': // Alergias
-                setMascota({
-                    ...mascota,
-                    alergias: data.detail
-                });
-                break;
-            case 'Editar': // Datos Generales / Condicion
-                setMascota({
-                    ...mascota,
-                    condicion: data.detail
-                });
-                break;
-            default:
-                break;
+        const baseRecord = {
+            petId: mascota.id,
+            clinicId: clinicId,
+            recordDate: todayStr,
+            description: data.detail
+        };
+
+        try {
+            let recordType = '';
+            switch (modalTitle) {
+                case 'Añadir Vacuna': recordType = 'VACUNA'; break;
+                case 'Añadir Consulta': recordType = 'CONSULTA'; break;
+                case 'Añadir Receta': recordType = 'RECETA'; break;
+                case 'Actualizar': recordType = 'ALERGIA'; break; // Se usa para alergias
+                case 'Hallazgos': recordType = 'HALLAZGO'; break;
+                case 'Editar': recordType = 'CONDICION'; break;
+                default: recordType = 'NOTA'; break;
+            }
+
+            await createMedicalRecordApi({ ...baseRecord, type: recordType });
+            message.success(`${modalTitle} guardado exitosamente en la base de datos ✅`);
+            fetchConsultas(mascota.id); // Refresh data from backend
+        } catch (error) {
+            console.error("Error saving medical record:", error);
+            message.error("Error al guardar el registro médico ❌");
         }
-        message.success(`${modalTitle} guardado exitosamente`);
     };
 
     const renderAddButton = (label) => {
@@ -153,6 +167,7 @@ function HistorialMascotaMq() {
             <div className="ContenedorPrincipalHm-Mq">
                 <div className='titleGenHm-Mq'>
                     <h1>Historial de {mascota?.name || 'Mascota'}</h1>
+                    {mascota?.customerName && <p style={{color: '#666', fontSize: '1.2rem'}}>Dueño: {mascota.customerName}</p>}
                     <Link to={canEdit ? '/adminClient' : '/miperfil/mascotas'} ><button>Volver</button></Link>
                 </div>
                 <div className="contenedorCardsHm-Mq">
@@ -218,6 +233,13 @@ function HistorialMascotaMq() {
                         </div>
                     </div>
                 </article> 
+                <article className="contBotonerasHm-Mq">
+                    <h3>Hallazgos y Observaciones {renderAddButton('Hallazgos')}</h3>
+                    <div className="contBotonHm-Mq">
+                        <i className="bi bi-search"></i>
+                        <p>{mascota?.hallazgos || 'No hay hallazgos registrados.'}</p>
+                    </div>
+                </article>
                 <article className="contBotonerasHm-Mq">
                     <h3>Consultas recientes {renderAddButton('Añadir Consulta')}</h3>
                     {mascota?.ultconsultas && mascota.ultconsultas.length > 0 ? mascota.ultconsultas.map((item, index) => (

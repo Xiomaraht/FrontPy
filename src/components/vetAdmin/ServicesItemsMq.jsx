@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { obtenerServicioPorId } from "@/api/servicesApi"; 
+import { obtenerClinicasVeterinarias } from "@/api/veterinaryClinicApi"; // Added API
 import HeaderLg from '@/components/common/HeaderLg';
 import FooterLg from '@/components/common/FooterLg';
 import AppointmentModal from '@/components/common/AppointmentModal';
@@ -45,7 +46,7 @@ export default function ServicesItemsMq() {
         fetchService();
     }, [serviceId]); 
 
-    const handleSchedule = () => {
+    const handleSchedule = async () => {
         const userInfo = JSON.parse(localStorage.getItem('userInfo') || '{}');
         if (!userInfo.id) {
             alert("Debes iniciar sesión para agendar un servicio.");
@@ -53,20 +54,16 @@ export default function ServicesItemsMq() {
             return;
         }
 
-        if (service) {
-            if (service.veterinaryClinics && service.veterinaryClinics.length > 0) {
-                if (service.veterinaryClinics.length === 1) {
-                    setSelectedClinic(service.veterinaryClinics[0]);
-                    setIsScheduling(true);
-                } else {
-                    // Si hay varias, necesitamos que el usuario elija una
-                    // Por ahora abrimos el modal si ya eligió o si solo hay una.
-                    // Agrego lógica de selección básica abajo.
-                    setIsScheduling(true);
-                }
+        try {
+            const clinics = await obtenerClinicasVeterinarias();
+            if (clinics && clinics.length > 0) {
+                navigate(`/agendar-cita/${serviceId}`);
             } else {
-                alert("Este servicio no está disponible en ninguna clínica actualmente.");
+                alert("Este servicio no está disponible porque no hay clínicas veterinarias registradas en el sistema.");
             }
+        } catch (err) {
+            console.error("Error fetching clinics for scheduling:", err);
+            alert("Hubo un error al intentar conectarse con las clínicas.");
         }
     };
 
@@ -126,24 +123,9 @@ export default function ServicesItemsMq() {
                         <hr className='hrP-Lw'/>
 
                         <div className="service-actions">
-                            {service.veterinaryClinics && service.veterinaryClinics.length > 1 && (
-                                <div className="clinic-selection">
-                                    <label>Selecciona una veterinaria:</label>
-                                    <select 
-                                        onChange={(e) => setSelectedClinic(service.veterinaryClinics.find(c => c.id === parseInt(e.target.value)))}
-                                        value={selectedClinic?.id || ""}
-                                    >
-                                        <option value="" disabled>--- Seleccionar ---</option>
-                                        {service.veterinaryClinics.map(clinic => (
-                                            <option key={clinic.id} value={clinic.id}>{clinic.name}</option>
-                                        ))}
-                                    </select>
-                                </div>
-                            )}
                             <button 
                                 className="schedule-service-btn" 
                                 onClick={handleSchedule}
-                                disabled={service.veterinaryClinics?.length > 1 && !selectedClinic}
                             >
                                 Agendar Servicio
                             </button>

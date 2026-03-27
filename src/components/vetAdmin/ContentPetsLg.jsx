@@ -12,7 +12,7 @@ const ContentPetsLg = ({ data }) => {
         )},
         { title: 'Nombre', dataIndex: 'name', key: 'name' },
         { title: 'Dueño', key: 'customer', render: (_, record) => (
-            record.customer ? record.customer.name : 'Desconocido'
+            record.customerName || 'Desconocido'
         )},
         { title: 'Especie/Raza', key: 'breed', render: (_, record) => (
             record.raza ? `${record.raza.name}` : 'N/A'

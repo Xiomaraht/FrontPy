@@ -76,9 +76,14 @@ export default function MascotasXh({perfil}) {
         <div className='Mascota_1'>
             <div className='Mascota_2'>
                 <h2>Mis Mascotas</h2>
-                <button className='Bton_1' onClick={handleRegisterPet}>
-                    Agregar Mascotas
-                </button>
+                <div>
+                    <button className='Bton_1' onClick={handleRegisterPet}>
+                        Agregar Mascotas
+                    </button>
+                    <button className='Bton_1' style={{marginLeft: '10px', background: '#024059'}} onClick={() => redireccion('/servicios')}>
+                        Agendar Servicios
+                    </button>
+                </div>
             </div>
             <div className='List_1'>
                 {/* Usar el estado 'mascotas' para mapear */}
