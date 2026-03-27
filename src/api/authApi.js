@@ -1,7 +1,21 @@
 import api from "@/api/axios"; // mi instancia
 
-export const login = (data) => {
-  return api.post("/api/auth/login", data);
+export const login = (username, password) => {
+  return api.post("/api/auth/login", { username, password });
+};
+
+// Alias for compatibility during migration if needed, but we'll try to use one.
+export const loginApi = async (username, password) => {
+    try {
+      const response = await api.post("/api/auth/login", { username, password });
+      const token = response.data.token;
+      if (!token) throw new Error("No se recibió token del backend");
+      localStorage.setItem("token", token);
+      return response.data;
+    } catch (error) {
+      console.error("Error en login:", error.response?.data || error.message);
+      throw error;
+    }
 };
 
 export const registerUserApi = (data) => {

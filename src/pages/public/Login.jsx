@@ -1,7 +1,6 @@
 import { useState,useRef } from 'react'
 import { useNavigate, useSearchParams } from 'react-router-dom'
-import {loginApi} from '@/api/LoginApi'
-import { recuperarPasswordApi, resetPasswordApi } from '@/api/authApi'
+import { loginApi, recuperarPasswordApi, resetPasswordApi } from '@/api/authApi'
 import { jwtDecode } from 'jwt-decode'
 import '@/components/styles/Login.css'
 import RegisterMq from '@/components/common/RegisterMq'
