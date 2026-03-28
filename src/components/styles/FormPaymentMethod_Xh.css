@@ -1,58 +1,92 @@
-.form-payment {
-  max-width: 400px;
-  margin: 50px auto;
-  padding: 25px;
-  border-radius: 12px;
-  background: #ffffff;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+/* PetCare - Premium Payment Form Design */
+.formulario-xh {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 2rem;
+  border-radius: 16px;
+  margin-bottom: 2rem;
+  animation: fadeInDown 0.5s ease-out;
 }
 
-.form-payment h2 {
-  text-align: center;
-  margin-bottom: 20px;
-  font-size: 1.5rem;
-  color: #222;
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-.form-payment label {
+.grupo-input-xh {
+  margin-bottom: 1.5rem;
+}
+
+.grupo-input-xh label {
   display: block;
-  margin-bottom: 6px;
-  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+  font-size: 0.85rem;
   font-weight: 500;
-  color: #444;
+  color: #a0aec0;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
-.form-payment input,
-.form-payment select {
+.grupo-input-xh input,
+.grupo-input-xh select {
   width: 100%;
-  padding: 12px;
-  margin-bottom: 18px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  font-size: 0.95rem;
-  transition: border-color 0.3s ease;
-}
-
-.form-payment input:focus,
-.form-payment select:focus {
-  border-color: #007bff;
-  outline: none;
-}
-
-.form-payment button {
-  width: 100%;
-  padding: 12px;
-  background: #007bff;
-  border: none;
-  border-radius: 8px;
+  padding: 12px 16px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
   color: white;
-  font-weight: bold;
   font-size: 1rem;
-  cursor: pointer;
-  transition: background 0.3s ease;
+  transition: all 0.3s ease;
 }
 
-.form-payment button:hover {
-  background: #0056b3;
+.grupo-input-xh input:focus,
+.grupo-input-xh select:focus {
+  outline: none;
+  background: rgba(255, 255, 255, 0.1);
+  border-color: #0388A6;
+  box-shadow: 0 0 0 3px rgba(3, 136, 166, 0.2);
+}
+
+.grupo-fila-xh {
+  display: grid;
+  grid-template-columns: 2fr 3fr 1fr;
+  gap: 15px;
+}
+
+.d-flex-xh {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.separador-xh {
+  color: #4a5568;
+  font-weight: bold;
+}
+
+.btn-guardar-xh {
+  width: 100%;
+  padding: 12px;
+  background: linear-gradient(135deg, #0388A6 0%, #026d85 100%);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 1rem;
+  transition: all 0.3s ease;
+}
+
+.btn-guardar-xh:hover {
+  filter: brightness(1.1);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(3, 136, 166, 0.4);
+}
+
+/* Chrome/Safari select appearance fix */
+.grupo-input-xh select option {
+  background: #1a202c;
+  color: white;
 }

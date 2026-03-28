@@ -1,67 +1,192 @@
+/* PetCare - Premium Payment Methods Design */
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap');
+
 .metodos-container {
-  background: white;
-  padding: 2rem;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.05);
-  width: 55vw;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 2.5rem;
+  border-radius: 20px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 900px;
+  min-height: 450px;
+  font-family: 'Outfit', sans-serif;
+  color: #ffffff;
+  transition: all 0.3s ease;
 }
 
 .metodos-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 1.5rem;
+  margin-bottom: 2rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 1.5rem;
 }
 
-.metodos-header button {
-  padding: 8px 16px;
-  background: #0388A6;
-  color: rgb(245, 243, 243);
+.metodos-header h2 {
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin: 0;
+  background: linear-gradient(135deg, #ffffff 0%, #a0aec0 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.btn-añadir-xh {
+  padding: 10px 24px;
+  background: linear-gradient(135deg, #0388A6 0%, #026d85 100%);
+  color: white;
   border: none;
-  border-radius: 6px;
-  font-size: 14px;
+  border-radius: 12px;
+  font-size: 0.95rem;
+  font-weight: 500;
   cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: 0 4px 15px rgba(3, 136, 166, 0.3);
 }
 
-.tarjetas-guardadas {
+.btn-añadir-xh:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 8px 25px rgba(3, 136, 166, 0.4);
+}
+
+.tarjetas-guardadas-xh {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 25px;
+  margin-top: 1rem;
+}
+
+/* Premium Card Styles */
+.tarjeta-premium-xh {
+  position: relative;
+  height: 180px;
+  border-radius: 16px;
+  padding: 1.5rem;
   display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  width: 50vw;
-  height: 20vw;
-  background-color: #ffffff;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+  transition: all 0.4s ease;
+  cursor: default;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
 }
 
-.tarjeta {
-  background-color: #c5c4c4;
-  padding: 16px;
-  border-radius: 8px;
-  width: 35vw;
+.tarjeta-premium-xh:hover {
+  transform: translateY(-8px) rotateX(5deg);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
 }
 
-.tarjeta {
-  background: #c2c1c1;
+/* Brand specific gradients */
+.tarjeta-visa-xh {
+  background: linear-gradient(135deg, #1a237e 0%, #3f51b5 100%);
+}
+
+.tarjeta-master-xh {
+  background: linear-gradient(135deg, #ff5f00 0%, #ffc100 100%);
+}
+
+.tarjeta-amex-xh {
+  background: linear-gradient(135deg, #007cc3 0%, #54a0ff 100%);
+}
+
+.tarjeta-default-xh {
+  background: linear-gradient(135deg, #4b5563 0%, #1f2937 100%);
+}
+
+.card-overlay-xh {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at 71% 21%, rgba(255, 255, 255, 0.1) 0%, transparent 69%);
+  pointer-events: none;
+}
+
+.chip-xh {
+  width: 45px;
+  height: 34px;
+  background: linear-gradient(135deg, #e2e8f0 0%, #94a3b8 100%);
   border-radius: 6px;
-  padding: 1rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.chip-xh::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: repeating-linear-gradient(90deg, transparent, transparent 10px, rgba(0,0,0,0.1) 11px);
+}
+
+.numero-xh {
+  font-family: 'Monaco', 'Consolas', monospace;
+  letter-spacing: 3px;
+  font-size: 1.2rem;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+}
+
+.nombre-xh {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-top: auto;
+}
+
+.meta-xh {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.marca-xh {
+  font-weight: 600;
+  font-size: 1.1rem;
+  font-style: italic;
+}
+
+.btn-eliminar-xh {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: rgba(255, 0, 0, 0.2);
+  color: white;
+  border: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
   display: flex;
   align-items: center;
-  gap: 1rem;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(5px);
 }
 
-.chip {
-  width: 40px;
-  height: 30px;
-  background: #808080;
-  border-radius: 4px;
+.tarjeta-premium-xh:hover .btn-eliminar-xh {
+  opacity: 1;
 }
 
-.numero {
-  font-weight: bold;
-  font-size: 16px;
+.btn-eliminar-xh:hover {
+  background: rgba(255, 0, 0, 0.8);
+  transform: scale(1.1);
 }
 
+.empty-state-xh {
+  text-align: center;
+  padding: 3rem;
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 12px;
+  border: 2px dashed rgba(255, 255, 255, 0.1);
+}
 
-.nombre {
-  font-size: 13px;
-  color: #444;
+.empty-state-xh p {
+  color: #a0aec0;
+  font-size: 1rem;
 }

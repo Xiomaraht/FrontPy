@@ -8,7 +8,7 @@ export default function FormPaymentMethod_Xh({ onSave }) {
     numero: "",
     marca: "Visa",
     mesVencimiento: "01",
-    anioVencimiento: "2024",
+    anioVencimiento: new Date().getFullYear().toString(),
     cvv: "",
   });
 
@@ -19,40 +19,45 @@ export default function FormPaymentMethod_Xh({ onSave }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     onSave({
-      id: Date.now().toString(),
       ...formData,
       predeterminado: false,
     });
   };
 
   return (
-    <div className="formulario">
+    <div className="formulario-xh">
       <form onSubmit={handleSubmit}>
-        <div className="grupo-input">
-          <label>Nombre en la tarjeta</label>
-          <input
-            type="text"
-            name="nombre"
-            value={formData.nombre}
-            onChange={handleChange}
-            required
-          />
+        <div className="grupo-fila-xh">
+          <div className="grupo-input-xh">
+            <label>Nombre</label>
+            <input
+              type="text"
+              name="nombre"
+              placeholder="Ej. Juan"
+              value={formData.nombre}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div className="grupo-input-xh">
+            <label>Apellido</label>
+            <input
+              type="text"
+              name="apellido"
+              placeholder="Ej. Perez"
+              value={formData.apellido}
+              onChange={handleChange}
+              required
+            />
+          </div>
         </div>
-        <div className="grupo-input">
-          <label>Apellido</label>
-          <input
-            type="text"
-            name="apellido"
-            value={formData.apellido}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div className="grupo-input">
+
+        <div className="grupo-input-xh">
           <label>Número de Tarjeta</label>
           <input
             type="text"
             name="numero"
+            placeholder="0000 0000 0000 0000"
             maxLength="16"
             pattern="\d{16}"
             title="Deben ser 16 dígitos"
@@ -61,8 +66,9 @@ export default function FormPaymentMethod_Xh({ onSave }) {
             required
           />
         </div>
-        <div className="grupo-fila">
-          <div className="grupo-input">
+
+        <div className="grupo-fila-xh">
+          <div className="grupo-input-xh">
             <label>Marca</label>
             <select
               name="marca"
@@ -70,13 +76,13 @@ export default function FormPaymentMethod_Xh({ onSave }) {
               onChange={handleChange}
             >
               <option value="Visa">Visa</option>
-              <option value="Master">Mastercard</option>
-              <option value="Amex">American Express</option>
+              <option value="Mastercard">Mastercard</option>
+              <option value="American Express">Amex</option>
             </select>
           </div>
-          <div className="grupo-input">
-            <label>Vencimiento (Mes/Año)</label>
-            <div className="d-flex">
+          <div className="grupo-input-xh">
+            <label>Vencimiento</label>
+            <div className="d-flex-xh">
               <select
                 name="mesVencimiento"
                 value={formData.mesVencimiento}
@@ -88,13 +94,13 @@ export default function FormPaymentMethod_Xh({ onSave }) {
                   </option>
                 ))}
               </select>
-              <span className="separador">/</span>
+              <span className="separador-xh">/</span>
               <select
                 name="anioVencimiento"
                 value={formData.anioVencimiento}
                 onChange={handleChange}
               >
-                {Array.from({ length: 15 }, (_, i) => new Date().getFullYear() + i).map((y) => (
+                {Array.from({ length: 10 }, (_, i) => new Date().getFullYear() + i).map((y) => (
                   <option key={y} value={y}>
                     {y}
                   </option>
@@ -102,11 +108,12 @@ export default function FormPaymentMethod_Xh({ onSave }) {
               </select>
             </div>
           </div>
-          <div className="grupo-input">
+          <div className="grupo-input-xh">
             <label>CVV</label>
             <input
-              type="text"
+              type="password"
               name="cvv"
+              placeholder="123"
               maxLength="4"
               pattern="\d{3,4}"
               value={formData.cvv}
@@ -115,8 +122,8 @@ export default function FormPaymentMethod_Xh({ onSave }) {
             />
           </div>
         </div>
-        <button type="submit" className="btn-guardar">
-          Guardar Tarjeta
+        <button type="submit" className="btn-guardar-xh">
+          Confirmar y Guardar
         </button>
       </form>
     </div>
